@@ -5,7 +5,7 @@ plugins {
     id 'org.beryx.jlink' version '2.25.0'
 }
 
-group 'com.daniel'
+group 'com.example'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -24,8 +24,8 @@ tasks.withType(JavaCompile) {
 }
 
 application {
-    mainModule = 'com.daniel.snakegame'
-    mainClass = 'com.daniel.snakegame.HelloApplication'
+    mainModule = 'main'
+    mainClass = 'main.GameModel'
 }
 
 javafx {

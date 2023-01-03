@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane prefHeight="512.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUI">
+   <children>
+      <Canvas fx:id="canvas" height="512.0" layoutY="36.0" width="512.0" />
+      <Arc fx:id="snakeHead" fill="#ff1f1f" length="270.0" radiusX="7.0" radiusY="7.0" startAngle="134.4" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Rectangle fx:id="snakeBody" arcHeight="5.0" arcWidth="5.0" fill="#00c645" height="9.0" stroke="BLACK" strokeType="INSIDE" width="9.0" />
+   </children>
+</AnchorPane>

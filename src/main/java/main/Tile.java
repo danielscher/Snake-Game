@@ -1,4 +1,6 @@
-import consumables.Food;
+package main;
+
+import main.consumables.Food;
 
 public class Tile {
 

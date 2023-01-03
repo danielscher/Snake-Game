@@ -1,3 +1,5 @@
+package main;
+
 public class Position {
 
     private int xCoord;

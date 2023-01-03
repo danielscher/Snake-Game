@@ -1,4 +1,4 @@
-package consumables;
+package main.consumables;
 
 public enum FoodType {
     FRUIT,
