@@ -4,9 +4,9 @@ import main.consumables.Food;
 
 public class Tile {
 
-    private Boolean snake;
-    private Food food;
-    private Boolean isFoodPresent;
+    private Boolean snake = false;
+    private Food food = null;
+    private Boolean isFoodPresent = false;
 
     public Boolean isSnake() {
         return snake;

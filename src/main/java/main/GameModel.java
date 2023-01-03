@@ -1,7 +1,6 @@
 package main;
 
 import main.consumables.Food;
-import gui.Controller;
 import java.util.List;
 import java.util.Random;
 
@@ -11,7 +10,6 @@ public class GameModel {
     private Board board;
     private final int boardSize;
     private Random rand;
-    private Boolean gameOver;
     private GameProperties gp = new GameProperties();
 
     public GameModel(long seed, int boardSize, List<Food> foods) {
@@ -27,11 +25,9 @@ public class GameModel {
     /**
      * main game loop
      */
-    public void gameLoop(Direction dir) {
-        while (!gameOver) {
-            Position pos = getNewRandomPosition();
-            gameOver = board.handle(dir, gp, pos);
-        }
+    public boolean makeMove(Direction dir) {
+        Position pos = getNewRandomPosition();
+        return board.handle(dir, gp, pos);
     }
 
     /**

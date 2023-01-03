@@ -25,7 +25,7 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'main'
-    mainClass = 'main.GameModel'
+    mainClass = 'gui.GUI'
 }
 
 javafx {

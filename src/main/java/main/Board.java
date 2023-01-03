@@ -41,6 +41,7 @@ public class Board {
 
         this.snake = snake;
         currentMovmentDirection = Direction.UP;
+        increaseBodySize();
     }
 
     /**
@@ -83,7 +84,8 @@ public class Board {
     private boolean checkEatsSelf(final Direction dir) {
         final Position currHeadPos = snakeBody.get(0);
         final Position nextHeadPos = currHeadPos.getNextPosition(dir);
-        return grid[nextHeadPos.getxCoord()][nextHeadPos.getyCoord()].isSnake();
+        boolean isSelfEat = getGridTileByPosition(nextHeadPos).isSnake();
+        return isSelfEat;
 
     }
 
@@ -132,11 +134,21 @@ public class Board {
      */
     private void updateSnakePos(Direction dir) {
         Position previousPos = snakeBody.get(0);    //get head position
-        snakeBody.get(0).moveInDirection(dir); // set head to new position
+        Tile prevTile = getGridTileByPosition(previousPos);
+        prevTile.setSnake(false);
+        snakeBody.get(0).moveInDirection(dir);      // set head to new position
+        Position pos = snakeBody.get(0);
+        Tile tile = getGridTileByPosition(pos);
+        tile.setSnake(true);
 
         for (int i = 1; i < snake.getLength() - 1; i++) {
             Position temp = snakeBody.get(i);
+            prevTile = getGridTileByPosition(previousPos);
+            prevTile.setSnake(false);
             snakeBody.set(i, previousPos);
+            Position currPos = snakeBody.get(i);
+            Tile currTile = getGridTileByPosition(currPos);
+            currTile.setSnake(true);
             previousPos = temp;
         }
     }
@@ -170,8 +182,7 @@ public class Board {
      */
     private void increaseBodySize() {
         Direction dir = currentMovmentDirection.getOppesite();
-        Position newTail = snakeBody.get(snake.getLength() - 1);
-        newTail.getNextPosition(dir);
+        Position newTail = snakeBody.get(snakeBody.size() - 1).getNextPosition(dir);
         snakeBody.add(newTail);
     }
 

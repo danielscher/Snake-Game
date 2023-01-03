@@ -4,7 +4,7 @@ import main.consumables.Effect;
 
 public class GameProperties {
 
-    private double speed = 1;
+    private double speed = 100;
     private double scoreMultiplier = 1;
     private int numConsumables = 1;
 
@@ -24,16 +24,16 @@ public class GameProperties {
     }
 
 
-    /**applies the effect of different main.consumables*/
+    /**applies the effect of different consumables*/
     public void applyEffect(Effect effect) {
         switch (effect){
-            case Effect.SPEED -> speed = 1.5;
-            case Effect.DOUBLE -> scoreMultiplier = 2;
-            case Effect.FRENZY -> numConsumables = 5;
+            case SPEED -> speed = 1.5;
+            case DOUBLE -> scoreMultiplier = 2;
+            case FRENZY -> numConsumables = 5;
         }
     }
 
-    /**resets the effect of main.consumables*/
+    /**resets the effect of consumables*/
     public void resetEffects(){
         speed = 1;
         scoreMultiplier = 1;

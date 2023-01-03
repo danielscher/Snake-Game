@@ -4,27 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="added board and transferred game logic to board class">
-      <change afterPath="$PROJECT_DIR$/src/main/java/gui/GUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/main/GameModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/main/GameProperties.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/main/consumables/Effect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/main/consumables/Food.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/main/consumables/Fruit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/scene.fxml" afterDir="false" />
+    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="added gui">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Direction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GameModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Position.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Snake.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SnakePart.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/consumables/Food.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/consumables/FoodType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/consumables/FoodType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/consumables/Fruit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/GameModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/GameProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/GameProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/scene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +53,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/danie/Downloads/openjfx-18.0.2_windows-x64_bin-sdk/javafx-sdk-18.0.2/lib&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.1150748&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;
@@ -78,9 +67,21 @@
       <recent name="E:\Projects\Snake Game\SnakeGame" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Projects\Snake Game\SnakeGame\src\main\java" />
+      <recent name="E:\Projects\Snake Game\SnakeGame\src\main\java\gui" />
       <recent name="E:\Projects\Snake Game\SnakeGame\src" />
       <recent name="E:\Projects\Snake Game\SnakeGame\src\main" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gui.GUI" />
+      <module name="SnakeGame.main" />
+      <option name="VM_PARAMETERS" value="--module-path C:\Users\danie\Downloads\openjfx-18.0.2_windows-x64_bin-sdk\javafx-sdk-18.0.2\lib --add-modules=javafx.controls" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -105,7 +106,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672684623261</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added gui">
+      <created>1672764004403</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1672764004403</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -123,6 +131,50 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="added board and transfered game logic to board class" />
     <MESSAGE value="added board and transferred game logic to board class" />
-    <option name="LAST_COMMIT_MESSAGE" value="added board and transferred game logic to board class" />
+    <MESSAGE value="added gui" />
+    <option name="LAST_COMMIT_MESSAGE" value="added gui" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <condition expression="isSelfEat = true" language="JAVA" />
+          <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
+          <line>87</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
+          <line>183</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/gui/GUI.java</url>
+          <line>107</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
+          <line>135</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
+          <line>96</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
+          <line>84</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="GradleRunConfiguration">
+        <watch expression="grid[nextHeadPos.getxCoord()][nextHeadPos.getyCoord()].isSnake()" language="JAVA" />
+        <watch expression="((java.util.ArrayList)((Board)this).snakeBody).get(1)" custom="main.Board,java.util.ArrayList" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
