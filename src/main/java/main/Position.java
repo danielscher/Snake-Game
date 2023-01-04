@@ -2,51 +2,58 @@ package main;
 
 public class Position {
 
-    private int xCoord;
-    private int yCoord;
+    private int xPos;
+    private int yPos;
 
     public Position(final int xPos, final int yPos) {
-        this.xCoord = xPos;
-        this.yCoord = yPos;
+        this.xPos = xPos;
+        this.yPos = yPos;
     }
 
-    public int getxCoord() {
-        return xCoord;
+    public int getX() {
+        return xPos;
     }
 
-    public int getyCoord() {
-        return yCoord;
+    public int getY() {
+        return yPos;
     }
 
-    public void moveInDirection(Direction dir) {
+
+    /**sets the current position to the position of the next one in the movement direction*/
+    public void moveInDirection(Direction dir,final int step) {
         switch (dir) {
-            case UP -> yCoord--;
-            case DOWN -> yCoord++;
-            case LEFT -> xCoord--;
-            case RIGHT -> xCoord++;
+            case UP -> yPos -= step;
+            case DOWN -> yPos +=  step;
+            case LEFT -> xPos -= step;
+            case RIGHT -> xPos += step;
         }
-        ;
     }
 
-    public Position getNextPosition(Direction dir) {
-        int xPos = this.xCoord;
-        int yPos = this.yCoord;
+    /**
+     * @return a new Position object which represents the next position on the grid in the movement
+     * direction
+     * @param step size of each cell on the grid.
+     * @param dir movement direction.
+     */
+    public Position getNextPosition(Direction dir,final int step) {
+        int xPos = this.xPos;
+        int yPos = this.yPos;
 
         switch (dir) {
             case UP -> {
-                return new Position(xPos, --yPos);
+                return new Position(xPos, yPos-step);
             }
             case DOWN -> {
-                return new Position(xPos, ++yPos);
+                return new Position(xPos, yPos+step);
             }
             case LEFT -> {
-                return new Position(--xPos, yPos);
+                return new Position(xPos-step, yPos);
             }
             case RIGHT -> {
-                return new Position(++xPos, yPos);
+                return new Position(xPos+step, yPos);
             }
         }
-        return this;
+        return null;
     }
 
 

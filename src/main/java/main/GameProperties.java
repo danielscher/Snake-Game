@@ -4,7 +4,7 @@ import main.consumables.Effect;
 
 public class GameProperties {
 
-    private double speed = 100;
+    private double speed = 1;
     private double scoreMultiplier = 1;
     private int numConsumables = 1;
 
@@ -18,7 +18,7 @@ public class GameProperties {
         return scoreMultiplier;
     }
 
-    /**@return max possible number of main.consumables appearing on screen*/
+    /**@return max possible number of consumables appearing on screen*/
     public int getNumConsumables() {
         return numConsumables;
     }

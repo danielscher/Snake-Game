@@ -4,16 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="added gui">
+    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="able to move green dot representing snake. collision works.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/GameModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/GameProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/GameProperties.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Snake.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/scene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +29,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -113,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672764004403</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="able to move green dot representing snake. collision works.">
+      <created>1672777641713</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1672777641713</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -132,41 +139,48 @@
     <MESSAGE value="added board and transfered game logic to board class" />
     <MESSAGE value="added board and transferred game logic to board class" />
     <MESSAGE value="added gui" />
-    <option name="LAST_COMMIT_MESSAGE" value="added gui" />
+    <MESSAGE value="able to move green dot representing snake. collision works." />
+    <option name="LAST_COMMIT_MESSAGE" value="able to move green dot representing snake. collision works." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint type="java-line">
-          <condition expression="isSelfEat = true" language="JAVA" />
-          <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="14" />
+          <url>file://$PROJECT_DIR$/src/main/java/gui/GUI.java</url>
+          <line>103</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
-          <line>183</line>
-          <option name="timeStamp" value="15" />
+          <line>114</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <condition expression="row == -1 || col == -1" language="JAVA" />
+          <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
+          <line>265</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/gui/GUI.java</url>
-          <line>107</line>
-          <option name="timeStamp" value="16" />
+          <condition expression="previousPos.getX() == 368 &amp;&amp; previousPos.getY()==336" language="JAVA" />
+          <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
+          <line>188</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
-          <line>135</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
-          <line>96</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
-          <line>84</line>
-          <option name="timeStamp" value="19" />
+          <line>187</line>
+          <option name="timeStamp" value="50" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -174,7 +188,11 @@
       <configuration name="GradleRunConfiguration">
         <watch expression="grid[nextHeadPos.getxCoord()][nextHeadPos.getyCoord()].isSnake()" language="JAVA" />
         <watch expression="((java.util.ArrayList)((Board)this).snakeBody).get(1)" custom="main.Board,java.util.ArrayList" />
+        <watch expression="((Board)this).grid" custom="main.Board" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SnakeGame$Unnamed.ic" NAME="Unnamed Coverage Results" MODIFIED="1672833172153" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

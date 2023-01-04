@@ -4,9 +4,14 @@ import main.consumables.Food;
 
 public class Tile {
 
+    private Position center;
     private Boolean snake = false;
     private Food food = null;
     private Boolean isFoodPresent = false;
+
+    public Tile(Position center){
+        this.center = center;
+    }
 
     public Boolean isSnake() {
         return snake;
@@ -28,4 +33,7 @@ public class Tile {
         this.food = food;
     }
 
+    public Position getCenter() {
+        return center;
+    }
 }

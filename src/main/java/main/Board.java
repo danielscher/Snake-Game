@@ -1,6 +1,7 @@
 package main;
 
 import java.util.Deque;
+import java.util.Queue;
 import main.consumables.Effect;
 import main.consumables.Food;
 import java.util.ArrayDeque;
@@ -11,44 +12,54 @@ import main.consumables.FoodType;
 public class Board {
 
     private Tile[][] grid;
-    private int numCurrentConsumables;
+    private final int tileSize;
+    private final int tileNum;
+
+    private int numCurrentConsumables = 1;
     private Direction currentMovmentDirection;
     private final int gridSize;
     private int score;
     private Snake snake;
-    private List<Position> snakeBody = new ArrayList<>();
+    //private List<Position> snakeQueue = new ArrayList<>();
+
+    private Deque<Position> snakeQueue = new ArrayDeque<>();
+
     private Deque<Food> availableFoods = new ArrayDeque<>();
 
 
     /**
      * constructs the board for the game.
      */
-    public Board(final Snake snake, final int gridSize, final Position initialPosition) {
+    public Board(final int gridSize, final int tileSize, final Position initialPosition) {
+        //calculate number of tiles.
+        this.tileSize = tileSize;
+        final int tileNum = gridSize / tileSize;
+        this.tileNum = tileNum;
+
         //initialize the grid.
-        grid = new Tile[gridSize][gridSize];
+        grid = new Tile[tileNum][tileNum];
         this.gridSize = gridSize;
 
         //fill grid with tiles.
-        for (int i = 0; i < gridSize; i++) {
-            for (int j = 0; j < gridSize; j++) {
-                grid[i][j] = new Tile();
+        for (int row = 0; row < tileNum; row++) {
+            for (int col = 0; col < tileNum; col++) {
+                // i,j represent the upper left corner of the tile.
+                grid[row][col] = new Tile(new Position(col * tileSize + (tileSize / 2),
+                        row * tileSize + (tileSize / 2)));
             }
         }
 
-        //set snake head position
-        grid[initialPosition.getxCoord()][initialPosition.getyCoord()].setSnake(true);
-        snakeBody.add(initialPosition);
-
-        this.snake = snake;
         currentMovmentDirection = Direction.UP;
+        this.snake = new Snake();
+        Position headPos = translateGridToPixel(initialPosition);   //get head position by pixel
+        grid[initialPosition.getY()][initialPosition.getX()].setSnake(true);
+        snakeQueue.add(headPos);
         increaseBodySize();
-    }
-
-    /**
-     * returns true if snake is located on this position.
-     */
-    private boolean checkIfSnake(Position pos) {
-        return grid[pos.getxCoord()][pos.getyCoord()].isSnake();
+        increaseBodySize();
+        increaseBodySize();
+        increaseBodySize();
+        increaseBodySize();
+        increaseBodySize();
     }
 
 
@@ -56,23 +67,24 @@ public class Board {
      * check if move results in Game End because of an out-of-bounds move.
      */
     public boolean checkMoveOutOfBounds(final Direction dir) {
-        final Position currHeadPos = snakeBody.get(0);
-        final int currX = currHeadPos.getxCoord();
-        final int currY = currHeadPos.getyCoord();
+        //get head position on grid by row column.
+        final Position currHeadPos = translatePixelToGrid(snakeQueue.getFirst());
+        final int row = currHeadPos.getX();
+        final int col = currHeadPos.getY();
 
         // check for board bounds.
         switch (dir) {
             case UP -> {
-                return (currY == 0);
+                return (row == 0);
             }
             case DOWN -> {
-                return (currY == gridSize - 1);
+                return (row == tileNum - 1);
             }
             case LEFT -> {
-                return (currX == 0);
+                return (col == 0);
             }
             case RIGHT -> {
-                return (currX == gridSize - 1);
+                return (col == tileNum - 1);
             }
         }
         return false;
@@ -82,8 +94,8 @@ public class Board {
      * checks if snake bites/eats itself on the next move
      */
     private boolean checkEatsSelf(final Direction dir) {
-        final Position currHeadPos = snakeBody.get(0);
-        final Position nextHeadPos = currHeadPos.getNextPosition(dir);
+        final Position currHeadPos = snakeQueue.getFirst();
+        final Position nextHeadPos = currHeadPos.getNextPosition(dir, tileSize);
         boolean isSelfEat = getGridTileByPosition(nextHeadPos).isSnake();
         return isSelfEat;
 
@@ -100,7 +112,13 @@ public class Board {
         }
 
         // game ends if next move is out of bounds or eats self.
-        if (checkMoveOutOfBounds(dir) || checkEatsSelf(dir)) {
+        if (checkMoveOutOfBounds(dir)) {
+            System.out.println("hit wall");
+            return true;
+        }
+
+        if (checkEatsSelf(dir)) {
+            System.out.println("hit self");
             return true;
         }
 
@@ -120,7 +138,9 @@ public class Board {
         return false;
     }
 
-    /**spawn consumable on board by poping are pushing to the end the consumable again.*/
+    /**
+     * spawn consumable on board by poping are pushing to the end the consumable again.
+     */
     private void spawnConsumable(Position randConsumablePos) {
         Food food = availableFoods.pop();
         getGridTileByPosition(randConsumablePos).setFood(food);
@@ -129,28 +149,62 @@ public class Board {
 
 
     /**
-     * moves the head 1 unit of length in the direction given by setting each successor of the
-     * snakes tiles to the predecessor position
+     * moves the snake one tile in the movement direction by removing tail and pushing new head.
      */
     private void updateSnakePos(Direction dir) {
-        Position previousPos = snakeBody.get(0);    //get head position
+
+        Position tail = snakeQueue.pollLast();
+        assert tail != null;
+        getGridTileByPosition(tail).setSnake(false);     // free tile from snake
+        Position head = snakeQueue.getFirst();           // get head to compute next snake pos
+        Position newHead = new Position(head.getX(), head.getY()); // copy
+        newHead.moveInDirection(dir,tileSize);           // new position in movement direction
+        snakeQueue.push(newHead);
+        getGridTileByPosition(newHead).setSnake(true);
+
+/*
+
+
+
+
+
+        //move head by one step in direction of movement.
+        Position headPos = getHeadPosition();
+        Position gap = new Position(headPos.getX(), headPos.getY()); // position of gap
+        headPos.moveInDirection(dir, tileSize); //move head one tile
+        getGridTileByPosition(headPos).setSnake(true);
+
+        // bubble down gap
+        // iterate over body parts
+        // and swap with gap ("pass by reference")
+        // set tile old tile of tale to false.
+        for (int i = 1; i < snakeQueue.size(); i++) {
+            Position curr = snakeQueue.get(i);
+            Position temp = new Position(curr.getX(), curr.getY());
+            snakeQueue.set(i,gap); //
+
+        }
+
+        Position previousPos = new Position(getHeadPosition().getX(), getHeadPosition().getY());
         Tile prevTile = getGridTileByPosition(previousPos);
         prevTile.setSnake(false);
-        snakeBody.get(0).moveInDirection(dir);      // set head to new position
-        Position pos = snakeBody.get(0);
-        Tile tile = getGridTileByPosition(pos);
+        snakeQueue.get(0).moveInDirection(dir, tileSize);      // set head to new position
+        Position newPos = snakeQueue.get(0);
+        Tile tile = getGridTileByPosition(newPos);
         tile.setSnake(true);
 
-        for (int i = 1; i < snake.getLength() - 1; i++) {
-            Position temp = snakeBody.get(i);
+        for (int i = 1; i < snake.getLength(); i++) {
+            //get position of curr snake body part
+            Position temp = new Position(snakeQueue.get(i).getX(), snakeQueue.get(i).getY());
             prevTile = getGridTileByPosition(previousPos);
-            prevTile.setSnake(false);
-            snakeBody.set(i, previousPos);
-            Position currPos = snakeBody.get(i);
+            snakeQueue.set(i, previousPos);
+            Position currPos = snakeQueue.get(i);
             Tile currTile = getGridTileByPosition(currPos);
             currTile.setSnake(true);
+            prevTile.setSnake(false);
             previousPos = temp;
-        }
+
+        }*/
     }
 
     /**
@@ -182,8 +236,13 @@ public class Board {
      */
     private void increaseBodySize() {
         Direction dir = currentMovmentDirection.getOppesite();
-        Position newTail = snakeBody.get(snakeBody.size() - 1).getNextPosition(dir);
-        snakeBody.add(newTail);
+        Position newTail = snakeQueue.getLast().getNextPosition(dir, tileSize);
+        //int newX = oldTail.getX();
+        //int newY = oldTail.getY();
+        //Position newTail = new Position(newX, newY);
+        getGridTileByPosition(newTail).setSnake(true);
+        snake.grow();
+        snakeQueue.offerLast(newTail);
     }
 
     public int getScore() {
@@ -191,17 +250,41 @@ public class Board {
     }
 
     private Position getHeadPosition() {
-        return snakeBody.get(0);
+        return snakeQueue.getFirst();
     }
 
-    public List<Position> getSnakeBody() {
-        return snakeBody;
+    public Deque<Position> getsnakeQueue() {
+        return snakeQueue;
     }
 
+    /**
+     * calculates tile on grid
+     */
     private Tile getGridTileByPosition(Position pos) {
-        int xPos = pos.getxCoord();
-        int yPos = pos.getyCoord();
-        return grid[xPos][yPos];
+        int col = (pos.getX() - tileSize / 2) / tileSize;
+        int row = (pos.getY() - tileSize / 2) / tileSize;
+        return grid[row][col];
+    }
+
+    /**
+     * translates position of a pixel (x,y) to a (row,column) position on the grid useful for
+     * checking bounds.
+     */
+    private Position translatePixelToGrid(Position pixelPos) {
+        int col = (pixelPos.getX() - tileSize / 2) / tileSize;
+        int row = (pixelPos.getY() - tileSize / 2) / tileSize;
+        return new Position(row, col);
+    }
+
+    /**
+     * translates pixel position to grid position (row*column)
+     */
+    private Position translateGridToPixel(Position cell) {
+        return grid[cell.getY()][cell.getX()].getCenter();
+    }
+
+    public Tile[][] getGrid() {
+        return grid;
     }
 }
 

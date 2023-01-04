@@ -7,7 +7,7 @@ public class Snake {
     private int length;
 
     public Snake() {
-        length = 2;
+        length = 1;
     }
 
     /**

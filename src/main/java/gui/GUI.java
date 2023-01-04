@@ -1,25 +1,29 @@
 package gui;
 
 
+import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
-import java.util.Objects;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.Direction;
 import main.GameModel;
 import main.Position;
+import main.Tile;
 import main.consumables.Food;
 import main.consumables.Fruit;
 
@@ -29,18 +33,41 @@ public class GUI extends Application {
 
     List<Food> foods = List.of(new Food[]{frt});
 
-    GameModel game = new GameModel(1,512,foods);
+    GameModel game = new GameModel(2,512,32,foods);
+
     private Boolean gameOver = false;
 
     Direction moveDirection = Direction.UP;
 
-    @FXML
-    Canvas canvas;
+    private Group root;
 
-    @FXML
-    Shape snakeHead, snakeBody;
+    private void colorSnakeTiles(Group root){
+        int radius = 16;
+        Tile[][] grid = game.getBoard().getGrid();
+        for (Tile[] row : grid){
+            for(Tile col : row){
+                if (col.isSnake()){
+                    int xPos = col.getCenter().getX();
+                    int yPos = col.getCenter().getY();
+                    Text txt = new Text(xPos+10,yPos-10,xPos + "," + yPos);
+                    Rectangle rect = new Rectangle(xPos-radius,yPos-radius,32,32);
+                    rect.setFill(Color.YELLOW);
+                    root.getChildren().add(rect);
+                    root.getChildren().add(txt);
+                }
+            }
 
-    private void drawSnake(GraphicsContext gc, List<Position> snake, Direction dir) {
+        }
+    }
+
+
+
+    private void drawSnake(Deque<Position> snake, Direction dir) {
+
+        // clear old snake body.
+        root.getChildren().clear();
+        int cellSize = game.getCellSize();
+
         //rotate head in direction of movement.
         /*switch (dir) {
             case UP -> snakeHead.setRotate(0);
@@ -49,37 +76,76 @@ public class GUI extends Application {
             case DOWN -> snakeHead.setRotate(180);
         }*/
 
-        for (int i = 0 ; i < snake.size() - 1; i++){
-            int radius = 7;
-            int xPos = snake.get(i).getxCoord();
-            int yPos = snake.get(i).getyCoord();
-            if (i == 0){
-                //head
-                gc.setFill(Color.RED);
-                gc.fillOval(xPos - radius,yPos - radius,radius,radius);
-            }
-            //body.
-            gc.setFill(Color.GREEN);
-            gc.fillOval(xPos - radius,yPos - radius,radius,radius);
+        //draw head.
+        int radius = cellSize/2;
+        Position head = snake.pollFirst();
+        assert head != null;
+        Rectangle headRect = new Rectangle(head.getX()-radius,head.getY()-radius,cellSize,cellSize);
+        headRect.setStroke(Color.INDIANRED);
+        headRect.setFill(Color.RED);
+        root.getChildren().add(headRect);
 
+        //draw body.
+        for (Position body : snake){
+            int xPos = body.getX();
+            int yPos = body.getY();
+            Rectangle rect = new Rectangle(xPos-radius,yPos-radius,cellSize,cellSize);
+            rect.setFill(Color.GREEN);
+            rect.setStroke(Color.GREENYELLOW);
+            root.getChildren().add(rect);
         }
+        snake.push(head);
+
     }
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Snake Game");
-        VBox root = new VBox();
-        Canvas canvas = new Canvas(512,512);
+        root = new Group();
+        //root = new VBox();
+        //Canvas canvas = new Canvas(512,512);
+
+        //GraphicsContext gc = canvas.getGraphicsContext2D();
+        //root.getChildren().add(canvas);
 
         /*Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(
                 "scene.fxml")));*/
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
 
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        root.getChildren().add(canvas);
 
+
+        // anonymous animationTimer class.
+        new AnimationTimer() {
+            long lastTick = 0;
+            public void handle(long nanoTimeNow) {
+
+               if (gameOver){
+                    //gc.setFill(Color.RED);
+                    //gc.fillRect(0,0,512,512);
+                    System.out.println("game ended");
+                    return;
+                }
+
+                /*if (lastTick == 0){
+                    lastTick = nanoTimeNow;
+                    gameOver = game.makeMove(moveDirection);
+                    //drawSnake(gc,game.getSnakePos(),moveDirection);
+                    tick();
+                    return;
+                }*/
+                if (nanoTimeNow - lastTick > 1000000000 / game.getGp().getSpeed()){ //each second
+                    //root.getChildren().removeAll();
+                    lastTick = nanoTimeNow;
+                    gameOver = game.makeMove(moveDirection);
+
+                    tick();
+                    // colorSnakeTiles(root);
+                    //drawSnake(gc,game.getSnakePos(),moveDirection);
+                }
+            }
+        }.start();
+        Scene scene = new Scene(root,512,512);
+        scene.setFill(Color.BLACK);
 
 
         scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
@@ -98,39 +164,17 @@ public class GUI extends Application {
         });
 
 
-
-        // anonymous animationTimer class.
-        new AnimationTimer() {
-            long lastTick = 0;
-            public void handle(long nanoTimeNow) {
-
-                if (gameOver){
-                    gc.setFill(Color.RED);
-                    gc.fillRect(0,0,512,512);
-                    System.out.println("game ended");
-                    return;
-                }
-
-                gc.setFill(Color.BLACK);
-                gc.fillRect(0,0,512,512);
-                //draw snake after move
-                drawSnake(gc,game.getSnakePos(),moveDirection);
-                if (lastTick == 0){
-                    lastTick = nanoTimeNow;
-                     gameOver = game.makeMove(moveDirection);
-                    return;
-                }
-                if (nanoTimeNow - lastTick > 1000000000 / game.getGp().getSpeed()){ //each second
-                    lastTick = nanoTimeNow;
-                    gameOver = game.makeMove(moveDirection);
-                }
-
-
-
-            }
-        }.start();
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
+
+    public void tick(){
+        gameOver = game.makeMove(moveDirection);
+        //gc.setFill(Color.BLACK);
+        //gc.fillRect(0,0,512,512);
+        drawSnake(game.getSnakePos(),moveDirection);
+    }
+
 
     public static void main(String[] args) {
         launch(args);
