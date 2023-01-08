@@ -13,6 +13,7 @@ public class GameModel {
     private final int boardSize;
     private Random rand;
     private GameProperties gp = new GameProperties();
+    private Direction currentMovmentDirection;
 
     public GameModel(long seed, int boardSize, int cellSize, List<Food> foods) {
         rand = new Random(seed);
@@ -25,13 +26,40 @@ public class GameModel {
     }
 
 
-    /**
-     * main game loop
-     */
     public boolean makeMove(Direction dir) {
+
+        // if trying to move in the opposite direction continue moving the current direction.
+        if (dir.getOppesite() == currentMovmentDirection) {
+            dir = currentMovmentDirection;
+        }
+
+        // game ends if next move is out of bounds or eats self.
+        if (board.checkMoveOutOfBounds(dir)) {
+            System.out.println("hit wall");
+            return true;
+        }
+
+        if (board.checkEatsSelf(dir)) {
+            System.out.println("hit self");
+            return true;
+        }
+
         Position pos = getNewRandomPosition();
-        return board.handle(dir, gp, pos);
+        board.updateSnakePos(dir);
+        currentMovmentDirection = dir;
+
+        //check and consume food if main.consumables are present on new position
+        Tile currHeadTile = board.getGridTileByPosition(board.getHeadPosition());
+        if (currHeadTile.isFoodPresent()) {
+            board.eat(currHeadTile, gp);
+            board.spawnConsumable(pos);
+        }
+
+        return false;
     }
+
+
+
 
     /**
      * get new random position on board

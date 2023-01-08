@@ -36,4 +36,10 @@ public class Tile {
     public Position getCenter() {
         return center;
     }
+
+    public void resetTile(){
+        snake = false;
+        food = null;
+        isFoodPresent = false;
+    }
 }

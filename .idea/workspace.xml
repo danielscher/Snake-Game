@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="able to move green dot representing snake. collision works.">
+    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="collision fixed. more efficient movement algo implemented. GUI animation works properly.">
+      <change afterPath="$PROJECT_DIR$/src/test/java/tests/BoardTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/GameModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/GameProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/GameProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Position.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Snake.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Tile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/scene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scene.fxml" afterDir="false" />
@@ -24,6 +25,43 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="SnakeGame" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="SnakeGame" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="SnakeGame" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="SnakeGame" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -51,7 +89,10 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
+    &quot;last_directory_selection&quot;: &quot;E:/Projects/Snake Game/SnakeGame/src/test/java/tests&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/danie/Downloads/openjfx-18.0.2_windows-x64_bin-sdk/javafx-sdk-18.0.2/lib&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
@@ -67,10 +108,17 @@
       <recent name="E:\Projects\Snake Game\SnakeGame" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Projects\Snake Game\SnakeGame\src\test\java\tests" />
       <recent name="E:\Projects\Snake Game\SnakeGame\src\main\java" />
       <recent name="E:\Projects\Snake Game\SnakeGame\src\main\java\gui" />
       <recent name="E:\Projects\Snake Game\SnakeGame\src" />
       <recent name="E:\Projects\Snake Game\SnakeGame\src\main" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="tests" />
     </key>
   </component>
   <component name="RunManager">
@@ -120,7 +168,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672777641713</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="collision fixed. more efficient movement algo implemented. GUI animation works properly.">
+      <created>1672854471416</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1672854471416</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -140,7 +195,8 @@
     <MESSAGE value="added board and transferred game logic to board class" />
     <MESSAGE value="added gui" />
     <MESSAGE value="able to move green dot representing snake. collision works." />
-    <option name="LAST_COMMIT_MESSAGE" value="able to move green dot representing snake. collision works." />
+    <MESSAGE value="collision fixed. more efficient movement algo implemented. GUI animation works properly." />
+    <option name="LAST_COMMIT_MESSAGE" value="collision fixed. more efficient movement algo implemented. GUI animation works properly." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -152,35 +208,24 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
-          <line>114</line>
+          <line>106</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <condition expression="row == -1 || col == -1" language="JAVA" />
           <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
-          <line>265</line>
+          <line>210</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
-          <line>98</line>
+          <line>91</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
-          <line>70</line>
+          <line>63</line>
           <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <condition expression="previousPos.getX() == 368 &amp;&amp; previousPos.getY()==336" language="JAVA" />
-          <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
-          <line>188</line>
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
-          <line>187</line>
-          <option name="timeStamp" value="50" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

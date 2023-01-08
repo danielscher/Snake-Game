@@ -9,6 +9,6 @@
    <children>
       <Canvas fx:id="canvas" height="512.0" layoutY="36.0" width="512.0" />
       <Arc fx:id="snakeHead" fill="#ff1f1f" length="270.0" radiusX="7.0" radiusY="7.0" startAngle="134.4" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-      <Rectangle fx:id="snakeBody" arcHeight="5.0" arcWidth="5.0" fill="#00c645" height="9.0" stroke="BLACK" strokeType="INSIDE" width="9.0" />
+      <Rectangle fx:id="snakeQueue" arcHeight="5.0" arcWidth="5.0" fill="#00c645" height="9.0" stroke="BLACK" strokeType="INSIDE" width="9.0" />
    </children>
 </AnchorPane>

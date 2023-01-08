@@ -40,6 +40,7 @@ dependencies {
     }
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testImplementation 'org.testng:testng:7.1.0'
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
 
