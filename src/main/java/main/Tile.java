@@ -31,6 +31,7 @@ public class Tile {
 
     public void setFood(Food food) {
         this.food = food;
+        this.isFoodPresent = food != null;
     }
 
     public Position getCenter() {

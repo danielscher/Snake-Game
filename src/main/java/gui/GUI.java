@@ -2,11 +2,16 @@ package gui;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Deque;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXML;
+import javafx.print.Collation;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -16,6 +21,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
@@ -37,9 +43,14 @@ public class GUI extends Application {
 
     private Boolean gameOver = false;
 
-    Direction moveDirection = Direction.UP;
+    Direction moveDirection = Direction.LEFT;
 
     private Group root;
+
+    //private List<Circle> currFruits = new ArrayList<>();
+    private Set<Circle> currFruits = new HashSet<>();
+
+    private Set<Rectangle> recs = new HashSet<>();
 
     private void colorSnakeTiles(Group root){
         int radius = 16;
@@ -64,8 +75,10 @@ public class GUI extends Application {
 
     private void drawSnake(Deque<Position> snake, Direction dir) {
 
+
         // clear old snake body.
-        root.getChildren().clear();
+        root.getChildren().removeAll(recs);
+        recs.clear();
         int cellSize = game.getCellSize();
 
         //rotate head in direction of movement.
@@ -84,6 +97,7 @@ public class GUI extends Application {
         headRect.setStroke(Color.INDIANRED);
         headRect.setFill(Color.RED);
         root.getChildren().add(headRect);
+        recs.add(headRect);
 
         //draw body.
         for (Position body : snake){
@@ -93,9 +107,28 @@ public class GUI extends Application {
             rect.setFill(Color.GREEN);
             rect.setStroke(Color.GREENYELLOW);
             root.getChildren().add(rect);
+            recs.add(rect);
         }
         snake.push(head);
 
+    }
+
+    private void drawFruit (Set<Position> foods){
+        int cellSize = game.getCellSize();
+        int radius = cellSize/2;
+
+        root.getChildren().removeAll(currFruits);
+        currFruits.clear();
+
+        for (Position f : foods){
+            int xPos = f.getX();
+            int yPos = f.getY();
+            Circle el = new Circle(xPos,yPos,radius);
+            el.setFill(Color.MAGENTA);
+            el.setStroke(Color.PINK);
+            root.getChildren().add(el);
+            currFruits.add(el);
+        }
     }
 
 
@@ -139,11 +172,12 @@ public class GUI extends Application {
                     gameOver = game.makeMove(moveDirection);
 
                     tick();
-                    // colorSnakeTiles(root);
+                    //colorSnakeTiles(root);
                     //drawSnake(gc,game.getSnakePos(),moveDirection);
                 }
             }
         }.start();
+
         Scene scene = new Scene(root,512,512);
         scene.setFill(Color.BLACK);
 
@@ -169,9 +203,10 @@ public class GUI extends Application {
     }
 
     public void tick(){
-        gameOver = game.makeMove(moveDirection);
+        //gameOver = game.makeMove(moveDirection);
         //gc.setFill(Color.BLACK);
         //gc.fillRect(0,0,512,512);
+        drawFruit(game.getFruits());
         drawSnake(game.getSnakePos(),moveDirection);
     }
 

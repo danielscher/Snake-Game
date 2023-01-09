@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 public class BoardTest {
 
-    private Board board = new Board(5,1,new Position(5,5));
+    private Board board = new Board(5,1,new Position(0,0),new Position(3,3));
 
     private Deque<Position> genSnake2(){
         Deque<Position> snake = new ArrayDeque<>();
@@ -52,6 +52,10 @@ public class BoardTest {
         assertTrue(board.getGrid()[1][2].isSnake());
         assertTrue(board.getGrid()[2][2].isSnake());
         assertFalse(board.getGrid()[3][2].isSnake());
+    }
+
+    @Test
+    public void testHitSelf(){
     }
 
 

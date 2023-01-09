@@ -1,9 +1,12 @@
 package main;
 
 import java.util.Deque;
+import java.util.Set;
+import main.consumables.Effect;
 import main.consumables.Food;
 import java.util.List;
 import java.util.Random;
+import main.consumables.FoodType;
 
 public class GameModel {
 
@@ -17,12 +20,12 @@ public class GameModel {
 
     public GameModel(long seed, int boardSize, int cellSize, List<Food> foods) {
         rand = new Random(seed);
+        this.boardSize = boardSize;
+        this.cellSize = cellSize;
         availableConsumables = foods;
         int randX = rand.nextInt(boardSize/cellSize);
         int randY = rand.nextInt(boardSize/cellSize);
-        board = new Board(boardSize, cellSize, new Position(randX, randY));
-        this.boardSize = boardSize;
-        this.cellSize = cellSize;
+        board = new Board(boardSize, cellSize, new Position(randX, randY), getNewRandomPosition());
     }
 
 
@@ -51,11 +54,43 @@ public class GameModel {
         //check and consume food if main.consumables are present on new position
         Tile currHeadTile = board.getGridTileByPosition(board.getHeadPosition());
         if (currHeadTile.isFoodPresent()) {
-            board.eat(currHeadTile, gp);
-            board.spawnConsumable(pos);
+            eat(currHeadTile, gp, board);
+            board.spawnFruit(pos);
         }
 
         return false;
+    }
+
+    private void eat(Tile tile, GameProperties gp, Board board){
+        Food food = tile.getFood();
+
+        if (food.getType() == FoodType.FRUIT) {
+            board.despawnFruit(tile);
+            board.increaseBodySize();
+            tile.setFood(null);
+            Position pos = getNewRandomPosition();
+            board.spawnFruit(pos);
+            increaseScore(gp.getScoreMultiplier(),1);
+        }
+
+        else {
+            List<Effect> effects = food.getEffects();
+            for (Effect effect : effects) {
+                gp.applyEffect(effect);
+            }
+
+        }
+
+    }
+
+    private boolean checkForFood(Position current){
+        return board.getGridTileByPosition(current).isFoodPresent();
+    }
+
+    public void increaseScore(double multiplier, int amount){
+        int score = board.getScore();
+        score += multiplier*amount;
+        board.setScore(score);
     }
 
 
@@ -70,6 +105,9 @@ public class GameModel {
 
     public Deque<Position> getSnakePos(){
         return board.getsnakeQueue();
+    }
+    public Set<Position> getFruits(){
+        return board.getFruits();
     }
 
     public GameProperties getGp() {
