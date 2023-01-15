@@ -23,9 +23,11 @@ public class GameModel {
         this.boardSize = boardSize;
         this.cellSize = cellSize;
         availableConsumables = foods;
-        int randX = rand.nextInt(boardSize/cellSize);
-        int randY = rand.nextInt(boardSize/cellSize);
-        board = new Board(boardSize, cellSize, new Position(randX, randY), getNewRandomPosition());
+        int randRow = rand.nextInt(boardSize / cellSize);
+        int randCol = rand.nextInt(boardSize / cellSize);
+        // col = x , row = y
+        board = new Board(boardSize, cellSize, new Position(randCol, randRow),
+                getNewRandomPosition());
     }
 
 
@@ -47,7 +49,6 @@ public class GameModel {
             return true;
         }
 
-        Position pos = getNewRandomPosition();
         board.updateSnakePos(dir);
         currentMovmentDirection = dir;
 
@@ -61,7 +62,7 @@ public class GameModel {
         return false;
     }
 
-    private void eat(Tile tile, GameProperties gp, Board board){
+    private void eat(Tile tile, GameProperties gp, Board board) {
         Food food = tile.getFood();
 
         if (food.getType() == FoodType.FRUIT) {
@@ -69,10 +70,8 @@ public class GameModel {
             board.increaseBodySize();
             Position pos = getNewRandomPosition();
             board.spawnFruit(pos);
-            increaseScore(gp.getScoreMultiplier(),1);
-        }
-
-        else {
+            increaseScore(gp.getScoreMultiplier(), 1);
+        } else {
             List<Effect> effects = food.getEffects();
             for (Effect effect : effects) {
                 gp.applyEffect(effect);
@@ -82,17 +81,15 @@ public class GameModel {
 
     }
 
-    private boolean checkForFood(Position current){
+    private boolean checkForFood(Position current) {
         return board.getGridTileByPosition(current).isFoodPresent();
     }
 
-    public void increaseScore(double multiplier, int amount){
+    public void increaseScore(double multiplier, int amount) {
         int score = board.getScore();
-        score += multiplier*amount;
+        score += multiplier * amount;
         board.setScore(score);
     }
-
-
 
 
     /**
@@ -102,10 +99,11 @@ public class GameModel {
         return new Position(rand.nextInt(boardSize), rand.nextInt(boardSize));
     }
 
-    public Deque<Position> getSnakePos(){
+    public Deque<Position> getSnakePos() {
         return board.getsnakeQueue();
     }
-    public Set<Position> getFruits(){
+
+    public Set<Position> getFruits() {
         return board.getFruits();
     }
 

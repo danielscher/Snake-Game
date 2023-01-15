@@ -73,8 +73,8 @@ public class Board {
     public boolean checkMoveOutOfBounds(final Direction dir) {
         //get head position on grid by row column.
         final Position currHeadPos = translatePixelToGrid(snakeQueue.getFirst());
-        final int row = currHeadPos.getX();
-        final int col = currHeadPos.getY();
+        final int col = currHeadPos.getX();
+        final int row = currHeadPos.getY();
 
         // check for board bounds.
         switch (dir) {
@@ -180,18 +180,22 @@ public class Board {
     /**
      * translates position of a pixel (x,y) to a (row,column) position on the grid useful for
      * checking bounds.
+     * @return Position with y = row and x = column
      */
     private Position translatePixelToGrid(Position pixelPos) {
         int col = (pixelPos.getX() - tileSize / 2) / tileSize;
         int row = (pixelPos.getY() - tileSize / 2) / tileSize;
-        return new Position(row, col);
+        return new Position(col, row);
     }
 
     /**
-     * translates pixel position to grid position (row*column)
+     * translates grid cell position (row,col) to pixel position.
+     * @param cell corresponds to the y = row, x = column coordinates of the boards grid.
      */
     private Position translateGridToPixel(Position cell) {
-        return grid[cell.getY()][cell.getX()].getCenter();
+        final int row = cell.getY();
+        final int col = cell.getX();
+        return grid[row][col].getCenter();
     }
 
     public Tile[][] getGrid() {
