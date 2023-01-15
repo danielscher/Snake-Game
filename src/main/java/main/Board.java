@@ -222,8 +222,8 @@ public class Board {
     }
 
     public void despawnFruit(Tile tile) {
-        Food food = tile.getFood();
-        fruits.remove(tile.getCenter());
+        Position fruitPos = translatePixelToGrid(tile.getCenter());
+        fruits.remove(fruitPos);
         tile.setFood(null);
     }
 }

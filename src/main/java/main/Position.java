@@ -61,4 +61,15 @@ public class Position {
         return xPos*1000+yPos;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Position position = (Position) o;
+        return xPos == position.xPos && yPos == position.yPos;
+    }
 }
