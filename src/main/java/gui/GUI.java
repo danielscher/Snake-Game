@@ -73,7 +73,7 @@ public class GUI extends Application {
 
 
 
-    private void drawSnake(Deque<Position> snake, Direction dir) {
+    private void drawSnake(List<Position> snake, Direction dir) {
 
 
         // clear old snake body.
@@ -91,7 +91,7 @@ public class GUI extends Application {
 
         //draw head.
         int radius = cellSize/2;
-        Position head = snake.pollFirst();
+        Position head = snake.get(0);
         assert head != null;
         Rectangle headRect = new Rectangle(head.getX()-radius,head.getY()-radius,cellSize,cellSize);
         headRect.setStroke(Color.INDIANRED);
@@ -100,20 +100,19 @@ public class GUI extends Application {
         recs.add(headRect);
 
         //draw body.
-        for (Position body : snake){
-            int xPos = body.getX();
-            int yPos = body.getY();
+        for (int i = 1 ; i < snake.size() ; i++){
+            int xPos = snake.get(i).getX();
+            int yPos = snake.get(i).getY();
             Rectangle rect = new Rectangle(xPos-radius,yPos-radius,cellSize,cellSize);
             rect.setFill(Color.GREEN);
             rect.setStroke(Color.GREENYELLOW);
             root.getChildren().add(rect);
             recs.add(rect);
         }
-        snake.push(head);
 
     }
 
-    private void drawFruit (Set<Position> foods){
+    private void drawFruit (List<Position> foods){
         int cellSize = game.getCellSize();
         int radius = cellSize/2;
 

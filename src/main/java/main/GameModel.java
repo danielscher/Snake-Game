@@ -2,6 +2,7 @@ package main;
 
 import java.util.Deque;
 import java.util.Set;
+import java.util.stream.Collectors;
 import main.consumables.Effect;
 import main.consumables.Food;
 import java.util.List;
@@ -23,11 +24,10 @@ public class GameModel {
         this.boardSize = boardSize;
         this.cellSize = cellSize;
         availableConsumables = foods;
-        int randRow = rand.nextInt(boardSize / cellSize);
-        int randCol = rand.nextInt(boardSize / cellSize);
-        // col = x , row = y
-        board = new Board(boardSize, cellSize, new Position(randCol, randRow),
-                getNewRandomPosition());
+        final Position rndSnakeStart = getNewRandomPosition();
+        final Position rndFruitPos = getNewRandomPosition();
+        board = new Board(boardSize, cellSize, rndSnakeStart,
+                rndFruitPos);
     }
 
 
@@ -53,7 +53,7 @@ public class GameModel {
         currentMovmentDirection = dir;
 
         //check and consume food if main.consumables are present on new position
-        Tile currHeadTile = board.getGridTileByPosition(board.getHeadPosition());
+        Tile currHeadTile = board.getHeadTile();
         if (currHeadTile.isFoodPresent()) {
             eat(currHeadTile, gp, board);
             //board.spawnFruit(pos);
@@ -81,9 +81,6 @@ public class GameModel {
 
     }
 
-    private boolean checkForFood(Position current) {
-        return board.getGridTileByPosition(current).isFoodPresent();
-    }
 
     public void increaseScore(double multiplier, int amount) {
         int score = board.getScore();
@@ -93,18 +90,21 @@ public class GameModel {
 
 
     /**
-     * get new random position on board
+     * get new random position of a cell on grid
+     * @return position.getX = col , pos.getY = row
      */
     private Position getNewRandomPosition() {
-        return new Position(rand.nextInt(boardSize), rand.nextInt(boardSize));
+        final int row = rand.nextInt(boardSize/cellSize);
+        final int col = rand.nextInt(boardSize/cellSize);
+        return new Position(col, row);
     }
 
-    public Deque<Position> getSnakePos() {
-        return board.getsnakeQueue();
+    public List<Position> getSnakePos() {
+        return translateGridToPixel(board.getsnakeQueue().stream().toList());
     }
 
-    public Set<Position> getFruits() {
-        return board.getFruits();
+    public List<Position> getFruits() {
+        return translateGridToPixel(board.getFruits().stream().toList());
     }
 
     public GameProperties getGp() {
@@ -117,5 +117,14 @@ public class GameModel {
 
     public Board getBoard() {
         return board;
+    }
+
+    private Position translateGridToPixel(Position cell) {
+        final int row = cell.getY();
+        final int col = cell.getX();
+        return board.getGrid()[row][col].getCenter();
+    }
+    public List<Position> translateGridToPixel(List<Position> gridPositions){
+        return gridPositions.stream().map(this::translateGridToPixel).collect(Collectors.toList());
     }
 }

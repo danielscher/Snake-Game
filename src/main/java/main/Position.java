@@ -20,7 +20,8 @@ public class Position {
 
 
     /**sets the current position to the position of the next one in the movement direction*/
-    public void moveInDirection(Direction dir,final int step) {
+    public void moveInDirection(Direction dir, int step) {
+        step = 1;
         switch (dir) {
             case UP -> yPos -= step;
             case DOWN -> yPos +=  step;
@@ -32,25 +33,24 @@ public class Position {
     /**
      * @return a new Position object which represents the next position on the grid in the movement
      * direction
-     * @param step size of each cell on the grid.
      * @param dir movement direction.
      */
-    public Position getNextPosition(Direction dir,final int step) {
+    public Position getNextPosition(Direction dir) {
         int xPos = this.xPos;
         int yPos = this.yPos;
 
         switch (dir) {
             case UP -> {
-                return new Position(xPos, yPos-step);
+                return new Position(xPos, yPos-1);
             }
             case DOWN -> {
-                return new Position(xPos, yPos+step);
+                return new Position(xPos, yPos+1);
             }
             case LEFT -> {
-                return new Position(xPos-step, yPos);
+                return new Position(xPos-1, yPos);
             }
             case RIGHT -> {
-                return new Position(xPos+step, yPos);
+                return new Position(xPos+1, yPos);
             }
         }
         return null;
