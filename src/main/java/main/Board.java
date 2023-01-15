@@ -104,42 +104,6 @@ public class Board {
         return isSelfEat;
     }
 
-    /**
-     * moves snake and returns true if game ended
-     */
-    public boolean handle(Direction dir, GameProperties gp, Position randConsumablePos) {
-
-//        // if trying to move in the opposite direction continue moving the current direction.
-//        if (dir.getOppesite() == currentMovmentDirection) {
-//            dir = currentMovmentDirection;
-//        }
-
-//        // game ends if next move is out of bounds or eats self.
-//        if (checkMoveOutOfBounds(dir)) {
-//            System.out.println("hit wall");
-//            return true;
-//        }
-
-//        if (checkEatsSelf(dir)) {
-//            System.out.println("hit self");
-//            return true;
-//        }
-
-        // move snake.
-        updateSnakePos(dir);
-
-        //update current movement direction.
-        currentMovmentDirection = dir;
-
-        //check and consume food if main.consumables are present on new position
-        Tile currHeadTile = getGridTileByPosition(getHeadPosition());
-        if (currHeadTile.isFoodPresent()) {
-            eat(currHeadTile, gp);
-            spawnConsumable(randConsumablePos);
-        }
-
-        return false;
-    }
 
     /**
      * spawn consumable on board by poping are pushing to the end the consumable again.
@@ -175,24 +139,6 @@ public class Board {
         System.out.println("snake moved to x:" + newHead.getX() + "y:"+ newHead.getY());
     }
 
-    /**
-     * consumes food and applies the effect of it.
-     */
-    public void eat(Tile tile, GameProperties properties) {
-        if (tile.getFood().getType() == FoodType.FRUIT) {
-            snake.grow();
-            increaseBodySize();
-            increaseScore(properties);
-            return;
-        }
-
-        List<Effect> effects = tile.getFood().getEffects();
-        for (Effect effect : effects) {
-            properties.applyEffect(effect);
-        }
-        // deletes the food from tile.
-        tile.setFood(null);
-    }
 
     public void increaseScore(GameProperties properties) {
         score += properties.getScoreMultiplier() * 1;
@@ -271,7 +217,8 @@ public class Board {
 
     public void despawnFruit(Tile tile) {
         Food food = tile.getFood();
-        fruits.remove(food);
+        fruits.remove(tile.getCenter());
+        tile.setFood(null);
     }
 }
 

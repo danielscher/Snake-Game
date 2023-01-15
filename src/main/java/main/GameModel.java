@@ -55,7 +55,7 @@ public class GameModel {
         Tile currHeadTile = board.getGridTileByPosition(board.getHeadPosition());
         if (currHeadTile.isFoodPresent()) {
             eat(currHeadTile, gp, board);
-            board.spawnFruit(pos);
+            //board.spawnFruit(pos);
         }
 
         return false;
@@ -67,7 +67,6 @@ public class GameModel {
         if (food.getType() == FoodType.FRUIT) {
             board.despawnFruit(tile);
             board.increaseBodySize();
-            tile.setFood(null);
             Position pos = getNewRandomPosition();
             board.spawnFruit(pos);
             increaseScore(gp.getScoreMultiplier(),1);
