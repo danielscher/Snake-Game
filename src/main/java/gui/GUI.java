@@ -1,29 +1,21 @@
 package gui;
 
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Deque;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.fxml.FXML;
-import javafx.print.Collation;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.Direction;
@@ -46,6 +38,10 @@ public class GUI extends Application {
     Direction moveDirection = Direction.LEFT;
 
     private Group root;
+
+    private SimpleStringProperty scoreTxt = new SimpleStringProperty("Score: 0"); {
+    };
+
 
     //private List<Circle> currFruits = new ArrayList<>();
     private Set<Circle> currFruits = new HashSet<>();
@@ -129,12 +125,22 @@ public class GUI extends Application {
             currFruits.add(el);
         }
     }
+    private void updateScore(){
+        scoreTxt.set("Score:" + game.getScore());
+    }
+
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Snake Game");
         root = new Group();
+        HBox scoreBox = new HBox();
+        scoreTxt.set("Score:" + game.getScore());
+        Label label = new Label();
+        label.textProperty().bind(scoreTxt);
+        scoreBox.getChildren().add(label);
+        root.getChildren().add(scoreBox);
         //root = new VBox();
         //Canvas canvas = new Canvas(512,512);
 
@@ -207,6 +213,7 @@ public class GUI extends Application {
         //gc.fillRect(0,0,512,512);
         drawFruit(game.getFruits());
         drawSnake(game.getSnakePos(),moveDirection);
+        updateScore();
     }
 
 

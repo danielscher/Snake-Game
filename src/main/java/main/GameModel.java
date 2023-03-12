@@ -19,6 +19,8 @@ public class GameModel {
     private GameProperties gp = new GameProperties();
     private Direction currentMovmentDirection;
 
+    private int score = 0;
+
     public GameModel(long seed, int boardSize, int cellSize, List<Food> foods) {
         rand = new Random(seed);
         this.boardSize = boardSize;
@@ -71,6 +73,7 @@ public class GameModel {
             Position pos = getNewRandomPosition();
             board.spawnFruit(pos);
             increaseScore(gp.getScoreMultiplier(), 1);
+            gp.normalSpeedInc();
         } else {
             List<Effect> effects = food.getEffects();
             for (Effect effect : effects) {
@@ -83,10 +86,14 @@ public class GameModel {
 
 
     public void increaseScore(double multiplier, int amount) {
-        int score = board.getScore();
+
+//        int score = board.getScore();
+//        score += multiplier * amount;
+//        board.setScore(score);
+
         score += multiplier * amount;
-        board.setScore(score);
     }
+
 
 
     /**
@@ -117,6 +124,10 @@ public class GameModel {
 
     public Board getBoard() {
         return board;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     private Position translateGridToPixel(Position cell) {

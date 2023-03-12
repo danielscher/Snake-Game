@@ -23,6 +23,10 @@ public class GameProperties {
         return numConsumables;
     }
 
+    public void normalSpeedInc(){
+        speed = speed*1.11;
+    }
+
 
     /**applies the effect of different consumables*/
     public void applyEffect(Effect effect) {
