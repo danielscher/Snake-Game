@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="collision fixed. more efficient movement algo implemented. GUI animation works properly.">
-      <change afterPath="$PROJECT_DIR$/src/test/java/tests/BoardTest.java" afterDir="false" />
+    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="added score to GUI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/GameModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/GameProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/GameProperties.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Snake.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Tile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/scene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/scene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/BoardTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +118,7 @@
       <recent name="tests" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Unnamed">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gui.GUI" />
       <module name="SnakeGame.main" />
@@ -130,6 +127,82 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BoardTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;tests.BoardTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="BoardTest.testSnakeMoves1Tile" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;tests.BoardTest.testSnakeMoves1Tile&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="BoardTest.testSpawnFruit" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;tests.BoardTest.testSpawnFruit&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.BoardTest.testSpawnFruit" />
+        <item itemvalue="Gradle.BoardTest.testSnakeMoves1Tile" />
+        <item itemvalue="Gradle.BoardTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -175,7 +248,56 @@
       <option name="project" value="LOCAL" />
       <updated>1672854471416</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added test class and helper methods for testing.&#10;increased cohesion by moving components out of Board class.">
+      <created>1673195771269</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1673195771269</updated>
+    </task>
+    <task id="LOCAL-00007" summary="added fruits. need to fix multiple fruit spawning.">
+      <created>1673289341163</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1673289341163</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fixed double spawning of fruit.">
+      <created>1673796163102</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1673796163102</updated>
+    </task>
+    <task id="LOCAL-00009" summary="clarified translation methods from pixel-&gt;grid and vice versa">
+      <created>1673797733468</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1673797733468</updated>
+    </task>
+    <task id="LOCAL-00010" summary="board now operates only on grid position(not pixels), this fixed food spawn position bug.">
+      <created>1673801289610</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1673801289610</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fixed bug where food wouldn't de-spawn after consumption">
+      <created>1673802025784</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1673802025784</updated>
+    </task>
+    <task id="LOCAL-00012" summary="added score to GUI">
+      <created>1678634257550</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1678634257550</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -196,36 +318,69 @@
     <MESSAGE value="added gui" />
     <MESSAGE value="able to move green dot representing snake. collision works." />
     <MESSAGE value="collision fixed. more efficient movement algo implemented. GUI animation works properly." />
-    <option name="LAST_COMMIT_MESSAGE" value="collision fixed. more efficient movement algo implemented. GUI animation works properly." />
+    <MESSAGE value="added test class and helper methods for testing.&#10;increased cohesion by moving components out of Board class." />
+    <MESSAGE value="added fruits. need to fix multiple fruit spawning." />
+    <MESSAGE value="fixed double spawning of fruit." />
+    <MESSAGE value="clarified translation methods from pixel-&gt;grid and vice versa" />
+    <MESSAGE value="board now operates only on grid position(not pixels), this fixed food spawn position bug." />
+    <MESSAGE value="fixed bug where food wouldn't de-spawn after consumption" />
+    <MESSAGE value="added score to GUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="added score to GUI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/gui/GUI.java</url>
-          <line>103</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
           <line>106</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <condition expression="row == -1 || col == -1" language="JAVA" />
-          <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
-          <line>210</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
-          <line>91</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
-          <line>63</line>
+          <line>78</line>
           <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/tests/BoardTest.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/tests/BoardTest.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/tests/BoardTest.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/main/Tile.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/main/GameModel.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/main/GameModel.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <condition expression="snake.size()==3" language="JAVA" />
+          <url>file://$PROJECT_DIR$/src/main/java/gui/GUI.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <condition expression="eat == true" language="JAVA" />
+          <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
+          <line>139</line>
+          <option name="timeStamp" value="66" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

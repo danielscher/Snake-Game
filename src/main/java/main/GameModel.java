@@ -28,13 +28,15 @@ public class GameModel {
         availableConsumables = foods;
         final Position rndSnakeStart = getNewRandomPosition();
         final Position rndFruitPos = getNewRandomPosition();
+        currentMovmentDirection = Direction.values()[rand.nextInt(4)];
         board = new Board(boardSize, cellSize, rndSnakeStart,
-                rndFruitPos);
+                rndFruitPos, currentMovmentDirection);
     }
 
 
     public boolean makeMove(Direction dir) {
 
+        System.out.println("makemove called");
         // if trying to move in the opposite direction continue moving the current direction.
         if (dir.getOppesite() == currentMovmentDirection) {
             dir = currentMovmentDirection;
@@ -51,7 +53,9 @@ public class GameModel {
             return true;
         }
 
-        board.updateSnakePos(dir);
+        //TODO: move updateSnakePos to gameModel class
+        Tile nextHeadTile = getNextTile(dir);
+        board.updateSnakePos(dir, nextHeadTile.isFoodPresent());
         currentMovmentDirection = dir;
 
         //check and consume food if main.consumables are present on new position
@@ -69,7 +73,7 @@ public class GameModel {
 
         if (food.getType() == FoodType.FRUIT) {
             board.despawnFruit(tile);
-            board.increaseBodySize();
+            //board.increaseBodySize();
             Position pos = getNewRandomPosition();
             board.spawnFruit(pos);
             increaseScore(gp.getScoreMultiplier(), 1);
@@ -135,6 +139,15 @@ public class GameModel {
         final int col = cell.getX();
         return board.getGrid()[row][col].getCenter();
     }
+
+    // returns the tile
+    private Tile getNextTile(Direction dir){
+        Position nextHeadPos = board.getHeadPosition().getNextPosition(dir);
+        final int row = nextHeadPos.getY();
+        final int col = nextHeadPos.getX();
+        return board.getGrid()[row][col];
+    }
+
     public List<Position> translateGridToPixel(List<Position> gridPositions){
         return gridPositions.stream().map(this::translateGridToPixel).collect(Collectors.toList());
     }

@@ -24,17 +24,21 @@ public class Board {
     private int score;
     private Snake snake;
 
-    private Deque<Position> snakeQueue = new ArrayDeque<>();
 
     private Deque<Food> availableFoods = new ArrayDeque<>();
 
+    // contains all fruit on board as grid positions (row,col).
     private Set<Position> fruits = new HashSet<>();
+
+    // contains positions of all snake body parts on board as (row,col).
+    private Deque<Position> snakeQueue = new ArrayDeque<>();
 
 
     /**
-     * constructs the board for the game.
+     * Sets up the board for the game.
      */
-    public Board(final int gridSize, final int tileSize, final Position snakePos, final Position fruit) {
+    public Board(final int gridSize, final int tileSize, final Position snakePos,
+            final Position fruit, Direction rndDir) {
         //TODO: check if initPos < gridSize.
         //calculate number of tiles.
         this.tileSize = tileSize;
@@ -54,7 +58,7 @@ public class Board {
             }
         }
         // set snake
-        currentMovmentDirection = Direction.UP;
+        currentMovmentDirection = rndDir;
         this.snake = new Snake();
         //Position headPos = translateGridToPixel(snakePos);   //get head position by pixel
         grid[snakePos.getY()][snakePos.getX()].setSnake(true);
@@ -116,10 +120,10 @@ public class Board {
 
     /**
      * @param pos is a cell position (col,row)
-     * */
-    public void spawnFruit(Position pos){
+     */
+    public void spawnFruit(Position pos) {
         Food fruit = new Fruit();
-        if (!fruits.contains(pos)){
+        if (!fruits.contains(pos)) {
             fruits.add(pos);
             grid[pos.getY()][pos.getX()].setFood(fruit);
         }
@@ -129,17 +133,20 @@ public class Board {
     /**
      * moves the snake one tile in the movement direction by removing tail and pushing new head.
      */
-    public void updateSnakePos(Direction dir) {
+    public void updateSnakePos(Direction dir, Boolean eat) {
 
-        Position tail = snakeQueue.pollLast();
+        Position tail = snakeQueue.peekLast();
         assert tail != null;
-        getTileByPos(tail).setSnake(false);              // free tile from snake
+        if (!eat) {
+            getTileByPos(tail).setSnake(false);          // free tile from snake
+            snakeQueue.removeLast();
+        }
         Position head = snakeQueue.getFirst();           // get head to compute next snake pos
         Position newHead = new Position(head.getX(), head.getY()); // copy
-        newHead.moveInDirection(dir,tileSize);           // new position in movement direction
+        newHead.moveInDirection(dir, tileSize);           // new position in movement direction
         snakeQueue.push(newHead);
         getTileByPos(newHead).setSnake(true);
-        System.out.println("snake moved to col:" + newHead.getX() + "row:"+ newHead.getY());
+        //System.out.println("snake moved to col:" + newHead.getX() + "row:"+ newHead.getY());
     }
 
 
@@ -148,8 +155,6 @@ public class Board {
      * direction to the current movement
      */
     public void increaseBodySize() {
-        //TODO: new tail is added opposite to the moving direction
-        //TODO: however tail moving direction != head moving direction.
         Direction dir = currentMovmentDirection.getOppesite();
         Position newTail = snakeQueue.getLast().getNextPosition(dir);
         getTileByPos(newTail).setSnake(true);
@@ -171,6 +176,7 @@ public class Board {
 
     /**
      * calculates tile on grid by PIXEL Position
+     *
      * @param pos IS THE PIXEL POSITION.
      */
     Tile getGridTileByPosition(Position pos) {
@@ -182,6 +188,7 @@ public class Board {
     /**
      * translates position of a pixel (x,y) to a (row,column) position on the grid useful for
      * checking bounds.
+     *
      * @return Position with y = row and x = column
      */
     private Position translatePixelToGrid(Position pixelPos) {
@@ -192,6 +199,7 @@ public class Board {
 
     /**
      * translates grid cell position (row,col) to pixel position.
+     *
      * @param cell corresponds to the y = row, x = column coordinates of the boards grid.
      */
     private Tile getTileByPos(Position cell) {
@@ -204,7 +212,7 @@ public class Board {
         return grid;
     }
 
-    public void setSnake(Deque<Position> snake){
+    public void setSnake(Deque<Position> snake) {
         snakeQueue = snake;
     }
 
@@ -217,10 +225,11 @@ public class Board {
         return fruits;
     }
 
-    public Tile getHeadTile (){
+    public Tile getHeadTile() {
         return getTileByPos(snakeQueue.getFirst());
     }
 
+    //remove fruit from tile and from positions of curr fruits.
     public void despawnFruit(Tile tile) {
         Position fruitPos = translatePixelToGrid(tile.getCenter());
         fruits.remove(fruitPos);
