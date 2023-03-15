@@ -1,30 +1,21 @@
 package main;
 
-import java.util.ArrayList;
 import java.util.Deque;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import main.consumables.Effect;
 import main.consumables.Food;
 import java.util.ArrayDeque;
-import java.util.List;
-import main.consumables.FoodType;
 import main.consumables.Fruit;
 
 public class Board {
 
-    private Tile[][] grid;
+    private final Tile[][] grid;
     private final int tileSize;
     private final int tileNum;
-
     private int numCurrentConsumables = 1;
-    private Direction currentMovmentDirection;
     private final int gridSize;
     private int score;
     private Snake snake;
-
-
     private Deque<Food> availableFoods = new ArrayDeque<>();
 
     // contains all fruit on board as grid positions (row,col).
@@ -36,10 +27,16 @@ public class Board {
 
     /**
      * Sets up the board for the game.
+     * @param gridSize dimension of the game board in pixels.
+     * @param tileSize size of each cell in pixels.
+     * @param snakePos starting grid position of the snake's head (col,row).
+     * @param startFruit position of the first fruit on board (col,row)
+     * @param startDir starting movement direction at the start of the game.
      */
     public Board(final int gridSize, final int tileSize, final Position snakePos,
-            final Position fruit, Direction rndDir) {
+            final Position startFruit, Direction startDir) {
         //TODO: check if initPos < gridSize.
+
         //calculate number of tiles.
         this.tileSize = tileSize;
         final int tileNum = gridSize / tileSize;
@@ -57,17 +54,15 @@ public class Board {
                         row * tileSize + (tileSize / 2)));
             }
         }
-        // set snake
-        currentMovmentDirection = rndDir;
+        // init snake to length 3.
         this.snake = new Snake();
-        //Position headPos = translateGridToPixel(snakePos);   //get head position by pixel
         grid[snakePos.getY()][snakePos.getX()].setSnake(true);
         snakeQueue.add(snakePos);
-        increaseBodySize();
-        increaseBodySize();
+        increaseBodySize(startDir);
+        increaseBodySize(startDir);
 
         // set fruit
-        spawnFruit(fruit);
+        spawnFruit(startFruit);
     }
 
 
@@ -107,17 +102,6 @@ public class Board {
         return getTileByPos(nextHeadPos).isSnake();
     }
 
-/*
-
-     * spawn consumable on board by poping are pushing to the end the consumable again.
-
-    public void spawnConsumable(Position randConsumablePos) {
-        Food food = availableFoods.pop();
-        getGridTileByPosition(randConsumablePos).setFood(food);
-        availableFoods.addLast(food);
-    }
-    */
-
     /**
      * @param pos is a cell position (col,row)
      */
@@ -132,21 +116,24 @@ public class Board {
 
     /**
      * moves the snake one tile in the movement direction by removing tail and pushing new head.
+     * @param eat if set to true increases body of snake by 1.
      */
     public void updateSnakePos(Direction dir, Boolean eat) {
 
         Position tail = snakeQueue.peekLast();
         assert tail != null;
+
+        // delete tail if consumed fruit.
         if (!eat) {
-            getTileByPos(tail).setSnake(false);          // free tile from snake
+            getTileByPos(tail).setSnake(false);
             snakeQueue.removeLast();
         }
-        Position head = snakeQueue.getFirst();           // get head to compute next snake pos
-        Position newHead = new Position(head.getX(), head.getY()); // copy
+
+        Position head = snakeQueue.getFirst();
+        Position newHead = new Position(head.getX(), head.getY());
         newHead.moveInDirection(dir, tileSize);           // new position in movement direction
         snakeQueue.push(newHead);
         getTileByPos(newHead).setSnake(true);
-        //System.out.println("snake moved to col:" + newHead.getX() + "row:"+ newHead.getY());
     }
 
 
@@ -154,8 +141,8 @@ public class Board {
      * increases snakes body by one tile by creating a new position of tail in the opposite
      * direction to the current movement
      */
-    public void increaseBodySize() {
-        Direction dir = currentMovmentDirection.getOppesite();
+    public void increaseBodySize(Direction dir) {
+        dir = dir.getOppesite();
         Position newTail = snakeQueue.getLast().getNextPosition(dir);
         getTileByPos(newTail).setSnake(true);
         snake.grow();
@@ -170,9 +157,10 @@ public class Board {
         return snakeQueue.getFirst();
     }
 
-    public Deque<Position> getsnakeQueue() {
+    public Deque<Position> getSnakeQueue() {
         return snakeQueue;
     }
+
 
     /**
      * calculates tile on grid by PIXEL Position
@@ -216,10 +204,6 @@ public class Board {
         snakeQueue = snake;
     }
 
-
-    public void setScore(int score) {
-        this.score = score;
-    }
 
     public Set<Position> getFruits() {
         return fruits;
