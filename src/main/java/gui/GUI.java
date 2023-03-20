@@ -42,8 +42,9 @@ public class GUI extends Application {
     private SimpleStringProperty scoreTxt = new SimpleStringProperty("Score: 0"); {
     };
 
+    // snake drawing classes for creating the snake graphics on board.
+    private EntityDrawer entityDrawer = new EntityDrawer(game.getCellSize());
 
-    //private List<Circle> currFruits = new ArrayList<>();
     private Set<Circle> currFruits = new HashSet<>();
 
     private Set<Rectangle> recs = new HashSet<>();
@@ -65,47 +66,6 @@ public class GUI extends Application {
             }
 
         }
-    }
-
-
-
-    private void drawSnake(List<Position> snake, Direction dir) {
-
-
-        // clear old snake body.
-        root.getChildren().removeAll(recs);
-        recs.clear();
-        int cellSize = game.getCellSize();
-
-        //rotate head in direction of movement.
-        /*switch (dir) {
-            case UP -> snakeHead.setRotate(0);
-            case RIGHT -> snakeHead.setRotate(-90);
-            case LEFT -> snakeHead.setRotate(90);
-            case DOWN -> snakeHead.setRotate(180);
-        }*/
-
-        //draw head.
-        int radius = cellSize/2;
-        Position head = snake.get(0);
-        assert head != null;
-        Rectangle headRect = new Rectangle(head.getX()-radius,head.getY()-radius,cellSize,cellSize);
-        headRect.setStroke(Color.INDIANRED);
-        headRect.setFill(Color.RED);
-        root.getChildren().add(headRect);
-        recs.add(headRect);
-
-        //draw body.
-        for (int i = 1 ; i < snake.size() ; i++){
-            int xPos = snake.get(i).getX();
-            int yPos = snake.get(i).getY();
-            Rectangle rect = new Rectangle(xPos-radius,yPos-radius,cellSize,cellSize);
-            rect.setFill(Color.GREEN);
-            rect.setStroke(Color.GREENYELLOW);
-            root.getChildren().add(rect);
-            recs.add(rect);
-        }
-
     }
 
     private void drawFruit (List<Position> foods){
@@ -150,6 +110,8 @@ public class GUI extends Application {
         /*Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(
                 "scene.fxml")));*/
 
+
+        EntityDrawer snakeDrawer = new EntityDrawer(game.getCellSize());
 
 
         // anonymous animationTimer class.
@@ -207,12 +169,11 @@ public class GUI extends Application {
         primaryStage.show();
     }
 
+    /**
+     * called every in game tick. */
     public void tick(){
-        //gameOver = game.makeMove(moveDirection);
-        //gc.setFill(Color.BLACK);
-        //gc.fillRect(0,0,512,512);
-        drawFruit(game.getFruits());
-        drawSnake(game.getSnakePos(),moveDirection);
+        entityDrawer.drawSnakeBody(game.getSnakePos(),root,moveDirection);
+        entityDrawer.drawConsumbable(game.getFruits(),root);
         updateScore();
     }
 
