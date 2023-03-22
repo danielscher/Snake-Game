@@ -7,15 +7,20 @@ import java.util.Set;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.Direction;
@@ -27,20 +32,23 @@ import main.consumables.Fruit;
 
 public class GUI extends Application {
 
+    AnchorPane pane = new AnchorPane();
+
     Food frt = new Fruit();
 
     List<Food> foods = List.of(new Food[]{frt});
 
-    GameModel game = new GameModel(2,512,32,foods);
+    GameModel game = new GameModel(2, 512, 32, foods);
+    private int counter = 0;
 
     private Boolean gameOver = false;
 
     Direction moveDirection = Direction.LEFT;
 
-    private Group root;
+    private VBox root;
 
-    private SimpleStringProperty scoreTxt = new SimpleStringProperty("Score: 0"); {
-    };
+    private SimpleStringProperty scoreTxt = new SimpleStringProperty("Score: 0");
+
 
     // snake drawing classes for creating the snake graphics on board.
     private EntityDrawer entityDrawer = new EntityDrawer(game.getCellSize());
@@ -49,132 +57,115 @@ public class GUI extends Application {
 
     private Set<Rectangle> recs = new HashSet<>();
 
-    private void colorSnakeTiles(Group root){
-        int radius = 16;
-        Tile[][] grid = game.getBoard().getGrid();
-        for (Tile[] row : grid){
-            for(Tile col : row){
-                if (col.isSnake()){
-                    int xPos = col.getCenter().getX();
-                    int yPos = col.getCenter().getY();
-                    Text txt = new Text(xPos+10,yPos-10,xPos + "," + yPos);
-                    Rectangle rect = new Rectangle(xPos-radius,yPos-radius,32,32);
-                    rect.setFill(Color.YELLOW);
-                    root.getChildren().add(rect);
-                    root.getChildren().add(txt);
-                }
-            }
-
-        }
-    }
-
-    private void drawFruit (List<Position> foods){
-        int cellSize = game.getCellSize();
-        int radius = cellSize/2;
-
-        root.getChildren().removeAll(currFruits);
-        currFruits.clear();
-
-        for (Position f : foods){
-            int xPos = f.getX();
-            int yPos = f.getY();
-            Circle el = new Circle(xPos,yPos,radius);
-            el.setFill(Color.MAGENTA);
-            el.setStroke(Color.PINK);
-            root.getChildren().add(el);
-            currFruits.add(el);
-        }
-    }
-    private void updateScore(){
-        scoreTxt.set("Score:" + game.getScore());
-    }
-
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Snake Game");
-        root = new Group();
-        HBox scoreBox = new HBox();
+        //HBox scoreBox = new HBox();
         scoreTxt.set("Score:" + game.getScore());
         Label label = new Label();
         label.textProperty().bind(scoreTxt);
-        scoreBox.getChildren().add(label);
-        root.getChildren().add(scoreBox);
-        //root = new VBox();
-        //Canvas canvas = new Canvas(512,512);
-
-        //GraphicsContext gc = canvas.getGraphicsContext2D();
-        //root.getChildren().add(canvas);
-
-        /*Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(
-                "scene.fxml")));*/
-
-
-        EntityDrawer snakeDrawer = new EntityDrawer(game.getCellSize());
-
+        //AnchorPane pane = new AnchorPane();
+        pane.setStyle("-fx-background-color: black;");
+        pane.setId("pane");
+        pane.setPrefSize(512, 512);
+        AnchorPane.setTopAnchor(pane, 50.0);
+        root = new VBox(10);
+        root.setAlignment(Pos.TOP_CENTER);
+        root.getChildren().addAll(label, pane);
+        //root.getChildren().add(scoreBox);
 
         // anonymous animationTimer class.
         new AnimationTimer() {
             long lastTick = 0;
+
+            // nanoTimeNow is timestamp of current frame.
             public void handle(long nanoTimeNow) {
 
-               if (gameOver){
-                    //gc.setFill(Color.RED);
-                    //gc.fillRect(0,0,512,512);
+                if (gameOver) {
+                    //TODO: add game over animation.
                     System.out.println("game ended");
-                    return;
+                    switchToEndGameScene(primaryStage);
+                    stop();
+                    //return;
                 }
-
-                /*if (lastTick == 0){
+                // 1 second = 1e+9 nanoseconds
+                // if time interval is larger than 1 second tick.
+                // game speed = 1 -> 1 frame per second.
+                long timeInterval = nanoTimeNow - lastTick;
+                if (timeInterval > 1000000000 / game.getGp().getSpeed()) { //each second
+                    counter++;
                     lastTick = nanoTimeNow;
                     gameOver = game.makeMove(moveDirection);
-                    //drawSnake(gc,game.getSnakePos(),moveDirection);
-                    tick();
-                    return;
-                }*/
-                if (nanoTimeNow - lastTick > 1000000000 / game.getGp().getSpeed()){ //each second
-                    //root.getChildren().removeAll();
-                    lastTick = nanoTimeNow;
-                    gameOver = game.makeMove(moveDirection);
-
-                    tick();
-                    //colorSnakeTiles(root);
-                    //drawSnake(gc,game.getSnakePos(),moveDirection);
+                    tick(counter);
                 }
             }
         }.start();
 
-        Scene scene = new Scene(root,512,512);
+        Scene scene = new Scene(root, 512, 512);
         scene.setFill(Color.BLACK);
 
-
+        //TODO: define new method for kew listning and include 'ESC' for pausing.
         scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
-            if(key.getCode() == KeyCode.UP || key.getCode() == KeyCode.W){
+            if (key.getCode() == KeyCode.UP || key.getCode() == KeyCode.W) {
                 moveDirection = Direction.UP;
             }
-            if(key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.S){
+            if (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.S) {
                 moveDirection = Direction.DOWN;
             }
-            if(key.getCode() == KeyCode.LEFT || key.getCode() == KeyCode.A){
+            if (key.getCode() == KeyCode.LEFT || key.getCode() == KeyCode.A) {
                 moveDirection = Direction.LEFT;
             }
-            if(key.getCode() == KeyCode.RIGHT || key.getCode() == KeyCode.D){
+            if (key.getCode() == KeyCode.RIGHT || key.getCode() == KeyCode.D) {
                 moveDirection = Direction.RIGHT;
             }
         });
-
 
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
     /**
-     * called every in game tick. */
-    public void tick(){
-        entityDrawer.drawSnakeBody(game.getSnakePos(),root,moveDirection);
-        entityDrawer.drawConsumbable(game.getFruits(),root);
+     * called every in game tick.
+     */
+    public void tick(int time) {
+        if (time > 0 && time % 35 == 0) {
+            game.respawnConsum();
+            counter = 0;
+        }
+        entityDrawer.drawSnakeBody(game.getSnakePos(), pane, moveDirection);
+        entityDrawer.drawConsumbable(game.getFruits(), pane);
         updateScore();
+    }
+
+    private void switchToEndGameScene(Stage stage) {
+        //TODO: add score to scene.
+        // root
+        VBox root = new VBox(10);
+        root.setAlignment(Pos.CENTER);
+        root.setStyle("-fx-background-color: red");
+
+        // text
+        Label label = new Label("Game Over");
+        label.setFont(new Font(30));
+
+        // buttons
+        //TODO: add functionality.
+        Button exit = new Button("EXIT");
+        Button reset = new Button("RESET");
+
+        // add all nodes.
+        root.getChildren().addAll(label,exit,reset);
+
+        // set scene.
+        Scene gameEnd = new Scene(root,512,512);
+        stage.setScene(gameEnd);
+        stage.show();
+    }
+
+    private void updateScore() {
+        scoreTxt.set("Score:" + game.getScore());
     }
 
 

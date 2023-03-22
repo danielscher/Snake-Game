@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javafx.scene.Group;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -28,12 +30,12 @@ public class EntityDrawer {
 
     //TODO: add more initialization properties to constructor.
 
-    public void drawSnakeBody(List<Position> snakePosition, Group root, Direction dir) {
+    public void drawSnakeBody(List<Position> snakePosition, AnchorPane pane, Direction dir) {
 
         Set<Rectangle> newSnake = new HashSet<>();
 
         // clear old body.
-        root.getChildren().removeAll(snakeBody);
+        pane.getChildren().removeAll(snakeBody);
 
         //draw new head.
         final int radius = cellSize / 2;
@@ -56,19 +58,19 @@ public class EntityDrawer {
         }
 
         // replace current body with new one and add it to root.
-        root.getChildren().addAll(newSnake);
+        pane.getChildren().addAll(newSnake);
         snakeBody = newSnake;
     }
 
     /**
      * removes consumable object graphics from the Group and adds a new one in the positions
      * indicated by the fruitPosition list
-     * @param root is the root node of the UI scene
+     * @param pane is the root node of the UI scene
      * @param fruitPosition positions where the new fruits will be rendered*/
-    public void drawConsumbable(List<Position> fruitPosition, Group root) {
+    public void drawConsumbable(List<Position> fruitPosition, AnchorPane pane) {
 
         final int radius = cellSize / 2;
-        root.getChildren().removeAll(currFruits);
+        pane.getChildren().removeAll(currFruits);
         Set<Circle> newFruits = new HashSet<>();
 
         for (Position pos : fruitPosition) {
@@ -80,7 +82,7 @@ public class EntityDrawer {
             newFruits.add(el);
         }
 
-        root.getChildren().addAll(newFruits);
+        pane.getChildren().addAll(newFruits);
         currFruits = newFruits;
     }
 
