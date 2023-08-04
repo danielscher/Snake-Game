@@ -13,7 +13,6 @@ public class Board {
     private final int gridSize;
 
 
-
     /**
      * Sets up the board for the game.
      *
@@ -106,13 +105,8 @@ public class Board {
         return new Coords(col, row);
     }
 
-    /**
-     * translates grid cell position (row,col) to pixel position.
-     *
-     * @param cell corresponds to the y = row, x = column coordinates of the boards grid.
-     */
-    public Tile getTileByCoords(Coords coord) {
-        return grid[coord.getY()][coord.getX()];
+    public Tile getTileByCoords(Coords coords) {
+        return grid[coords.getY()][coords.getX()];
     }
 
     public Tile[][] getGrid() {
