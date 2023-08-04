@@ -43,27 +43,45 @@ public class GUI extends Application {
     // snake drawing classes for creating the snake graphics on board.
     private EntityDrawer entityDrawer = new EntityDrawer(game.getCellSize());
 
-    private Set<Circle> currFruits = new HashSet<>();
+    private final Set<Circle> currFruits = new HashSet<>();
 
-    private Set<Rectangle> recs = new HashSet<>();
+    private final Set<Rectangle> recs = new HashSet<>();
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Snake Game");
-        //HBox scoreBox = new HBox();
-        scoreTxt.set("Score:" + game.getScore());
+
+        // set label.
+        scoreTxt.set("SCORE:  " + game.getScore());
         Label label = new Label();
         label.textProperty().bind(scoreTxt);
-        //AnchorPane pane = new AnchorPane();
+        label.setTextFill(Color.BLUE);
+        label.setStyle("-fx-padding: 10px;");
+        //label.setStyle("-fx-background-color: black;");
+        label.setFont(new Font(18));
+
+        // set pane.
         pane.setStyle("-fx-background-color: black;");
         pane.setId("pane");
-        //pane.setPrefSize(512, 512);
+        pane.setPrefSize(512, 512);
         AnchorPane.setTopAnchor(pane, 50.0);
-        root = new VBox(10);
+        root = new VBox(2);
         root.setAlignment(Pos.TOP_CENTER);
         root.getChildren().addAll(label, pane);
-        //root.getChildren().add(scoreBox);
+        root.setStyle("-fx-background-color: black;");
+
+
+        // Create a Rectangle to act as the border
+        Rectangle border = new Rectangle(514, 514);
+        border.setStroke(Color.BLUE); // Set the border color
+        border.setStrokeWidth(2); // Set the border width
+        border.setFill(null); // Set the fill color to transparent
+
+        pane.getChildren().add(border);
+        Scene scene = new Scene(root);
+        scene.setFill(Color.BLACK);
+
 
         // anonymous animationTimer class.
         new AnimationTimer() {
@@ -76,9 +94,9 @@ public class GUI extends Application {
                     //TODO: add game over animation.
                     System.out.println("game ended");
                     switchToEndGameScene(primaryStage);
-
                     //return;
                 }
+
                 // 1 second = 1e+9 nanoseconds
                 // if time interval is larger than 1 second tick.
                 // game speed = 1 -> 1 frame per second.
@@ -86,14 +104,11 @@ public class GUI extends Application {
                 if (timeInterval > 1000000000 / game.getGp().getSpeed()) { //each second
                     counter++;
                     lastTick = nanoTimeNow;
-                    gameOver = game.makeMove(moveDirection);
                     tick(counter);
                 }
             }
         }.start();
 
-        Scene scene = new Scene(root, 512, 512);
-        scene.setFill(Color.BLACK);
 
         //TODO: define new method for key listening and include 'ESC' for pausing.
         scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
@@ -119,8 +134,12 @@ public class GUI extends Application {
      * called every in game tick.
      */
     public void tick(int time) {
-        if (time > 0 && time % 35 == 0) {
-            game.respawnConsumable();
+        gameOver = game.makeMove(moveDirection);
+        if (time > 0 && time % 32 == 0) {
+            if (!game.getEaten()){
+                game.respawnConsumable();
+            }
+            game.resetEaten();
             counter = 0;
         }
         entityDrawer.drawSnakeBody(game.getSnakePixelPos(), pane, moveDirection);
@@ -164,7 +183,7 @@ public class GUI extends Application {
     }
 
     private void updateScore() {
-        scoreTxt.set("Score:" + game.getScore());
+        scoreTxt.set("SCORE: " + game.getScore());
     }
 
 

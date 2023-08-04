@@ -12,8 +12,11 @@ public class GameModel {
     private final int boardSize;
     private final Board board;
     private final Snake snake;
+    private boolean eaten;
 
-    /** used to despawn fruits after some time interval.*/
+    /**
+     * used to despawn fruits after some time interval.
+     */
     private final LinkedList<Tile> fruitTiles = new LinkedList<>();
     private final HashSet<Pixel> fruitPixelPos = new HashSet<>();
     private final Random rand;
@@ -28,9 +31,9 @@ public class GameModel {
         this.cellSize = cellSize;
         final Coords rndSnakeStart = getNewRandomCoordPosition();
         //currentMovementDirection = Direction.values()[rand.nextInt(4)];
-        currentMovementDirection = Direction.class.getEnumConstants()[Direction.class.getEnumConstants().length-1];
+        currentMovementDirection = Direction.class.getEnumConstants()[Direction.class.getEnumConstants().length - 1];
         board = new Board(boardSize, cellSize);
-        snake = new Snake(board, currentMovementDirection, rndSnakeStart,3);
+        snake = new Snake(board, currentMovementDirection, rndSnakeStart, 3);
         spawnConsumable();
     }
 
@@ -47,6 +50,7 @@ public class GameModel {
             dir = currentMovementDirection;
         }
 
+        //TODO: game not over when right wall hit.
         if (snake.moveSnake(dir)) {
             return true;
         }
@@ -56,6 +60,7 @@ public class GameModel {
         Tile currHeadTile = board.getTileByCoords(snake.getHeadPosition());
         if (currHeadTile.isFoodPresent()) {
             eat(currHeadTile);
+            eaten = true;
             gp.increaseSpeed();
         }
 
@@ -121,7 +126,7 @@ public class GameModel {
      * @return list of pixel position.
      */
     public List<Pixel> translateGridToPixel(List<Coords> gridCoords) {
-        return gridCoords.stream().map(c -> translateCoordToPixel(c,cellSize)).collect(Collectors.toList());
+        return gridCoords.stream().map(c -> translateCoordToPixel(c, cellSize)).collect(Collectors.toList());
     }
 
     public GameProperties getGp() {
@@ -137,7 +142,9 @@ public class GameModel {
         return score;
     }
 
-    /** Creates new random consumable on a random tile free tile.*/
+    /**
+     * Creates new random consumable on a random tile free tile.
+     */
     private void spawnConsumable() {
         Coords fruit = getNewRandomCoordPosition();
         Tile t = board.getTileByCoords(fruit);
@@ -151,7 +158,9 @@ public class GameModel {
         fruitTiles.add(t);
     }
 
-    /** Removes oldest fruit.*/
+    /**
+     * Removes oldest fruit.
+     */
     private void despawnConsumable() {
         Tile t = fruitTiles.poll();
         System.out.println(t);
@@ -159,15 +168,29 @@ public class GameModel {
         despawnConsumable(t);
     }
 
-    /** Removes consumable at a specific tile.*/
+    /**
+     * Removes consumable at a specific tile.
+     */
     private void despawnConsumable(Tile tile) {
         tile.removeFood();
         fruitPixelPos.remove(tile.getCenter());
     }
 
-    /**Removes oldest fruit and spawns a new one on a random position*/
+    /**
+     * Removes oldest fruit and spawns a new one on a random position
+     */
     public void respawnConsumable() {
         despawnConsumable();
+        //eaten = false;
         spawnConsumable();
     }
+
+    public boolean getEaten() {
+        return eaten;
+    }
+
+    public void resetEaten(){
+        eaten = false;
+    }
+
 }

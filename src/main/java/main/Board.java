@@ -88,7 +88,7 @@ public class Board {
      *
      * @param pos IS THE PIXEL POSITION.
      */
-    Tile getGridTileByPosition(Coords pos) {
+    public Tile getGridTileByPosition(Coords pos) {
         int col = (pos.getX() - tileSize / 2) / tileSize;
         int row = (pos.getY() - tileSize / 2) / tileSize;
         return grid[row][col];
