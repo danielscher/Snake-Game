@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="added score to GUI">
+    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="base game works.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/GameModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Snake.java" afterDir="false" />
@@ -65,6 +66,7 @@
       <list>
         <option value="Enum" />
         <option value="FxmlFile" />
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -86,15 +88,21 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
     &quot;last_directory_selection&quot;: &quot;E:/Projects/Snake Game/SnakeGame/src/test/java/tests&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/danie/Downloads/openjfx-18.0.2_windows-x64_bin-sdk/javafx-sdk-18.0.2/lib&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Projects/CP/np-ss23-project-7013919-7006591&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.1150748&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -115,19 +123,28 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="main" />
       <recent name="tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Unnamed">
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.GUI">
+    <configuration name="GUI" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="gui.GUI" />
       <module name="SnakeGame.main" />
-      <option name="VM_PARAMETERS" value="--module-path C:\Users\danie\Downloads\openjfx-18.0.2_windows-x64_bin-sdk\javafx-sdk-18.0.2\lib --add-modules=javafx.controls" />
+      <option name="VM_PARAMETERS" value="--module-path D:\Projects\javafx-sdk-17.0.7\lib --add-modules=javafx.controls" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BoardTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="gui2" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="gui.GUI" />
+      <module name="SnakeGame.main" />
+      <option name="VM_PARAMETERS" value="--module-path ${PATH_TO_FX} --add-modules javafx.controls" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BoardTest.getGridTileByPosition" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -140,7 +157,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;tests.BoardTest&quot;" />
+            <option value="&quot;main.BoardTest.getGridTileByPosition&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -148,9 +165,10 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="BoardTest.testSnakeMoves1Tile" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="SnakeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -163,7 +181,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;tests.BoardTest.testSnakeMoves1Tile&quot;" />
+            <option value="&quot;tests.SnakeTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -171,9 +189,10 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="BoardTest.testSpawnFruit" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="SnakeTest.testGrowing" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -186,7 +205,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;tests.BoardTest.testSpawnFruit&quot;" />
+            <option value="&quot;tests.SnakeTest.testGrowing&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -194,13 +213,73 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
+    <configuration name="SnakeTest.testHitSelf" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;tests.SnakeTest.testHitSelf&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="SnakeTest.testMovingInCycle" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;tests.SnakeTest.testMovingInCycle&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.GUI" />
+      <item itemvalue="Application.gui2" />
+      <item itemvalue="Gradle.BoardTest.getGridTileByPosition" />
+      <item itemvalue="Gradle.SnakeTest" />
+      <item itemvalue="Gradle.SnakeTest.testGrowing" />
+      <item itemvalue="Gradle.SnakeTest.testHitSelf" />
+      <item itemvalue="Gradle.SnakeTest.testMovingInCycle" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.BoardTest.testSpawnFruit" />
-        <item itemvalue="Gradle.BoardTest.testSnakeMoves1Tile" />
-        <item itemvalue="Gradle.BoardTest" />
+        <item itemvalue="Gradle.BoardTest.getGridTileByPosition" />
+        <item itemvalue="Gradle.SnakeTest.testGrowing" />
+        <item itemvalue="Gradle.SnakeTest" />
+        <item itemvalue="Gradle.SnakeTest.testHitSelf" />
+        <item itemvalue="Gradle.SnakeTest.testMovingInCycle" />
       </list>
     </recent_temporary>
   </component>
@@ -212,6 +291,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1672664496770</updated>
+      <workItem from="1687884788939" duration="1973000" />
+      <workItem from="1687886822792" duration="4961000" />
+      <workItem from="1688112225627" duration="1014000" />
+      <workItem from="1688235829491" duration="702000" />
+      <workItem from="1688237588250" duration="37000" />
+      <workItem from="1690918463892" duration="1138000" />
+      <workItem from="1690920671165" duration="236000" />
+      <workItem from="1690994882149" duration="5430000" />
+      <workItem from="1691001252152" duration="599000" />
+      <workItem from="1691048092581" duration="30920000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1672673027192</created>
@@ -297,8 +386,46 @@
       <option name="project" value="LOCAL" />
       <updated>1678634257550</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="snake starts mvmt in rnd dir.&#10;fixed growing of snake when eating.">
+      <created>1678790931952</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1678790931952</updated>
+    </task>
+    <task id="LOCAL-00014" summary="code clean up (adding deleting comments)">
+      <created>1678902899043</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1678902899043</updated>
+    </task>
+    <task id="LOCAL-00015" summary="code clean up (adding deleting comments)">
+      <created>1678903452789</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1678903452789</updated>
+    </task>
+    <task id="LOCAL-00016" summary="moved rendering of objects to new class EntityDrawer">
+      <created>1679331643840</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1679331643840</updated>
+    </task>
+    <task id="LOCAL-00017" summary="added game over scene.">
+      <created>1679513336786</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1679513336786</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -325,65 +452,47 @@
     <MESSAGE value="board now operates only on grid position(not pixels), this fixed food spawn position bug." />
     <MESSAGE value="fixed bug where food wouldn't de-spawn after consumption" />
     <MESSAGE value="added score to GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="added score to GUI" />
+    <MESSAGE value="snake starts mvmt in rnd dir.&#10;fixed growing of snake when eating." />
+    <MESSAGE value="code clean up (adding deleting comments)" />
+    <MESSAGE value="moved rendering of objects to new class EntityDrawer" />
+    <MESSAGE value="added game over scene." />
+    <MESSAGE value="base game works." />
+    <option name="LAST_COMMIT_MESSAGE" value="base game works." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint type="java-line">
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
-          <line>106</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
-          <line>78</line>
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/tests/BoardTest.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/tests/BoardTest.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/tests/BoardTest.java</url>
-          <line>63</line>
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/main/Tile.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="51" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/main/GameModel.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/main/GameModel.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="61" />
+          <line>54</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <condition expression="snake.size()==3" language="JAVA" />
-          <url>file://$PROJECT_DIR$/src/main/java/gui/GUI.java</url>
-          <line>75</line>
-          <option name="timeStamp" value="65" />
+          <url>file://$PROJECT_DIR$/src/test/java/tests/SnakeTest.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <condition expression="eat == true" language="JAVA" />
-          <url>file://$PROJECT_DIR$/src/main/java/main/Board.java</url>
-          <line>139</line>
-          <option name="timeStamp" value="66" />
+          <url>file://$PROJECT_DIR$/src/test/java/tests/BoardTest.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/main/Direction.java</url>
+          <line>17</line>
+          <properties class="main.Direction" method="getClockwise">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="main.Board" memberName="snakeQueue" />
+      </pinned-members>
+    </pin-to-top-manager>
     <watches-manager>
       <configuration name="GradleRunConfiguration">
         <watch expression="grid[nextHeadPos.getxCoord()][nextHeadPos.getyCoord()].isSnake()" language="JAVA" />

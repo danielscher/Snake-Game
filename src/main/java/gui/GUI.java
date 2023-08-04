@@ -2,43 +2,33 @@ package gui;
 
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.Direction;
 import main.GameModel;
-import main.Position;
-import main.Tile;
-import main.consumables.Food;
-import main.consumables.Fruit;
 
 public class GUI extends Application {
 
     AnchorPane pane = new AnchorPane();
 
-    Food frt = new Fruit();
-
-    List<Food> foods = List.of(new Food[]{frt});
-
-    GameModel game = new GameModel(2, 512, 32, foods);
+    GameModel game = new GameModel(2, 512, 32);
     private int counter = 0;
 
     private Boolean gameOver = false;
@@ -58,7 +48,6 @@ public class GUI extends Application {
     private Set<Rectangle> recs = new HashSet<>();
 
 
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Snake Game");
@@ -69,7 +58,7 @@ public class GUI extends Application {
         //AnchorPane pane = new AnchorPane();
         pane.setStyle("-fx-background-color: black;");
         pane.setId("pane");
-        pane.setPrefSize(512, 512);
+        //pane.setPrefSize(512, 512);
         AnchorPane.setTopAnchor(pane, 50.0);
         root = new VBox(10);
         root.setAlignment(Pos.TOP_CENTER);
@@ -87,7 +76,7 @@ public class GUI extends Application {
                     //TODO: add game over animation.
                     System.out.println("game ended");
                     switchToEndGameScene(primaryStage);
-                    stop();
+
                     //return;
                 }
                 // 1 second = 1e+9 nanoseconds
@@ -106,7 +95,7 @@ public class GUI extends Application {
         Scene scene = new Scene(root, 512, 512);
         scene.setFill(Color.BLACK);
 
-        //TODO: define new method for kew listning and include 'ESC' for pausing.
+        //TODO: define new method for key listening and include 'ESC' for pausing.
         scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
             if (key.getCode() == KeyCode.UP || key.getCode() == KeyCode.W) {
                 moveDirection = Direction.UP;
@@ -131,16 +120,19 @@ public class GUI extends Application {
      */
     public void tick(int time) {
         if (time > 0 && time % 35 == 0) {
-            game.respawnConsum();
+            game.respawnConsumable();
             counter = 0;
         }
-        entityDrawer.drawSnakeBody(game.getSnakePos(), pane, moveDirection);
+        entityDrawer.drawSnakeBody(game.getSnakePixelPos(), pane, moveDirection);
         entityDrawer.drawConsumbable(game.getFruits(), pane);
         updateScore();
     }
 
     private void switchToEndGameScene(Stage stage) {
+        Scene oldScene = stage.getScene();
+
         //TODO: add score to scene.
+
         // root
         VBox root = new VBox(10);
         root.setAlignment(Pos.CENTER);
@@ -153,13 +145,20 @@ public class GUI extends Application {
         // buttons
         //TODO: add functionality.
         Button exit = new Button("EXIT");
+        exit.setOnAction(e -> Platform.exit());
+
         Button reset = new Button("RESET");
+        reset.setOnAction(e -> {
+            game = new GameModel(3, 512, 32);
+            stage.setScene(oldScene);
+            stage.show();
+        });
 
         // add all nodes.
-        root.getChildren().addAll(label,exit,reset);
+        root.getChildren().addAll(label, exit, reset);
 
         // set scene.
-        Scene gameEnd = new Scene(root,512,512);
+        Scene gameEnd = new Scene(root, 512, 512);
         stage.setScene(gameEnd);
         stage.show();
     }

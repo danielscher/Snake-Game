@@ -1,62 +1,36 @@
-package tests;
+package main;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import java.util.ArrayDeque;
-import java.util.Deque;
-import main.Board;
-import main.Direction;
-import main.Position;
-import main.Tile;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class BoardTest {
+import static org.junit.jupiter.api.Assertions.*;
 
-    private Board board = new Board(5,1,new Position(0,0),new Position(3,3));
+class BoardTest {
 
-    private Deque<Position> genSnake2(){
-        Deque<Position> snake = new ArrayDeque<>();
-        snake.push(new Position(2,3));
-        snake.push(new Position(2,2));
-        return snake;
-    }
+    private final Board board = new Board(320, 32);
 
-    private void clearBoard(){
-        for (Tile[] l : board.getGrid()){
-            for (Tile t : l){
-                t.resetTile();
-            }
-        }
-    }
-
-    private void positionSnake(final int row,final int col, Tile[][] grid){
-        grid[row][col].setSnake(true);
-    }
-
-
-    @BeforeEach
-    private void resetBoard(){
-        clearBoard();
-        Deque<Position> snake = genSnake2();
-        board.setSnake(snake);
-        positionSnake(3,2, board.getGrid());
-        positionSnake(2,2, board.getGrid());
-    }
-
-    // test if snake moves only one tile at a time.
-    //when moving up previous tail tile should indicate no snake is present after move.
     @Test
-    public void testSnakeMoves1Tile(){
-        board.updateSnakePos(Direction.UP);
-        assertTrue(board.getGrid()[1][2].isSnake());
-        assertTrue(board.getGrid()[2][2].isSnake());
-        assertFalse(board.getGrid()[3][2].isSnake());
+    void checkOutOfBounds() {
     }
 
     @Test
-    public void testHitSelf(){
+    void getNextFreePosition() {
     }
 
+    @Test
+    void getGridTileByPosition() {
+        assertEquals(board.getGrid()[0][0].getCenter(),board.getGridTileByPosition(new Coords(16,16)).getCenter());
+        assertEquals(board.getGrid()[0][9].getCenter(),board.getGridTileByPosition(new Coords(304,16)).getCenter());
+        assertEquals(board.getGrid()[9][0].getCenter(),board.getGridTileByPosition(new Coords(16,304)).getCenter());
+        assertEquals(board.getGrid()[9][9].getCenter(),board.getGridTileByPosition(new Coords(304,304)).getCenter());
+        assertEquals(board.getGrid()[2][2].getCenter(),board.getGridTileByPosition(new Coords(96,96)).getCenter());
 
+    }
+
+    @Test
+    void getTileByPos() {
+    }
+
+    @Test
+    void clearBoard() {
+    }
 }

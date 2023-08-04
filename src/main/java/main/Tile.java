@@ -1,15 +1,14 @@
 package main;
 
-import main.consumables.Food;
-
 public class Tile {
 
-    private Position center;
+    //center pixel position of tile - used for drawing graphical objects.
+    private final Pixel center;
     private Boolean snake = false;
-    private Food food = null;
-    private Boolean isFoodPresent = false;
+    private int foodCode = -1;
 
-    public Tile(Position center){
+
+    public Tile(final Pixel center){
         this.center = center;
     }
 
@@ -21,26 +20,37 @@ public class Tile {
         this.snake = snake;
     }
 
-    public Food getFood() {
-        return food;
+    public int getFood() {
+        return foodCode;
     }
 
     public Boolean isFoodPresent() {
-        return isFoodPresent;
+        return foodCode!=-1;
     }
 
-    public void setFood(Food food) {
-        this.food = food;
-        this.isFoodPresent = food != null;
+    public void setFood(int foodCode) {
+        this.foodCode = foodCode;
     }
 
-    public Position getCenter() {
+    public void removeFood(){
+        foodCode=-1;
+    }
+
+    public Pixel getCenter() {
         return center;
     }
 
     public void resetTile(){
         snake = false;
-        food = null;
-        isFoodPresent = false;
+        foodCode = -1;
+    }
+
+    public boolean isEmpty(){
+        return (!isSnake()&&!isFoodPresent());
+    }
+
+    @Override
+    public String toString() {
+        return center + "food: " + foodCode + "snake: " + snake;
     }
 }
