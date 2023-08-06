@@ -26,6 +26,8 @@ import main.GameModel;
 
 public class GUI extends Application {
 
+    PausableAnimationTimer timer;
+
     AnchorPane pane = new AnchorPane();
 
     GameModel game = new GameModel(2, 512, 32);
@@ -58,7 +60,6 @@ public class GUI extends Application {
         label.textProperty().bind(scoreTxt);
         label.setTextFill(Color.BLUE);
         label.setStyle("-fx-padding: 10px;");
-        //label.setStyle("-fx-background-color: black;");
         label.setFont(new Font(18));
 
         // set pane.
@@ -82,32 +83,65 @@ public class GUI extends Application {
         Scene scene = new Scene(root);
         scene.setFill(Color.BLACK);
 
+        timer = new PausableAnimationTimer() {
+            @Override
+            public void draw() {
+                entityDrawer.drawSnakeBody(game.getSnakePixelPos(), pane, moveDirection);
+                entityDrawer.drawConsumbable(game.getFruits(), pane);
+                updateScore();
+            }
+
+            @Override
+            public void tick(long now) {
+
+                if (game.makeMove(moveDirection)) {
+                    System.out.println("game over");
+                    pause();
+                    switchToEndGameScene(primaryStage);
+                }
+
+                if (now > 0 && now % 32 == 0) {
+                    if (!game.getEaten()){
+                        game.respawnConsumable();
+                    }
+                    game.resetEaten();
+                    counter = 0;
+                }
+                entityDrawer.drawSnakeBody(game.getSnakePixelPos(), pane, moveDirection);
+                entityDrawer.drawConsumbable(game.getFruits(), pane);
+                updateScore();
+                setSpeed(game.getGp().getSpeed());
+            }
+        };
+
+        timer.start();
+
 
         // anonymous animationTimer class.
-        new AnimationTimer() {
-            long lastTick = 0;
-
-            // nanoTimeNow is timestamp of current frame.
-            public void handle(long nanoTimeNow) {
-
-                if (gameOver) {
-                    //TODO: add game over animation.
-                    System.out.println("game ended");
-                    switchToEndGameScene(primaryStage);
-                    //return;
-                }
-
-                // 1 second = 1e+9 nanoseconds
-                // if time interval is larger than 1 second tick.
-                // game speed = 1 -> 1 frame per second.
-                long timeInterval = nanoTimeNow - lastTick;
-                if (timeInterval > 1000000000 / game.getGp().getSpeed()) { //each second
-                    counter++;
-                    lastTick = nanoTimeNow;
-                    tick(counter);
-                }
-            }
-        }.start();
+//        new AnimationTimer() {
+//            long lastTick = 0;
+//
+//            // nanoTimeNow is timestamp of current frame.
+//            public void handle(long nanoTimeNow) {
+//
+//                if (gameOver) {
+//                    //TODO: add game over animation.
+//                    System.out.println("game ended");
+//                    switchToEndGameScene(primaryStage);
+//                    //return;
+//                }
+//
+//                // 1 second = 1e+9 nanoseconds
+//                // if time interval is larger than 1 second tick.
+//                // game speed = 1 -> 1 frame per second.
+//                long timeInterval = nanoTimeNow - lastTick;
+//                if (timeInterval > 1000000000 / game.getGp().getSpeed()) { //each second
+//                    counter++;
+//                    lastTick = nanoTimeNow;
+//                    tick(counter);
+//                }
+//            }
+//        }.start();
 
 
         //TODO: define new method for key listening and include 'ESC' for pausing.
@@ -124,6 +158,9 @@ public class GUI extends Application {
             if (key.getCode() == KeyCode.RIGHT || key.getCode() == KeyCode.D) {
                 moveDirection = Direction.RIGHT;
             }
+            if (key.getCode() == KeyCode.ESCAPE) {
+                timer.pause();
+            }
         });
 
         primaryStage.setScene(scene);
@@ -133,19 +170,19 @@ public class GUI extends Application {
     /**
      * called every in game tick.
      */
-    public void tick(int time) {
-        gameOver = game.makeMove(moveDirection);
-        if (time > 0 && time % 32 == 0) {
-            if (!game.getEaten()){
-                game.respawnConsumable();
-            }
-            game.resetEaten();
-            counter = 0;
-        }
-        entityDrawer.drawSnakeBody(game.getSnakePixelPos(), pane, moveDirection);
-        entityDrawer.drawConsumbable(game.getFruits(), pane);
-        updateScore();
-    }
+//    public void tick(int time) {
+//        gameOver = game.makeMove(moveDirection);
+//        if (time > 0 && time % 32 == 0) {
+//            if (!game.getEaten()){
+//                game.respawnConsumable();
+//            }
+//            game.resetEaten();
+//            counter = 0;
+//        }
+//        entityDrawer.drawSnakeBody(game.getSnakePixelPos(), pane, moveDirection);
+//        entityDrawer.drawConsumbable(game.getFruits(), pane);
+//        updateScore();
+//    }
 
     private void switchToEndGameScene(Stage stage) {
         Scene oldScene = stage.getScene();
@@ -180,6 +217,7 @@ public class GUI extends Application {
         Scene gameEnd = new Scene(root, 512, 512);
         stage.setScene(gameEnd);
         stage.show();
+        timer.play();
     }
 
     private void updateScore() {
