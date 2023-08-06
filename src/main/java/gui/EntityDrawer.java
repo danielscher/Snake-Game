@@ -3,14 +3,14 @@ package gui;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javafx.scene.Group;
+
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import main.Direction;
-import main.Position;
+import main.Coords;
+import main.Pixel;
 
 public class EntityDrawer {
 
@@ -30,7 +30,7 @@ public class EntityDrawer {
 
     //TODO: add more initialization properties to constructor.
 
-    public void drawSnakeBody(List<Position> snakePosition, AnchorPane pane, Direction dir) {
+    public void drawSnakeBody(List<Pixel> snakeCoords, AnchorPane pane, Direction dir) {
 
         Set<Rectangle> newSnake = new HashSet<>();
 
@@ -39,7 +39,7 @@ public class EntityDrawer {
 
         //draw new head.
         final int radius = cellSize / 2;
-        Position head = snakePosition.get(0);
+        Pixel head = snakeCoords.get(0);
         assert head != null;
         Rectangle headRect = new Rectangle(head.getX() - radius, head.getY() - radius, cellSize,
                 cellSize);
@@ -48,9 +48,9 @@ public class EntityDrawer {
         newSnake.add(headRect);
 
         //draw new body.
-        for (int i = 1; i < snakePosition.size(); i++) {
-            int xPos = snakePosition.get(i).getX();
-            int yPos = snakePosition.get(i).getY();
+        for (int i = 1; i < snakeCoords.size(); i++) {
+            int xPos = snakeCoords.get(i).getX();
+            int yPos = snakeCoords.get(i).getY();
             Rectangle rect = new Rectangle(xPos - radius, yPos - radius, cellSize, cellSize);
             rect.setFill(bodyColor);
             rect.setStroke(Color.GREENYELLOW);
@@ -66,16 +66,16 @@ public class EntityDrawer {
      * removes consumable object graphics from the Group and adds a new one in the positions
      * indicated by the fruitPosition list
      * @param pane is the root node of the UI scene
-     * @param fruitPosition positions where the new fruits will be rendered*/
-    public void drawConsumbable(List<Position> fruitPosition, AnchorPane pane) {
+     * @param fruitPixelPos positions where the new fruits will be rendered*/
+    public void drawConsumbable(List<Pixel> fruitPixelPos, AnchorPane pane) {
 
         final int radius = cellSize / 2;
         pane.getChildren().removeAll(currFruits);
         Set<Circle> newFruits = new HashSet<>();
 
-        for (Position pos : fruitPosition) {
-            int xPos = pos.getX();
-            int yPos = pos.getY();
+        for (Pixel center : fruitPixelPos) {
+            int xPos = center.getX();
+            int yPos = center.getY();
             Circle el = new Circle(xPos, yPos, radius);
             el.setFill(Color.MAGENTA);
             el.setStroke(Color.PINK);

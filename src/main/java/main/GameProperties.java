@@ -1,10 +1,9 @@
 package main;
 
-import main.consumables.Effect;
-
 public class GameProperties {
 
     private double speed = 1;
+    private double speedMultiplier = 1.11;
     private double scoreMultiplier = 1;
     private int numConsumables = 1;
 
@@ -18,29 +17,10 @@ public class GameProperties {
         return scoreMultiplier;
     }
 
-    /**@return max possible number of consumables appearing on screen*/
-    public int getNumConsumables() {
-        return numConsumables;
-    }
 
-    public void normalSpeedInc(){
-        speed = speed*1.11;
+    public void increaseSpeed(){
+        speed = speed*speedMultiplier;
     }
 
 
-    /**applies the effect of different consumables*/
-    public void applyEffect(Effect effect) {
-        switch (effect){
-            case SPEED -> speed = 1.5;
-            case DOUBLE -> scoreMultiplier = 2;
-            case FRENZY -> numConsumables = 5;
-        }
-    }
-
-    /**resets the effect of consumables*/
-    public void resetEffects(){
-        speed = 1;
-        scoreMultiplier = 1;
-        numConsumables = 1;
-    }
 }
