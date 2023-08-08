@@ -163,7 +163,6 @@ public class GameModel {
      */
     private void despawnConsumable() {
         Tile t = fruitTiles.poll();
-        System.out.println(t);
         assert t != null;
         despawnConsumable(t);
     }
@@ -173,6 +172,7 @@ public class GameModel {
      */
     private void despawnConsumable(Tile tile) {
         tile.removeFood();
+        fruitTiles.remove(tile);
         fruitPixelPos.remove(tile.getCenter());
     }
 
@@ -181,7 +181,6 @@ public class GameModel {
      */
     public void respawnConsumable() {
         despawnConsumable();
-        //eaten = false;
         spawnConsumable();
     }
 

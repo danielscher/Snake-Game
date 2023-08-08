@@ -31,23 +31,17 @@ public class GUI extends Application {
     AnchorPane pane = new AnchorPane();
 
     GameModel game = new GameModel(2, 512, 32);
-    private int counter = 0;
-
-    private Boolean gameOver = false;
 
     Direction moveDirection = Direction.LEFT;
 
     private VBox root;
 
-    private SimpleStringProperty scoreTxt = new SimpleStringProperty("Score: 0");
+    private final SimpleStringProperty scoreTxt = new SimpleStringProperty("Score: 0");
 
 
     // snake drawing classes for creating the snake graphics on board.
     private EntityDrawer entityDrawer = new EntityDrawer(game.getCellSize());
 
-    private final Set<Circle> currFruits = new HashSet<>();
-
-    private final Set<Rectangle> recs = new HashSet<>();
 
 
     @Override
@@ -93,7 +87,6 @@ public class GUI extends Application {
 
             @Override
             public void tick(long now) {
-
                 if (game.makeMove(moveDirection)) {
                     System.out.println("game over");
                     pause();
@@ -105,8 +98,8 @@ public class GUI extends Application {
                         game.respawnConsumable();
                     }
                     game.resetEaten();
-                    counter = 0;
                 }
+
                 entityDrawer.drawSnakeBody(game.getSnakePixelPos(), pane, moveDirection);
                 entityDrawer.drawConsumbable(game.getFruits(), pane);
                 updateScore();
@@ -115,33 +108,6 @@ public class GUI extends Application {
         };
 
         timer.start();
-
-
-        // anonymous animationTimer class.
-//        new AnimationTimer() {
-//            long lastTick = 0;
-//
-//            // nanoTimeNow is timestamp of current frame.
-//            public void handle(long nanoTimeNow) {
-//
-//                if (gameOver) {
-//                    //TODO: add game over animation.
-//                    System.out.println("game ended");
-//                    switchToEndGameScene(primaryStage);
-//                    //return;
-//                }
-//
-//                // 1 second = 1e+9 nanoseconds
-//                // if time interval is larger than 1 second tick.
-//                // game speed = 1 -> 1 frame per second.
-//                long timeInterval = nanoTimeNow - lastTick;
-//                if (timeInterval > 1000000000 / game.getGp().getSpeed()) { //each second
-//                    counter++;
-//                    lastTick = nanoTimeNow;
-//                    tick(counter);
-//                }
-//            }
-//        }.start();
 
 
         //TODO: define new method for key listening and include 'ESC' for pausing.
@@ -167,27 +133,9 @@ public class GUI extends Application {
         primaryStage.show();
     }
 
-    /**
-     * called every in game tick.
-     */
-//    public void tick(int time) {
-//        gameOver = game.makeMove(moveDirection);
-//        if (time > 0 && time % 32 == 0) {
-//            if (!game.getEaten()){
-//                game.respawnConsumable();
-//            }
-//            game.resetEaten();
-//            counter = 0;
-//        }
-//        entityDrawer.drawSnakeBody(game.getSnakePixelPos(), pane, moveDirection);
-//        entityDrawer.drawConsumbable(game.getFruits(), pane);
-//        updateScore();
-//    }
-
     private void switchToEndGameScene(Stage stage) {
         Scene oldScene = stage.getScene();
 
-        //TODO: add score to scene.
 
         // root
         VBox root = new VBox(10);
