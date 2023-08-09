@@ -30,7 +30,7 @@ public class EntityDrawer {
 
     //TODO: add more initialization properties to constructor.
 
-    public void drawSnakeBody(List<Pixel> snakeCoords, AnchorPane pane, Direction dir) {
+    public void drawSnakeBody(List<Pixel> snakeCoords, AnchorPane pane) {
 
         Set<Rectangle> newSnake = new HashSet<>();
 

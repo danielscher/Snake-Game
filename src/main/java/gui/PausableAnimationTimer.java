@@ -57,7 +57,7 @@ public abstract class PausableAnimationTimer extends AnimationTimer {
     @Override
     public void start() {
         super.start();
-        draw();
+        //updateGUI();
         isActive = true;
         restartScheduled = true;
     }
@@ -100,11 +100,12 @@ public abstract class PausableAnimationTimer extends AnimationTimer {
                 timeSinceLastTick = animDuration;
                 tick++;
                 tick(tick);
+                //updateGUI();
             }
         }
     }
 
-    public abstract void draw();
+    //public abstract void updateGUI();
 
     public abstract void tick(long relativeNow);
 }

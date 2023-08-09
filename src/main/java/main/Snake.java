@@ -11,7 +11,7 @@ public class Snake {
     /**Create snake of size 3.*/
     public Snake(Board board, Direction direction, Coords head, final int initialSize) {
         this.board = board;
-        genSnake(initialSize,head,direction.getOppesite());
+        genSnake(initialSize,head,direction.getOpposite());
     }
 
     private void genSnake(int size, Coords headCoord , final Direction growthDirection){
@@ -63,7 +63,7 @@ public class Snake {
     }
 
     public void increaseBodySize(Direction dir) {
-        dir = dir.getOppesite();
+        dir = dir.getOpposite();
         Coords newTail = snakeCoords.getLast().getNextCoord(dir);
         board.getTileByCoords(newTail).setSnake(true);
         snakeCoords.offerLast(newTail);

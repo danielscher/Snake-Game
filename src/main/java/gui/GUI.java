@@ -1,10 +1,7 @@
 package gui;
 
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javafx.animation.AnimationTimer;
+import controller.Controller;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,44 +9,50 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import main.Direction;
-import main.GameModel;
+import main.Pixel;
+
+import java.util.List;
 
 public class GUI extends Application {
 
-    PausableAnimationTimer timer;
+    final int cellSize = 32;
 
-    AnchorPane pane = new AnchorPane();
+    private PausableAnimationTimer timer;
 
-    GameModel game = new GameModel(2, 512, 32);
+    private EntityDrawer entityDrawer = new EntityDrawer(cellSize);
+    private final Controller controller = new Controller(this, cellSize);
+    private AnchorPane pane = new AnchorPane();
 
-    Direction moveDirection = Direction.LEFT;
+    private Boolean gameOverFlag = false;
 
     private VBox root;
+
+    private KeyEvent keyPressed;
 
     private final SimpleStringProperty scoreTxt = new SimpleStringProperty("Score: 0");
 
 
     // snake drawing classes for creating the snake graphics on board.
-    private EntityDrawer entityDrawer = new EntityDrawer(game.getCellSize());
+    private Stage primaryStage;
 
-
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        this.primaryStage = primaryStage;
         primaryStage.setTitle("Snake Game");
 
         // set label.
-        scoreTxt.set("SCORE:  " + game.getScore());
+        scoreTxt.set("SCORE:  " + 0);
         Label label = new Label();
         label.textProperty().bind(scoreTxt);
         label.setTextFill(Color.BLUE);
@@ -77,103 +80,88 @@ public class GUI extends Application {
         Scene scene = new Scene(root);
         scene.setFill(Color.BLACK);
 
+        scene.addEventFilter(KeyEvent.KEY_PRESSED,key -> {keyPressed = key;});
+
         timer = new PausableAnimationTimer() {
             @Override
-            public void draw() {
-                entityDrawer.drawSnakeBody(game.getSnakePixelPos(), pane, moveDirection);
-                entityDrawer.drawConsumbable(game.getFruits(), pane);
-                updateScore();
-            }
-
-            @Override
             public void tick(long now) {
-                if (game.makeMove(moveDirection)) {
-                    System.out.println("game over");
-                    pause();
-                    switchToEndGameScene(primaryStage);
-                }
 
-                if (now > 0 && now % 32 == 0) {
-                    if (!game.getEaten()){
-                        game.respawnConsumable();
-                    }
-                    game.resetEaten();
-                }
+                controller.handleTick(keyPressed,now);
 
-                entityDrawer.drawSnakeBody(game.getSnakePixelPos(), pane, moveDirection);
-                entityDrawer.drawConsumbable(game.getFruits(), pane);
-                updateScore();
-                setSpeed(game.getGp().getSpeed());
+                if (gameOverFlag) {
+                    System.out.println("Game Over");
+                    switchToGameEndScene();
+                    gameOverFlag = false;
+                }
             }
         };
 
         timer.start();
-
-
-        //TODO: define new method for key listening and include 'ESC' for pausing.
-        scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
-            if (key.getCode() == KeyCode.UP || key.getCode() == KeyCode.W) {
-                moveDirection = Direction.UP;
-            }
-            if (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.S) {
-                moveDirection = Direction.DOWN;
-            }
-            if (key.getCode() == KeyCode.LEFT || key.getCode() == KeyCode.A) {
-                moveDirection = Direction.LEFT;
-            }
-            if (key.getCode() == KeyCode.RIGHT || key.getCode() == KeyCode.D) {
-                moveDirection = Direction.RIGHT;
-            }
-            if (key.getCode() == KeyCode.ESCAPE) {
-                timer.pause();
-            }
-        });
-
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    private void switchToEndGameScene(Stage stage) {
-        Scene oldScene = stage.getScene();
+    public void setGameOverFlag(){
+        gameOverFlag = true;
+    }
 
+    public void pauseAnimation() {
+        timer.pause();
+    }
+
+    public void updateScore(final int score){
+        scoreTxt.set("SCORE: " + score);
+    }
+
+
+    public void updateSnakeBody(List<Pixel> snakePixelPos) {
+        entityDrawer.drawSnakeBody(snakePixelPos, pane);
+    }
+
+    public void updateFruits(List<Pixel> fruits) {
+        entityDrawer.drawConsumbable(fruits, pane);
+    }
+
+    public void setRefreshSpeed(double speed) {
+        timer.setSpeed(speed);
+    }
+
+    /**
+     * Switches to the game end scene.
+     * */
+    private void switchToGameEndScene() {
+        timer.pause();
+        Scene oldScene = primaryStage.getScene();
 
         // root
         VBox root = new VBox(10);
         root.setAlignment(Pos.CENTER);
         root.setStyle("-fx-background-color: red");
 
-        // text
+        // Scene Title.
         Label label = new Label("Game Over");
         label.setFont(new Font(30));
 
         // buttons
-        //TODO: add functionality.
         Button exit = new Button("EXIT");
         exit.setOnAction(e -> Platform.exit());
 
+        // create Reset button.
         Button reset = new Button("RESET");
         reset.setOnAction(e -> {
-            game = new GameModel(3, 512, 32);
-            stage.setScene(oldScene);
-            stage.show();
+            // create new game instance.
+            controller.createNewGame(cellSize);
+            primaryStage.setScene(oldScene);
+            primaryStage.show();
+            timer.play();
         });
 
         // add all nodes.
         root.getChildren().addAll(label, exit, reset);
 
-        // set scene.
+        // set game end scene.
         Scene gameEnd = new Scene(root, 512, 512);
-        stage.setScene(gameEnd);
-        stage.show();
-        timer.play();
-    }
-
-    private void updateScore() {
-        scoreTxt.set("SCORE: " + game.getScore());
-    }
-
-
-    public static void main(String[] args) {
-        launch(args);
+        primaryStage.setScene(gameEnd);
+        primaryStage.show();
     }
 }

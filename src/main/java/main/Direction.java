@@ -1,12 +1,14 @@
 package main;
 
+import java.util.Random;
+
 public enum Direction {
     UP,
     DOWN,
     LEFT,
     RIGHT;
 
-    public Direction getOppesite() {
+    public Direction getOpposite() {
         return switch (this) {
             case UP -> DOWN;
             case DOWN -> UP;
@@ -32,4 +34,10 @@ public enum Direction {
             case RIGHT -> UP;
         };
     }
+
+    public static Direction getRandomDirection(Random random){
+        return Direction.class.getEnumConstants()[random.nextInt(
+                Direction.class.getEnumConstants().length - 1)];
+    }
+
 }

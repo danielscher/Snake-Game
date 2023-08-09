@@ -30,8 +30,7 @@ public class GameModel {
         this.boardSize = boardSize;
         this.cellSize = cellSize;
         final Coords rndSnakeStart = getNewRandomCoordPosition();
-        //currentMovementDirection = Direction.values()[rand.nextInt(4)];
-        currentMovementDirection = Direction.class.getEnumConstants()[Direction.class.getEnumConstants().length - 1];
+        currentMovementDirection = Direction.getRandomDirection(rand);
         board = new Board(boardSize, cellSize);
         snake = new Snake(board, currentMovementDirection, rndSnakeStart, 3);
         spawnConsumable();
@@ -45,8 +44,12 @@ public class GameModel {
      */
     public boolean makeMove(Direction dir) {
 
+        if (dir == null) {
+            dir = currentMovementDirection;
+        }
+
         // ignore if trying to move in opposite direction of curr movement direction.
-        if (dir.getOppesite() == currentMovementDirection) {
+        if (dir.getOpposite() == currentMovementDirection) {
             dir = currentMovementDirection;
         }
 
