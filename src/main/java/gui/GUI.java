@@ -26,13 +26,11 @@ public class GUI extends Application {
 
     private PausableAnimationTimer timer;
 
-    private EntityDrawer entityDrawer = new EntityDrawer(cellSize);
+    private final EntityDrawer entityDrawer = new EntityDrawer(cellSize);
     private final Controller controller = new Controller(this, cellSize);
-    private AnchorPane pane = new AnchorPane();
+    private final AnchorPane pane = new AnchorPane();
 
     private Boolean gameOverFlag = false;
-
-    private VBox root;
 
     private KeyEvent keyPressed;
 
@@ -64,22 +62,25 @@ public class GUI extends Application {
         pane.setId("pane");
         pane.setPrefSize(512, 512);
         AnchorPane.setTopAnchor(pane, 50.0);
-        root = new VBox(2);
-        root.setAlignment(Pos.TOP_CENTER);
-        root.getChildren().addAll(label, pane);
-        root.setStyle("-fx-background-color: black;");
-
 
         // Create a Rectangle to act as the border
         Rectangle border = new Rectangle(514, 514);
         border.setStroke(Color.BLUE); // Set the border color
         border.setStrokeWidth(2); // Set the border width
         border.setFill(null); // Set the fill color to transparent
-
         pane.getChildren().add(border);
+
+        // set root.
+        VBox root = new VBox(2);
+        root.setAlignment(Pos.TOP_CENTER);
+        root.getChildren().addAll(label, pane);
+        root.setStyle("-fx-background-color: black;");
+
+        // set scene.
         Scene scene = new Scene(root);
         scene.setFill(Color.BLACK);
 
+        // set key listener.
         scene.addEventFilter(KeyEvent.KEY_PRESSED,key -> {keyPressed = key;});
 
         timer = new PausableAnimationTimer() {
