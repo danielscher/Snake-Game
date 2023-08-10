@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="added pause-able timer.">
+    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="added comments.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/EntityDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/EntityDrawer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/PausableAnimationTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/PausableAnimationTimer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Direction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/GameModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Snake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/scene.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,38 +74,38 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2JltSTrX9MZi57JDsV6AJ0RcgZI" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "jdk.selected.JAVA_MODULE": "corretto-17",
-    "last_directory_selection": "E:/Projects/Snake Game/SnakeGame/src/test/java/tests",
-    "last_opened_file_path": "D:/Projects/CP/np-ss23-project-7013919-7006591",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.1150748",
-    "settings.editor.selected.configurable": "preferences.JavaFX",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
+    &quot;last_directory_selection&quot;: &quot;E:/Projects/Snake Game/SnakeGame/src/test/java/tests&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Projects/CP/np-ss23-project-7013919-7006591&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.1150748&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="consumables" />
@@ -310,7 +308,8 @@
       <workItem from="1691395926780" duration="1158000" />
       <workItem from="1691482879070" duration="620000" />
       <workItem from="1691498177313" duration="3688000" />
-      <workItem from="1691559952321" duration="16323000" />
+      <workItem from="1691559952321" duration="22534000" />
+      <workItem from="1691648633894" duration="3434000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1672673027192</created>
@@ -511,7 +510,23 @@
       <option name="project" value="LOCAL" />
       <updated>1691509417051</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="seperated logic into MVC model.">
+      <option name="closed" value="true" />
+      <created>1691584446328</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1691584446328</updated>
+    </task>
+    <task id="LOCAL-00029" summary="added comments.">
+      <option name="closed" value="true" />
+      <created>1691584573173</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1691584573173</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -552,7 +567,9 @@
     <MESSAGE value="pausing works. need to fix respawning." />
     <MESSAGE value="removed unnecessary code" />
     <MESSAGE value="added pause-able timer." />
-    <option name="LAST_COMMIT_MESSAGE" value="added pause-able timer." />
+    <MESSAGE value="seperated logic into MVC model." />
+    <MESSAGE value="added comments." />
+    <option name="LAST_COMMIT_MESSAGE" value="added comments." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -572,15 +589,15 @@
           <line>167</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/gui/GUI.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/gui/Controller.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/controller/Controller.java</url>
           <line>21</line>
           <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/Controller.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/main/Direction.java</url>

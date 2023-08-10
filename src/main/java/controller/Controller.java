@@ -24,23 +24,10 @@ public class Controller {
         updateGui();
     }
 
-    public void handleTick(KeyEvent key, long currTick){
-        Direction moveDirection = null;
-
-        //get move direction from key press.
-        if (key != null){
-            switch (key.getCode()) {
-                case UP, W -> moveDirection = Direction.UP;
-                case DOWN, S -> moveDirection = Direction.DOWN;
-                case LEFT, A -> moveDirection = Direction.LEFT;
-                case RIGHT, D -> moveDirection = Direction.RIGHT;
-                case ESCAPE -> gui.pauseAnimation();
-                default -> {}
-            }
-        }
+    public void handleTick(Direction dir, long currTick){
 
         // make move and check if game is over.
-        if (game.makeMove(moveDirection)){
+        if (game.makeMove(dir)){
             gui.setGameOverFlag();
         }
 

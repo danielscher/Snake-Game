@@ -11,11 +11,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import main.Direction;
 import main.Pixel;
 
 import java.util.List;
@@ -29,10 +31,18 @@ public class GUI extends Application {
     private final EntityDrawer entityDrawer = new EntityDrawer(cellSize);
     private final Controller controller = new Controller(this, cellSize);
     private final AnchorPane pane = new AnchorPane();
+    private final StackPane stackPane = new StackPane();
 
     private Boolean gameOverFlag = false;
 
-    private KeyEvent keyPressed;
+    private Direction direction;
+
+    private VBox root;
+    private Label scoreLabel;
+    private Scene oldScene;
+    private Scene currentScene;
+
+    private boolean pauseToggle = false;
 
     private final SimpleStringProperty scoreTxt = new SimpleStringProperty("Score: 0");
 
@@ -51,11 +61,11 @@ public class GUI extends Application {
 
         // set label.
         scoreTxt.set("SCORE:  " + 0);
-        Label label = new Label();
-        label.textProperty().bind(scoreTxt);
-        label.setTextFill(Color.BLUE);
-        label.setStyle("-fx-padding: 10px;");
-        label.setFont(new Font(18));
+        scoreLabel = new Label();
+        scoreLabel.textProperty().bind(scoreTxt);
+        scoreLabel.setTextFill(Color.BLUE);
+        scoreLabel.setStyle("-fx-padding: 10px;");
+        scoreLabel.setFont(new Font(18));
 
         // set pane.
         pane.setStyle("-fx-background-color: black;");
@@ -71,26 +81,48 @@ public class GUI extends Application {
         pane.getChildren().add(border);
 
         // set root.
-        VBox root = new VBox(2);
+        root = new VBox(2);
         root.setAlignment(Pos.TOP_CENTER);
-        root.getChildren().addAll(label, pane);
+        root.getChildren().addAll(scoreLabel, pane);
         root.setStyle("-fx-background-color: black;");
 
+        // stack pane for pause screen.
+        stackPane.getChildren().add(root);
+
         // set scene.
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(stackPane);
         scene.setFill(Color.BLACK);
 
+        primaryStage.setScene(scene);
+        primaryStage.show();
         // set key listener.
-        scene.addEventFilter(KeyEvent.KEY_PRESSED,key -> {keyPressed = key;});
+        primaryStage.addEventFilter(KeyEvent.KEY_PRESSED,key -> {
+            switch (key.getCode()){
+                case UP, W -> direction = Direction.UP;
+                case DOWN, S -> direction = Direction.DOWN;
+                case LEFT, A -> direction = Direction.LEFT;
+                case RIGHT, D -> direction = Direction.RIGHT;
+                case ESCAPE -> {
+                    pauseToggle = !pauseToggle;
+                    timer.pause();
+                    togglePauseScene();
+            }
+                default -> {}
+            }
+        });
 
         timer = new PausableAnimationTimer() {
             @Override
             public void tick(long now) {
+                System.out.println("tick");
 
-                controller.handleTick(keyPressed,now);
+                if (timer.isActive){
+                    controller.handleTick(direction,now);
+                }
 
                 if (gameOverFlag) {
                     System.out.println("Game Over");
+                    timer.pause();
                     switchToGameEndScene();
                     gameOverFlag = false;
                 }
@@ -98,17 +130,12 @@ public class GUI extends Application {
         };
 
         timer.start();
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     public void setGameOverFlag(){
         gameOverFlag = true;
     }
 
-    public void pauseAnimation() {
-        timer.pause();
-    }
 
     public void updateScore(final int score){
         scoreTxt.set("SCORE: " + score);
@@ -131,7 +158,7 @@ public class GUI extends Application {
      * Switches to the game end scene.
      * */
     private void switchToGameEndScene() {
-        timer.pause();
+        //timer.pause();
         Scene oldScene = primaryStage.getScene();
 
         // root
@@ -165,4 +192,15 @@ public class GUI extends Application {
         primaryStage.setScene(gameEnd);
         primaryStage.show();
     }
+
+    private void togglePauseScene() {
+        if (pauseToggle){
+            Label label = new Label("Paused");
+            label.setFont(new Font(30));
+            stackPane.getChildren().add(label);
+        }else{
+            stackPane.getChildren().remove(1);
+        }
+    }
+
 }

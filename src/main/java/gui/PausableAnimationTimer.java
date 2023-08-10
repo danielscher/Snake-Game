@@ -75,6 +75,7 @@ public abstract class PausableAnimationTimer extends AnimationTimer {
 
     @Override
     public void handle(long now) {
+       // System.out.println("here");
         if (pauseScheduled) {
             pauseStart = now;
             isPaused = true;
@@ -100,12 +101,13 @@ public abstract class PausableAnimationTimer extends AnimationTimer {
                 timeSinceLastTick = animDuration;
                 tick++;
                 tick(tick);
-                //updateGUI();
             }
         }
     }
 
-    //public abstract void updateGUI();
-
+ /**
+ * This method is the main game loop.
+ * @param relativeNow The current tick.
+ * */
     public abstract void tick(long relativeNow);
 }
