@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="added comments.">
+    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="pause scene switching works.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/PausableAnimationTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/PausableAnimationTimer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/scene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/SnakeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/SnakeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +101,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.1150748&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;spring.boot&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -309,7 +308,10 @@
       <workItem from="1691482879070" duration="620000" />
       <workItem from="1691498177313" duration="3688000" />
       <workItem from="1691559952321" duration="22534000" />
-      <workItem from="1691648633894" duration="3434000" />
+      <workItem from="1691648633894" duration="3474000" />
+      <workItem from="1691676172012" duration="366000" />
+      <workItem from="1691676555084" duration="1126000" />
+      <workItem from="1693412470646" duration="836000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1672673027192</created>
@@ -526,7 +528,15 @@
       <option name="project" value="LOCAL" />
       <updated>1691584573173</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="pause scene switching works.">
+      <option name="closed" value="true" />
+      <created>1691652320712</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1691652320712</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -544,7 +554,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="initial commit" />
     <MESSAGE value="added board and transfered game logic to board class" />
     <MESSAGE value="added board and transferred game logic to board class" />
     <MESSAGE value="added gui" />
@@ -569,7 +578,8 @@
     <MESSAGE value="added pause-able timer." />
     <MESSAGE value="seperated logic into MVC model." />
     <MESSAGE value="added comments." />
-    <option name="LAST_COMMIT_MESSAGE" value="added comments." />
+    <MESSAGE value="pause scene switching works." />
+    <option name="LAST_COMMIT_MESSAGE" value="pause scene switching works." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -591,12 +601,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/controller/Controller.java</url>
-          <line>21</line>
+          <line>20</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/controller/Controller.java</url>
-          <line>46</line>
+          <line>45</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint type="java-method">
