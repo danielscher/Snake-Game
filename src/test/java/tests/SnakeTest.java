@@ -85,5 +85,7 @@ public class SnakeTest {
         assertTrue(snake.moveSnake(Direction.LEFT),"expected to eat self.");
     }
 
+    //TODO: add game ending tests.
+
 
 }

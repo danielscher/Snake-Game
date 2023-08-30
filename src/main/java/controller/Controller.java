@@ -2,7 +2,6 @@ package controller;
 
 
 import gui.GUI;
-import javafx.scene.input.KeyEvent;
 import main.Direction;
 import main.GameModel;
 

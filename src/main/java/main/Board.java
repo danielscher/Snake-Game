@@ -50,22 +50,7 @@ public class Board {
         final int row = startCoord.getY();
 
         // check for board bounds.
-        return (col > tileNum || col < 0 || row > tileNum || row < 0);
-//        switch (dir) {
-//            case UP -> {
-//                return (row == 0);
-//            }
-//            case DOWN -> {
-//                return (row == tileNum - 1);
-//            }
-//            case LEFT -> {
-//                return (col == 0);
-//            }
-//            case RIGHT -> {
-//                return (col == tileNum - 1);
-//            }
-//        }
-//        return false;
+        return (col >= tileNum || col < 0 || row >= tileNum || row < 0);
     }
 
     public Coords getNextFreePosition(Direction dir, Coords start) {
