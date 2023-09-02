@@ -2,6 +2,7 @@ package gui;
 
 
 import controller.Controller;
+import controller.HighScoreDAO;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -9,6 +10,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -18,8 +21,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import main.Direction;
+import main.HighScore;
 import main.Pixel;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class GUI extends Application {
@@ -34,6 +39,7 @@ public class GUI extends Application {
     private final StackPane stackPane = new StackPane();
 
     private Boolean gameOverFlag = false;
+    private Boolean newHighScoreFlag = false;
 
     private Direction direction;
 
@@ -114,7 +120,6 @@ public class GUI extends Application {
         timer = new PausableAnimationTimer() {
             @Override
             public void tick(long now) {
-                System.out.println("tick");
 
                 if (timer.isActive){
                     controller.handleTick(direction,now);
@@ -154,6 +159,10 @@ public class GUI extends Application {
         timer.setSpeed(speed);
     }
 
+    public void setNewHighScoreFlag(){
+        newHighScoreFlag = true;
+    }
+
     /**
      * Switches to the game end scene.
      * */
@@ -170,6 +179,27 @@ public class GUI extends Application {
         Label label = new Label("Game Over");
         label.setFont(new Font(30));
 
+        // if new high score, display message.
+        if (newHighScoreFlag) {
+            Label newHighScore = new Label("New High Score!");
+            Label score = new Label(scoreTxt.getValue());
+            newHighScore.setFont(new Font(20));
+            score.setFont(new Font(30));
+            score.setTextFill(Color.YELLOW);
+
+            // save score button.
+            Button submitButton = new Button("Submit");
+            TextField name = new TextField();
+            name.setPromptText("Enter Name");
+
+            submitButton.setOnAction(e -> {
+                String playerName = name.getText();
+                HighScore highScore = new HighScore(playerName, controller.getScore());
+                controller.saveScore(highScore);
+            });
+            root.getChildren().addAll(newHighScore, score,name,submitButton);
+        }
+
         // buttons
         Button exit = new Button("EXIT");
         exit.setOnAction(e -> Platform.exit());
@@ -184,13 +214,41 @@ public class GUI extends Application {
             timer.play();
         });
 
+        // leaderboards button.
+        Button leaderboards = new Button("Leaderboards");
+        leaderboards.setOnAction(e -> switchToLeaderBoardScreen());
+
         // add all nodes.
-        root.getChildren().addAll(label, exit, reset);
+        root.getChildren().addAll(label, exit, reset, leaderboards);
 
         // set game end scene.
         Scene gameEnd = new Scene(root, 512, 512);
         primaryStage.setScene(gameEnd);
         primaryStage.show();
+    }
+
+    private void switchToLeaderBoardScreen(){
+        //TODO: implement leader board screen.
+        Stage newStage = new Stage();
+
+        // Create the content for the new window
+        StackPane newLayout = new StackPane();
+        newLayout.getChildren().add(new Button("Hello from the new window!"));
+
+        // Create a scene and set it to the new stage
+        Scene newScene = new Scene(newLayout, 300, 200);
+        newStage.setScene(newScene);
+
+        // Set the title for the new window
+        newStage.setTitle("New Window");
+
+        // load leaderboard data.
+        ListView<HighScore> listView = new ListView<>();
+        listView.getItems().addAll(HighScoreDAO.getTopScores());
+        newLayout.getChildren().add(listView);
+
+        // Show the new window
+        newStage.show();
     }
 
     private void togglePauseScene() {
