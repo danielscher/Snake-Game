@@ -1,4 +1,4 @@
-package main.consumables;
+package model.consumables;
 
 
 public class Fruit extends Food {

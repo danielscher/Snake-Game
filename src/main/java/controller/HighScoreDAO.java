@@ -1,6 +1,6 @@
 package controller;
 
-import main.HighScore;
+import model.HighScore;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -52,5 +52,16 @@ public class HighScoreDAO {
             }
         }
         return false;
+    }
+
+
+    public static void deleteEntries() {
+        String deleteSQL = "DELETE FROM main.HighScores";
+        try (Connection connection = JDBCUtil.connect();
+            PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL)) {
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            //ignore
+        }
     }
 }

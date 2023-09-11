@@ -1,4 +1,4 @@
-package main.consumables;
+package model.consumables;
 
 
 import java.util.List;

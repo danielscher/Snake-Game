@@ -1,6 +1,4 @@
-package main;
-
-import java.util.Deque;
+package model;
 
 public class Board {
 

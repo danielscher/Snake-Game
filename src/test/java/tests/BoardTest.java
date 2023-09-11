@@ -1,7 +1,7 @@
 package tests;
 
-import main.Board;
-import main.Coords;
+import model.Board;
+import model.Coords;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -20,38 +20,29 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import main.Direction;
-import main.HighScore;
-import main.Pixel;
+import model.Direction;
+import model.HighScore;
+import model.Pixel;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class GUI extends Application {
 
     final int cellSize = 32;
-
     private PausableAnimationTimer timer;
-
     private final EntityDrawer entityDrawer = new EntityDrawer(cellSize);
     private final Controller controller = new Controller(this, cellSize);
     private final AnchorPane pane = new AnchorPane();
     private final StackPane stackPane = new StackPane();
-
     private Boolean gameOverFlag = false;
     private Boolean newHighScoreFlag = false;
-
     private Direction direction;
-
     private VBox root;
     private Label scoreLabel;
-    private Scene oldScene;
-    private Scene currentScene;
 
     private boolean pauseToggle = false;
 
     private final SimpleStringProperty scoreTxt = new SimpleStringProperty("Score: 0");
-
 
     // snake drawing classes for creating the snake graphics on board.
     private Stage primaryStage;
@@ -102,8 +93,8 @@ public class GUI extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         // set key listener.
-        primaryStage.addEventFilter(KeyEvent.KEY_PRESSED,key -> {
-            switch (key.getCode()){
+        primaryStage.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+            switch (key.getCode()) {
                 case UP, W -> direction = Direction.UP;
                 case DOWN, S -> direction = Direction.DOWN;
                 case LEFT, A -> direction = Direction.LEFT;
@@ -112,8 +103,9 @@ public class GUI extends Application {
                     pauseToggle = !pauseToggle;
                     timer.pause();
                     togglePauseScene();
-            }
-                default -> {}
+                }
+                default -> {
+                }
             }
         });
 
@@ -121,8 +113,8 @@ public class GUI extends Application {
             @Override
             public void tick(long now) {
 
-                if (timer.isActive){
-                    controller.handleTick(direction,now);
+                if (timer.isActive) {
+                    controller.handleTick(direction, now);
                 }
 
                 if (gameOverFlag) {
@@ -137,15 +129,13 @@ public class GUI extends Application {
         timer.start();
     }
 
-    public void setGameOverFlag(){
+    public void setGameOverFlag() {
         gameOverFlag = true;
     }
 
-
-    public void updateScore(final int score){
+    public void updateScore(final int score) {
         scoreTxt.set("SCORE: " + score);
     }
-
 
     public void updateSnakeBody(List<Pixel> snakePixelPos) {
         entityDrawer.drawSnakeBody(snakePixelPos, pane);
@@ -159,13 +149,13 @@ public class GUI extends Application {
         timer.setSpeed(speed);
     }
 
-    public void setNewHighScoreFlag(){
+    public void setNewHighScoreFlag() {
         newHighScoreFlag = true;
     }
 
     /**
      * Switches to the game end scene.
-     * */
+     */
     private void switchToGameEndScene() {
         //timer.pause();
         Scene oldScene = primaryStage.getScene();
@@ -197,7 +187,7 @@ public class GUI extends Application {
                 HighScore highScore = new HighScore(playerName, controller.getScore());
                 controller.saveScore(highScore);
             });
-            root.getChildren().addAll(newHighScore, score,name,submitButton);
+            root.getChildren().addAll(newHighScore, score, name, submitButton);
         }
 
         // buttons
@@ -227,36 +217,43 @@ public class GUI extends Application {
         primaryStage.show();
     }
 
-    private void switchToLeaderBoardScreen(){
+    private void switchToLeaderBoardScreen() {
         //TODO: implement leader board screen.
         Stage newStage = new Stage();
 
         // Create the content for the new window
-        StackPane newLayout = new StackPane();
-        newLayout.getChildren().add(new Button("Hello from the new window!"));
+        VBox root = new VBox(10);
+        root.setAlignment(Pos.CENTER);
 
         // Create a scene and set it to the new stage
-        Scene newScene = new Scene(newLayout, 300, 200);
+        Scene newScene = new Scene(root, 300, 200);
         newStage.setScene(newScene);
 
         // Set the title for the new window
         newStage.setTitle("New Window");
 
+        // Clear Leaderboard button.
+        Button clearLeaderboard = new Button("Clear Leaderboard");
+        clearLeaderboard.setOnAction(e -> {
+            HighScoreDAO.deleteEntries();
+            root.getChildren().remove(1);
+        });
+
         // load leaderboard data.
         ListView<HighScore> listView = new ListView<>();
         listView.getItems().addAll(HighScoreDAO.getTopScores());
-        newLayout.getChildren().add(listView);
+        root.getChildren().addAll(listView, clearLeaderboard);
 
         // Show the new window
         newStage.show();
     }
 
     private void togglePauseScene() {
-        if (pauseToggle){
+        if (pauseToggle) {
             Label label = new Label("Paused");
             label.setFont(new Font(30));
             stackPane.getChildren().add(label);
-        }else{
+        } else {
             stackPane.getChildren().remove(1);
         }
     }

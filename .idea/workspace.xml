@@ -4,14 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="fixed right-left out of bounds bug">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/HighScoreDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/JDBCUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/main/HighScore.java" afterDir="false" />
+    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="added JDBC to save highscores.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/HighScoreDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/HighScoreDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/EntityDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/EntityDrawer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Coords.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Coords.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Direction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/GameModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/GameProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/GameProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/HighScore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/HighScore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Pixel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Pixel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Snake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/consumables/Effect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/consumables/Effect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/consumables/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/consumables/Food.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/consumables/FoodType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/consumables/FoodType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/consumables/Fruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/consumables/Fruit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/BoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/SnakeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/SnakeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +87,7 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
     &quot;last_directory_selection&quot;: &quot;E:/Projects/Snake Game/SnakeGame/src/test/java/tests&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Projects/CP/np-ss23-project-7013919-7006591&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/danie/Desktop/StateMachine&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -304,7 +318,10 @@
       <workItem from="1693639209474" duration="1773000" />
       <workItem from="1693642627991" duration="1983000" />
       <workItem from="1693654434223" duration="3633000" />
-      <workItem from="1693669153851" duration="2423000" />
+      <workItem from="1693669153851" duration="2754000" />
+      <workItem from="1694079366827" duration="1428000" />
+      <workItem from="1694443054141" duration="92000" />
+      <workItem from="1694443170713" duration="1069000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1672673027192</created>
@@ -545,7 +562,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693413396320</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="added JDBC to save highscores.">
+      <option name="closed" value="true" />
+      <created>1693671807609</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1693671807609</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -563,7 +588,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added board and transferred game logic to board class" />
     <MESSAGE value="added gui" />
     <MESSAGE value="able to move green dot representing snake. collision works." />
     <MESSAGE value="collision fixed. more efficient movement algo implemented. GUI animation works properly." />
@@ -588,7 +612,8 @@
     <MESSAGE value="added comments." />
     <MESSAGE value="pause scene switching works." />
     <MESSAGE value="fixed right-left out of bounds bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed right-left out of bounds bug" />
+    <MESSAGE value="added JDBC to save highscores." />
+    <option name="LAST_COMMIT_MESSAGE" value="added JDBC to save highscores." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -599,7 +624,7 @@
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/main/GameModel.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/model/GameModel.java</url>
           <line>167</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
@@ -625,13 +650,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/gui/GUI.java</url>
-          <line>245</line>
+          <line>252</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/main/Direction.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/model/Direction.java</url>
           <line>19</line>
-          <properties class="main.Direction" method="getClockwise">
+          <properties class="model.Direction" method="getClockwise">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>

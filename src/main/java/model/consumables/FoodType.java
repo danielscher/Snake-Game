@@ -1,6 +1,4 @@
-package main.consumables;
-
-import main.GameProperties;
+package model.consumables;
 
 public enum FoodType {
     FRUIT (1) {

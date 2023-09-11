@@ -8,9 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import main.Direction;
-import main.Coords;
-import main.Pixel;
+import model.Pixel;
 
 public class EntityDrawer {
 

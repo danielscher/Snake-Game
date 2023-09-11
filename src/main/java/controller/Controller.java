@@ -2,9 +2,9 @@ package controller;
 
 
 import gui.GUI;
-import main.Direction;
-import main.GameModel;
-import main.HighScore;
+import model.Direction;
+import model.GameModel;
+import model.HighScore;
 
 
 public class Controller {

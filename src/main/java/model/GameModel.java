@@ -1,10 +1,10 @@
-package main;
+package model;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static main.Utils.translateCoordToPixel;
-import static main.consumables.FoodType.getFoodByCode;
+import static model.Utils.translateCoordToPixel;
+import static model.consumables.FoodType.getFoodByCode;
 
 public class GameModel {
 
