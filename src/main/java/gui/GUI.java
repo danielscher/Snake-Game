@@ -8,10 +8,7 @@ import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -25,6 +22,7 @@ import model.HighScore;
 import model.Pixel;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class GUI extends Application {
 
@@ -39,6 +37,7 @@ public class GUI extends Application {
     private Direction direction;
     private VBox root;
     private Label scoreLabel;
+    private static final int TEXT_LIMIT = 5;
 
     private boolean pauseToggle = false;
 
@@ -180,14 +179,48 @@ public class GUI extends Application {
             // save score button.
             Button submitButton = new Button("Submit");
             TextField name = new TextField();
-            name.setPromptText("Enter Name");
+            AtomicReference<Boolean> canSubmit = new AtomicReference<>(false);
+            Label errorLabel = new Label();
+            name.setTextFormatter(new TextFormatter<>((change) -> {
+                change.setText(change.getText().toUpperCase());
+                return change;
+            }));
+            name .textProperty().addListener((observable, oldValue, newValue) -> {
+                if (!newValue.matches("[A-Z0-9]*")) {
+                    //name.setText(newValue.replaceAll("[^A-Z0-9]", ""));
+                    errorLabel.setText("Only letters and numbers allowed");
+                    canSubmit.set(false);
+                }
+                else {
+                    errorLabel.setText("");
+                    canSubmit.set(true);
+                }
+            });
+            name.lengthProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    // Check if the new character is greater than LIMIT
+                    if (name.getText().length() >= TEXT_LIMIT) {
 
+                        // if it's 6th character then just setText to previous
+                        // one
+                        name.setText(name.getText().substring(0, TEXT_LIMIT));
+                    }
+                }
+            });
+            name.setMaxWidth(120);
+            name.setAlignment(Pos.CENTER);
+            name.setPromptText("Enter Name");
+            name.setFocusTraversable(false);
             submitButton.setOnAction(e -> {
+                if (!canSubmit.get()) {
+                    return;
+                }
                 String playerName = name.getText();
                 HighScore highScore = new HighScore(playerName, controller.getScore());
                 controller.saveScore(highScore);
+
             });
-            root.getChildren().addAll(newHighScore, score, name, submitButton);
+            root.getChildren().addAll(newHighScore, score, name, submitButton,errorLabel);
         }
 
         // buttons
