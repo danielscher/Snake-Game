@@ -6,6 +6,8 @@ import controller.HighScoreDAO;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -22,6 +24,7 @@ import model.HighScore;
 import model.Pixel;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class GUI extends Application {
@@ -30,13 +33,17 @@ public class GUI extends Application {
     private PausableAnimationTimer timer;
     private final EntityDrawer entityDrawer = new EntityDrawer(cellSize);
     private final Controller controller = new Controller(this, cellSize);
+    @FXML
     private final AnchorPane pane = new AnchorPane();
-    private final StackPane stackPane = new StackPane();
+    @FXML
+    private final StackPane stackPane;
+    @FXML
+    private VBox root;
+    @FXML
+    private Label scoreLabel;
     private Boolean gameOverFlag = false;
     private Boolean newHighScoreFlag = false;
     private Direction direction;
-    private VBox root;
-    private Label scoreLabel;
     private static final int TEXT_LIMIT = 5;
 
     private boolean pauseToggle = false;
@@ -46,6 +53,9 @@ public class GUI extends Application {
     // snake drawing classes for creating the snake graphics on board.
     private Stage primaryStage;
 
+    public GUI() {
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -54,6 +64,9 @@ public class GUI extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Snake Game");
+
+        FXMLLoader loader = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("snakeGame.fxml")));
+        root = loader.load();
 
         // set label.
         scoreTxt.set("SCORE:  " + 0);
@@ -88,10 +101,10 @@ public class GUI extends Application {
         // set scene.
         Scene scene = new Scene(stackPane);
         scene.setFill(Color.BLACK);
-
         primaryStage.setScene(scene);
         primaryStage.show();
-        // set key listener.
+
+        // add key listener for movement and pausing.
         primaryStage.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
             switch (key.getCode()) {
                 case UP, W -> direction = Direction.UP;
@@ -111,7 +124,7 @@ public class GUI extends Application {
         timer = new PausableAnimationTimer() {
             @Override
             public void tick(long now) {
-
+                // ignore
                 if (timer.isActive) {
                     controller.handleTick(direction, now);
                 }
@@ -128,32 +141,50 @@ public class GUI extends Application {
         timer.start();
     }
 
+    /**
+     * sets flag for game over.
+     * */
     public void setGameOverFlag() {
         gameOverFlag = true;
     }
 
+    /**
+     * updates the displayed score.
+     * */
     public void updateScore(final int score) {
         scoreTxt.set("SCORE: " + score);
     }
 
+    /**
+     * draws snake on the given pixels.
+     * */
     public void updateSnakeBody(List<Pixel> snakePixelPos) {
         entityDrawer.drawSnakeBody(snakePixelPos, pane);
     }
 
+    /**
+     * draws fruits of the given pixels.
+     * */
     public void updateFruits(List<Pixel> fruits) {
         entityDrawer.drawConsumbable(fruits, pane);
     }
 
+    /**
+     * sets the internal speed of timer of the game.
+     * */
     public void setRefreshSpeed(double speed) {
         timer.setSpeed(speed);
     }
 
+    /**
+     * sets flag for new high score.
+     * */
     public void setNewHighScoreFlag() {
         newHighScoreFlag = true;
     }
 
     /**
-     * Switches to the game end scene.
+     * Displays game end screen.
      */
     private void switchToGameEndScene() {
         //timer.pause();
@@ -250,6 +281,9 @@ public class GUI extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Displays leader board screen.
+     * */
     private void switchToLeaderBoardScreen() {
         //TODO: implement leader board screen.
         Stage newStage = new Stage();
@@ -281,6 +315,9 @@ public class GUI extends Application {
         newStage.show();
     }
 
+    /**
+     * Displays pause screen.
+     * */
     private void togglePauseScene() {
         if (pauseToggle) {
             Label label = new Label("Paused");

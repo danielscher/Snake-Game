@@ -16,7 +16,6 @@ public class Controller {
     public Controller(final GUI gui, final int cellSize) {
         this.gui = gui;
         game = new GameModel(2, 512, cellSize);
-        //updateGui();
     }
 
     public void createNewGame(final int cellSize) {
@@ -33,7 +32,6 @@ public class Controller {
             if (HighScoreDAO.isInTopTen(game.getScore())) {
                 //HighScoreDAO.insertScore(highScore);
                 gui.setNewHighScoreFlag();
-                //System.out.println("New High Score!");
             }
         }
 
