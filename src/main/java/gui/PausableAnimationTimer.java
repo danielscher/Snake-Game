@@ -57,7 +57,6 @@ public abstract class PausableAnimationTimer extends AnimationTimer {
     @Override
     public void start() {
         super.start();
-        //updateGUI();
         isActive = true;
         restartScheduled = true;
     }
@@ -75,7 +74,6 @@ public abstract class PausableAnimationTimer extends AnimationTimer {
 
     @Override
     public void handle(long now) {
-       // System.out.println("here");
         if (pauseScheduled) {
             pauseStart = now;
             isPaused = true;

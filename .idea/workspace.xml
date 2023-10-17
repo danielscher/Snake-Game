@@ -4,28 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="added JDBC to save highscores.">
+    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="trying to use FXML injection for the UI components">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/HighScoreDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/HighScoreDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/EntityDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/EntityDrawer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Coords.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Coords.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Direction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/GameModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/GameProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/GameProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/HighScore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/HighScore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Pixel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Pixel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Snake.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/consumables/Effect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/consumables/Effect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/consumables/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/consumables/Food.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/consumables/FoodType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/consumables/FoodType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/consumables/Fruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/consumables/Fruit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/BoardTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/SnakeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/SnakeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/PausableAnimationTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/PausableAnimationTimer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/HighScore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +49,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -87,7 +78,7 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
     &quot;last_directory_selection&quot;: &quot;E:/Projects/Snake Game/SnakeGame/src/test/java/tests&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/danie/Desktop/StateMachine&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Projects/Snake Game/SnakeGame/src/main/resources&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -95,8 +86,8 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.20055197&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;SQL Dialects&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.3173873&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;build.tools&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -110,14 +101,17 @@
       <recent name="consumables" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projects\Snake Game\SnakeGame\src\main\resources" />
+      <recent name="D:\Projects\Snake Game\SnakeGame\src\main\resources\ccs" />
+      <recent name="D:\Projects\Snake Game\SnakeGame\src\main\java\gui" />
       <recent name="E:\Projects\Snake Game\SnakeGame" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\Snake Game\SnakeGame\src\main\resources" />
       <recent name="E:\Projects\Snake Game\SnakeGame\src\test\java\tests" />
       <recent name="E:\Projects\Snake Game\SnakeGame\src\main\java" />
       <recent name="E:\Projects\Snake Game\SnakeGame\src\main\java\gui" />
       <recent name="E:\Projects\Snake Game\SnakeGame\src" />
-      <recent name="E:\Projects\Snake Game\SnakeGame\src\main" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -129,9 +123,9 @@
   </component>
   <component name="RunManager" selected="Application.GUI">
     <configuration name="GUI" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="gui.GUI" />
+      <option name="MAIN_CLASS_NAME" value="gui.Main" />
       <module name="SnakeGame.main" />
-      <option name="VM_PARAMETERS" value="--module-path D:\Projects\javafx-sdk-17.0.7\lib --add-modules=javafx.controls" />
+      <option name="VM_PARAMETERS" value="--module-path D:\Projects\javafx-sdk-17.0.7\lib --add-modules=javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -216,6 +210,28 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="SnakeGame [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="SnakeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -240,46 +256,22 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="SnakeTest.testGrowing" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;tests.SnakeTest.testGrowing&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Application.GUI" />
       <item itemvalue="Application.gui2" />
+      <item itemvalue="Gradle.SnakeGame [build]" />
       <item itemvalue="Gradle.BoardTest" />
       <item itemvalue="Gradle.BoardTest.getGridTileByPosition" />
       <item itemvalue="Gradle.BoardTest.getGridTileByPosition (1)" />
       <item itemvalue="Gradle.SnakeTest" />
-      <item itemvalue="Gradle.SnakeTest.testGrowing" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.SnakeGame [build]" />
         <item itemvalue="Gradle.SnakeTest" />
         <item itemvalue="Gradle.BoardTest" />
         <item itemvalue="Gradle.BoardTest.getGridTileByPosition (1)" />
         <item itemvalue="Gradle.BoardTest.getGridTileByPosition" />
-        <item itemvalue="Gradle.SnakeTest.testGrowing" />
       </list>
     </recent_temporary>
   </component>
@@ -322,6 +314,11 @@
       <workItem from="1694079366827" duration="1428000" />
       <workItem from="1694443054141" duration="92000" />
       <workItem from="1694443170713" duration="1069000" />
+      <workItem from="1696929946278" duration="157000" />
+      <workItem from="1696930308777" duration="6040000" />
+      <workItem from="1697017295440" duration="21059000" />
+      <workItem from="1697274675638" duration="12031000" />
+      <workItem from="1697555365826" duration="4520000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1672673027192</created>
@@ -570,7 +567,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693671807609</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="trying to use FXML injection for the UI components">
+      <option name="closed" value="true" />
+      <created>1697037121534</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1697037121534</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -588,7 +593,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added gui" />
     <MESSAGE value="able to move green dot representing snake. collision works." />
     <MESSAGE value="collision fixed. more efficient movement algo implemented. GUI animation works properly." />
     <MESSAGE value="added test class and helper methods for testing.&#10;increased cohesion by moving components out of Board class." />
@@ -613,7 +617,8 @@
     <MESSAGE value="pause scene switching works." />
     <MESSAGE value="fixed right-left out of bounds bug" />
     <MESSAGE value="added JDBC to save highscores." />
-    <option name="LAST_COMMIT_MESSAGE" value="added JDBC to save highscores." />
+    <MESSAGE value="trying to use FXML injection for the UI components" />
+    <option name="LAST_COMMIT_MESSAGE" value="trying to use FXML injection for the UI components" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -648,10 +653,35 @@
           <line>13</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/gui/GUI.java</url>
-          <line>252</line>
-          <option name="timeStamp" value="47" />
+          <line>262</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/gui/GUI.java</url>
+          <line>250</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/gui/GUI.java</url>
+          <line>184</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/MainController.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/MainController.java</url>
+          <line>125</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/EndGameController.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="72" />
         </line-breakpoint>
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/model/Direction.java</url>
@@ -669,14 +699,6 @@
         <PinnedItemInfo parentTag="main.Board" memberName="snakeQueue" />
       </pinned-members>
     </pin-to-top-manager>
-    <watches-manager>
-      <configuration name="GradleRunConfiguration">
-        <watch expression="grid[nextHeadPos.getxCoord()][nextHeadPos.getyCoord()].isSnake()" language="JAVA" />
-        <watch expression="((java.util.ArrayList)((Board)this).snakeBody).get(1)" custom="main.Board,java.util.ArrayList" />
-        <watch expression="((Board)this).grid" custom="main.Board" />
-        <watch expression="game.getSnakePixelPos().toString()" language="JAVA" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

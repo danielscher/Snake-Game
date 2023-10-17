@@ -2,15 +2,14 @@ package gui;
 
 
 import controller.Controller;
-import controller.HighScoreDAO;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -21,10 +20,13 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.Direction;
-import model.HighScore;
+import model.Player;
 import model.Pixel;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 
 public class GUI extends Application {
 
@@ -184,8 +186,8 @@ public class GUI extends Application {
 
             submitButton.setOnAction(e -> {
                 String playerName = name.getText();
-                HighScore highScore = new HighScore(playerName, controller.getScore());
-                controller.saveScore(highScore);
+                Player player = new Player(playerName, controller.getScore());
+                controller.saveScore(player);
             });
             root.getChildren().addAll(newHighScore, score, name, submitButton);
         }
@@ -218,34 +220,51 @@ public class GUI extends Application {
     }
 
     private void switchToLeaderBoardScreen() {
-        //TODO: implement leader board screen.
+//        //TODO: implement leader board screen.
+//        Stage newStage = new Stage();
+//
+//        // Create the content for the new window
+//        VBox root = new VBox(10);
+//        root.setAlignment(Pos.CENTER);
+//
+//        // Create a scene and set it to the new stage
+//        Scene newScene = new Scene(root, 300, 200);
+//        newStage.setScene(newScene);
+//
+//        // Set the title for the new window
+//        newStage.setTitle("New Window");
+//
+//        // Clear Leaderboard button.
+//        Button clearLeaderboard = new Button("Clear Leaderboard");
+//        clearLeaderboard.setOnAction(e -> {
+//            HighScoreDAO.deleteEntries();
+//            root.getChildren().remove(1);
+//        });
+//
+//        // load leaderboard data.
+//        ListView<Player> listView = new ListView<>();
+//        listView.getItems().addAll(HighScoreDAO.getTopScores());
+//        root.getChildren().addAll(listView, clearLeaderboard);
+//
+//        // Show the new window
+//        newStage.show();
         Stage newStage = new Stage();
-
-        // Create the content for the new window
-        VBox root = new VBox(10);
-        root.setAlignment(Pos.CENTER);
-
-        // Create a scene and set it to the new stage
-        Scene newScene = new Scene(root, 300, 200);
+        VBox root = null;
+        try {
+        URL url = getClass()
+                .getClassLoader()
+                .getResource("leaderboard.fxml");
+            System.out.println(url.toString());
+            root = FXMLLoader.load(Objects.requireNonNull(url));
+        } catch (IOException e) {
+            System.out.println("Error loading leaderboard fxml file.");
+            throw new RuntimeException(e);
+        }
+        Scene newScene = new Scene(root);
         newStage.setScene(newScene);
-
-        // Set the title for the new window
-        newStage.setTitle("New Window");
-
-        // Clear Leaderboard button.
-        Button clearLeaderboard = new Button("Clear Leaderboard");
-        clearLeaderboard.setOnAction(e -> {
-            HighScoreDAO.deleteEntries();
-            root.getChildren().remove(1);
-        });
-
-        // load leaderboard data.
-        ListView<HighScore> listView = new ListView<>();
-        listView.getItems().addAll(HighScoreDAO.getTopScores());
-        root.getChildren().addAll(listView, clearLeaderboard);
-
-        // Show the new window
+        newStage.setTitle("Leaderboard");
         newStage.show();
+
     }
 
     private void togglePauseScene() {
@@ -257,5 +276,4 @@ public class GUI extends Application {
             stackPane.getChildren().remove(1);
         }
     }
-
 }
