@@ -17,6 +17,7 @@ public class Main extends Application {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        scene.getStylesheets().add(getClass().getResource("/mainScene.css").toExternalForm());
         stage.show();
 
         MainController controller = loader.getController();

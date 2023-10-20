@@ -31,7 +31,8 @@ public class EndGameController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        URL stylesheetUrl = getClass().getResource("/endGameScene.css");
+        gameEndRoot.getStylesheets().add(stylesheetUrl.toExternalForm());
     }
 
     public void initData(Boolean newHighScoreFlag, Integer score) {
