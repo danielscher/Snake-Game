@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="replaced old main function with new.">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/EndGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/EndGameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/endGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/endGame.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/snakeGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/snakeGame.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,11 +263,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.SnakeGame [build]" />
         <item itemvalue="Gradle.SnakeTest" />
-        <item itemvalue="Gradle.BoardTest" />
         <item itemvalue="Gradle.BoardTest.getGridTileByPosition (1)" />
         <item itemvalue="Gradle.BoardTest.getGridTileByPosition" />
+        <item itemvalue="Gradle.BoardTest" />
+        <item itemvalue="Gradle.SnakeGame [build]" />
       </list>
     </recent_temporary>
   </component>

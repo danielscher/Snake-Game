@@ -51,8 +51,8 @@ public class EndGameController implements Initializable {
         String name = nameInput.getText();
         Player player = new Player(name, score);
         HighScoreDAO.insertScore(player);
-        nameInput.setVisible(false);
-        submitButton.setVisible(false);
+        gameEndRoot.getChildren().remove(nameInput);
+        gameEndRoot.getChildren().remove(submitButton);
     }
 
     @FXML
