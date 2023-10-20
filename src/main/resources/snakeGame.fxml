@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<StackPane fx:id="mainRoot" onKeyPressed="#handleKeyPress" prefHeight="400.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+   <children>
+      <VBox fx:id="root" alignment="TOP_CENTER" prefHeight="512.0" prefWidth="512.0">
+         <children>
+            <Label fx:id="scoreLabel" alignment="CENTER" text="SCORE: " textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin></Label>
+            <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="512.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="512.0" stroke="#1a00ff" strokeType="INSIDE" strokeWidth="2.0" width="512.0" />
+               </children></AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</StackPane>

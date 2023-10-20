@@ -1,11 +1,11 @@
 package model;
 
-public class HighScore {
+public class Player {
 
     private final int score;
     private final String name;
 
-    public HighScore(final String name, final int score) {
+    public Player(final String name, final int score) {
         this.name = name;
         this.score = score;
     }

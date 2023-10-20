@@ -1,6 +1,6 @@
 package controller;
 
-import model.HighScore;
+import model.Player;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,28 +10,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HighScoreDAO {
-    public static void insertScore(HighScore score) {
+    public static void insertScore(Player player) {
         String insertSQL = "INSERT INTO main.HighScores (name, score) VALUES (?, ?)";
         try (Connection connection = JDBCUtil.connect();
              PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
-            preparedStatement.setString(1, score.getName());
-            preparedStatement.setInt(2, score.getScore());
+            preparedStatement.setString(1, player.getName());
+            preparedStatement.setInt(2, player.getScore());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static HighScore[] getTopScores() {
+    public static Player[] getTopScores() {
         String getSQL = "SELECT * FROM main.HighScores ORDER BY Score DESC LIMIT 10";
         try (Connection connection = JDBCUtil.connect();
              PreparedStatement preparedStatement = connection.prepareStatement(getSQL)) {
             ResultSet resultSet = preparedStatement.executeQuery();
-            List<HighScore> highScores = new ArrayList<>();
+            List<Player> players = new ArrayList<>();
             while (resultSet.next()) {
-                highScores.add(new HighScore(resultSet.getString("name"), resultSet.getInt("score")));
+                players.add(new Player(resultSet.getString("name"), resultSet.getInt("score")));
             }
-            return highScores.toArray(new HighScore[0]);
+            return players.toArray(new Player[0]);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -42,12 +42,12 @@ public class HighScoreDAO {
         if (score == 0) {
             return false;
         }
-        HighScore[] highScores = getTopScores();
-        if (highScores.length < 10) {
+        Player[] players = getTopScores();
+        if (players.length < 10) {
             return true;
         }
-        for (HighScore highScore : highScores) {
-            if (score > highScore.getScore()) {
+        for (Player player : players) {
+            if (score > player.getScore()) {
                 return true;
             }
         }
