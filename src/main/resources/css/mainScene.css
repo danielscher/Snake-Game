@@ -1,0 +1,25 @@
+.root {
+    -fx-background-color: #000000;
+}
+.button {
+    -fx-pref-width: 150;
+    -fx-font-size: 14px;
+    -fx-padding: 5 10;
+    -fx-background-color: transparent; /* Green background color */
+    -fx-text-fill: blue; /* White text color */
+    -fx-border: 2 2 2 2; /* No border */
+    -fx-border-color: blue; /* Blue border color */
+    -fx-cursor: hand; /* Cursor style on hover */
+}
+
+.button:hover {
+    -fx-background-color: blue; /* Green background color */
+    -fx-text-fill: black; /* White text color */
+}
+
+
+#scoreLabel {
+    -fx-text-fill: #3aff00;
+    -fx-font-family: 'Roboto Mono', monospace;
+    -fx-font-size: 18px;
+}

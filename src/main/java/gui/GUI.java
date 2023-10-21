@@ -144,7 +144,7 @@ public class GUI extends Application {
     }
 
     public void updateFruits(List<Pixel> fruits) {
-        entityDrawer.drawConsumbable(fruits, pane);
+        entityDrawer.drawConsumable(fruits, pane);
     }
 
     public void setRefreshSpeed(double speed) {

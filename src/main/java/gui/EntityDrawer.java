@@ -65,7 +65,7 @@ public class EntityDrawer {
      * indicated by the fruitPosition list
      * @param pane is the root node of the UI scene
      * @param fruitPixelPos positions where the new fruits will be rendered*/
-    public void drawConsumbable(List<Pixel> fruitPixelPos, AnchorPane pane) {
+    public void drawConsumable(List<Pixel> fruitPixelPos, AnchorPane pane) {
 
         final int radius = cellSize / 2;
         pane.getChildren().removeAll(currFruits);

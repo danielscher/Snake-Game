@@ -150,7 +150,7 @@ public class MainController implements Initializable {
     }
 
     public void updateFruits(List<Pixel> fruits) {
-        drawer.drawConsumbable(fruits, pane);
+        drawer.drawConsumable(fruits, pane);
     }
 
     private void togglePauseScene() {

@@ -2,6 +2,7 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -31,6 +32,7 @@ public class LeaderboardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         URL stylesheetUrl = getClass().getResource("/leaderboard.css");
         leaderboardRoot.getStylesheets().add(stylesheetUrl.toExternalForm());
+        scoreTable.setPlaceholder(new Label("No scores yet!"));
         nameColumn.setReorderable(false);
         scoreColumn.setReorderable(false);
         populateTable();

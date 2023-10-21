@@ -4,10 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="changed style of score">
+    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="finally able to add font.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mainScene.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mainScene.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/EndGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/EndGameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LeaderboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LeaderboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/endGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/endGame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/endGameScene.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/endGameScene.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/leaderboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/leaderboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/leaderboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/leaderboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mainScene.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/mainScene.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/score_data.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/score_data.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,11 +113,11 @@
       <recent name="E:\Projects\Snake Game\SnakeGame" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\Snake Game\SnakeGame\src\main\resources\ccs" />
       <recent name="D:\Projects\Snake Game\SnakeGame\src\main\resources\fonts" />
       <recent name="D:\Projects\Snake Game\SnakeGame\src\main\resources" />
       <recent name="E:\Projects\Snake Game\SnakeGame\src\test\java\tests" />
       <recent name="E:\Projects\Snake Game\SnakeGame\src\main\java" />
-      <recent name="E:\Projects\Snake Game\SnakeGame\src\main\java\gui" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -617,7 +624,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697872803505</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="finally able to add font.">
+      <option name="closed" value="true" />
+      <created>1697876869653</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1697876869653</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -635,7 +650,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="clarified translation methods from pixel-&gt;grid and vice versa" />
     <MESSAGE value="board now operates only on grid position(not pixels), this fixed food spawn position bug." />
     <MESSAGE value="fixed bug where food wouldn't de-spawn after consumption" />
     <MESSAGE value="added score to GUI" />
@@ -660,7 +674,8 @@
     <MESSAGE value="replaced old main function with new." />
     <MESSAGE value="fixed: submit and text field now removed after submitting." />
     <MESSAGE value="changed style of score" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed style of score" />
+    <MESSAGE value="finally able to add font." />
+    <option name="LAST_COMMIT_MESSAGE" value="finally able to add font." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -712,17 +727,17 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/controller/MainController.java</url>
-          <line>65</line>
+          <line>66</line>
           <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/controller/EndGameController.java</url>
-          <line>34</line>
+          <line>35</line>
           <option name="timeStamp" value="75" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/controller/MainController.java</url>
-          <line>130</line>
+          <line>131</line>
           <option name="timeStamp" value="76" />
         </line-breakpoint>
         <line-breakpoint type="java-method">

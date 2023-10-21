@@ -1,22 +1,24 @@
 /* Apply styles to the gameEndRoot VBox */
 #gameEndRoot {
--fx-background-color: #7a7a7a; /* Light grey background */
+-fx-background-color: black; /* Light grey background */
 }
 
 /* Apply styles to the gameOverLabel */
 #gameOverLabel {
     -fx-font-size: 24px;
+    -fx-text-fill: red;
 }
 
 /* Apply styles to the scoreLabel */
-#scoreLabel {
+#endScoreLabel {
     -fx-font-size: 18px;
-    -fx-text-fill: blue;
+    -fx-text-fill: #44ff00;
 }
 
 /* Apply styles to the nameInput TextField */
 #nameInput {
     -fx-background-color: transparent;
+    -fx-text-fill: blue;
     -fx-border-color: blue;
     -fx-border-width: 0 0 2 0;
     -fx-padding: 0 0 5 0;
@@ -26,33 +28,3 @@
     -fx-focus-color: transparent;
 }
 
-/* Apply styles to the buttons */
-.button {
-    -fx-pref-width: 150;
-    -fx-font-size: 14px;
-    -fx-padding: 5 10;
-    -fx-background-color: #4CAF50; /* Green background color */
-    -fx-text-fill: white; /* White text color */
-    -fx-border: none; /* No border */
-    -fx-cursor: hand; /* Cursor style on hover */
-}
-
-/* Apply styles to the submitButton */
-#submitButton {
-    -fx-background-color: #2196F3; /* Blue background color */
-}
-
-/* Apply styles to the leaderboardButton */
-#leaderboardButton {
-    -fx-background-color: #FF9800; /* Orange background color */
-}
-
-/* Apply styles to the resetButton */
-#resetButton {
-    -fx-background-color: #f44336; /* Red background color */
-}
-
-/* Apply styles to the exitButton */
-#exitButton {
-    -fx-background-color: #607D8B; /* Gray background color */
-}

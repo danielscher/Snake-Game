@@ -4,6 +4,11 @@
 .table-view {
     -fx-border-style: none;
     -fx-border-width: 0;
+    -fx-background-color: transparent;
+}
+
+.table-view .placeholder .label {
+    -fx-text-fill: blue;
 }
 
 .table-view .column-header{
@@ -11,7 +16,7 @@
 }
 
 .table-view .column-header .label {
-    -fx-text-fill: #00ff00;
+    -fx-text-fill: blue;
     -fx-background-color: black;
 }
 
@@ -28,5 +33,25 @@
 
 #titleLabel {
     -fx-font-size: 24px;
+    -fx-text-fill: black;
+    -fx-background-color: #44ff00;
 }
+
+.button {
+    -fx-pref-width: 150;
+    -fx-font-size: 14px;
+    -fx-padding: 5 10;
+    -fx-background-color: transparent;
+    -fx-text-fill: blue;
+    -fx-border: 2 2 2 2;
+    -fx-border-color: blue;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-border-color: red;
+    -fx-background-color: red;
+    -fx-text-fill: black;
+}
+
 

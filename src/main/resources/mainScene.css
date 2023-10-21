@@ -1,9 +1,0 @@
-.root {
-    -fx-background-color: #000000;
-}
-
-#scoreLabel {
-    -fx-text-fill: #3aff00;
-    -fx-font-family: 'Roboto Mono', monospace;
-    -fx-font-size: 18px;
-}

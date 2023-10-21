@@ -10,7 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.GameModel;
 import model.Player;
 
 import java.io.IOException;
@@ -22,9 +21,11 @@ public class EndGameController implements Initializable {
     @FXML
     private VBox gameEndRoot;
     @FXML
-    private Label scoreLabel;
+    private Label endScoreLabel;
     @FXML
     private TextField nameInput;
+    @FXML
+    private Label textFieldInfoLabel;
     @FXML
     private Button submitButton;
     private Integer score;
@@ -33,16 +34,18 @@ public class EndGameController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         URL stylesheetUrl = getClass().getResource("/endGameScene.css");
         gameEndRoot.getStylesheets().add(stylesheetUrl.toExternalForm());
+
     }
 
     public void initData(Boolean newHighScoreFlag, Integer score) {
         this.score = score;
         if (newHighScoreFlag) {
-            scoreLabel.setText("New High Score: " + score);
+            endScoreLabel.setText("New High Score: " + score);
         } else {
             gameEndRoot.getChildren().remove(nameInput);
             gameEndRoot.getChildren().remove(submitButton);
-            scoreLabel.setText("Score: " + score);
+            gameEndRoot.getChildren().remove(textFieldInfoLabel);
+            endScoreLabel.setText("Score: " + score);
         }
     }
 
@@ -53,6 +56,7 @@ public class EndGameController implements Initializable {
         HighScoreDAO.insertScore(player);
         gameEndRoot.getChildren().remove(nameInput);
         gameEndRoot.getChildren().remove(submitButton);
+        gameEndRoot.getChildren().remove(textFieldInfoLabel);
     }
 
     @FXML
