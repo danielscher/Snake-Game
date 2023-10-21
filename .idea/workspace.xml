@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="fixed: submit and text field now removed after submitting.">
+    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="changed style of score">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/snakeGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/snakeGame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mainScene.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mainScene.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,51 +65,52 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
-    &quot;last_directory_selection&quot;: &quot;E:/Projects/Snake Game/SnakeGame/src/test/java/tests&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Projects/Snake Game/SnakeGame/src/main/resources&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.3173873&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;build.tools&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "jdk.selected.JAVA_MODULE": "corretto-17",
+    "last_directory_selection": "E:/Projects/Snake Game/SnakeGame/src/test/java/tests",
+    "last_opened_file_path": "D:/Projects/Snake Game/SnakeGame/src/main/resources/fonts",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.3173873",
+    "settings.editor.selected.configurable": "build.tools",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="consumables" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projects\Snake Game\SnakeGame\src\main\resources\fonts" />
       <recent name="D:\Projects\Snake Game\SnakeGame\src\main\resources" />
       <recent name="D:\Projects\Snake Game\SnakeGame\src\main\resources\ccs" />
       <recent name="D:\Projects\Snake Game\SnakeGame\src\main\java\gui" />
       <recent name="E:\Projects\Snake Game\SnakeGame" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\Snake Game\SnakeGame\src\main\resources\fonts" />
       <recent name="D:\Projects\Snake Game\SnakeGame\src\main\resources" />
       <recent name="E:\Projects\Snake Game\SnakeGame\src\test\java\tests" />
       <recent name="E:\Projects\Snake Game\SnakeGame\src\main\java" />
       <recent name="E:\Projects\Snake Game\SnakeGame\src\main\java\gui" />
-      <recent name="E:\Projects\Snake Game\SnakeGame\src" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -607,7 +609,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697809914771</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="changed style of score">
+      <option name="closed" value="true" />
+      <created>1697872803505</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1697872803505</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -625,7 +635,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed double spawning of fruit." />
     <MESSAGE value="clarified translation methods from pixel-&gt;grid and vice versa" />
     <MESSAGE value="board now operates only on grid position(not pixels), this fixed food spawn position bug." />
     <MESSAGE value="fixed bug where food wouldn't de-spawn after consumption" />
@@ -650,7 +659,8 @@
     <MESSAGE value="added missing classes" />
     <MESSAGE value="replaced old main function with new." />
     <MESSAGE value="fixed: submit and text field now removed after submitting." />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed: submit and text field now removed after submitting." />
+    <MESSAGE value="changed style of score" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed style of score" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -702,7 +712,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/controller/MainController.java</url>
-          <line>64</line>
+          <line>65</line>
           <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -712,7 +722,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/controller/MainController.java</url>
-          <line>129</line>
+          <line>130</line>
           <option name="timeStamp" value="76" />
         </line-breakpoint>
         <line-breakpoint type="java-method">

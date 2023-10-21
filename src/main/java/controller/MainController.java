@@ -53,6 +53,8 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         game = new GameModel(2, 512, 32);
         scoreLabel.textProperty().bind(scoreTxt);
+        Font font = Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoMono-VariableFont_wght.ttf"), 30);
+        scoreLabel.setFont(font);
     }
 
     public void initData(Stage stage) {
