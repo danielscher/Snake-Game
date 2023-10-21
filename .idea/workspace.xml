@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="fixed: submit and text field now removed after submitting.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LeaderboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LeaderboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/leaderboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/leaderboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/snakeGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/snakeGame.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -719,7 +718,7 @@
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/model/Direction.java</url>
           <line>19</line>
-          <properties class="model.Direction" method="getClockwise">
+          <properties class="model.Direction">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>

@@ -9,11 +9,11 @@
 
 <StackPane fx:id="mainRoot" onKeyPressed="#handleKeyPress" prefHeight="400.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
-      <VBox fx:id="root" alignment="TOP_CENTER" prefHeight="512.0" prefWidth="512.0">
+      <VBox fx:id="root" prefHeight="512.0" prefWidth="512.0">
          <children>
-            <Label fx:id="scoreLabel" alignment="CENTER" text="SCORE: " textAlignment="CENTER">
+            <Label fx:id="scoreLabel" alignment="CENTER" text="000" textAlignment="CENTER">
                <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
                </VBox.margin></Label>
             <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="512.0">
                <children>

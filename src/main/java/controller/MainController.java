@@ -35,7 +35,7 @@ public class MainController implements Initializable {
     @FXML
     Label scoreLabel;
 
-    private final SimpleStringProperty scoreTxt = new SimpleStringProperty("Score: 0");
+    private final SimpleStringProperty scoreTxt = new SimpleStringProperty("000");
 
     private GameModel game;
 
@@ -139,7 +139,8 @@ public class MainController implements Initializable {
     }
 
     public void updateScore(final int score) {
-        scoreTxt.set("SCORE: " + score);
+        String formattedScore = String.format("%03d", score);
+        scoreTxt.set(formattedScore);
     }
 
     public void updateSnakeBody(List<Pixel> snakePixelPos) {
