@@ -1,0 +1,32 @@
+#leaderboardRoot {
+    -fx-background-color: #000000;
+}
+.table-view {
+    -fx-border-style: none;
+    -fx-border-width: 0;
+}
+
+.table-view .column-header{
+    -fx-background-color: black;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #00ff00;
+    -fx-background-color: black;
+}
+
+#scoreTable .table-cell  {
+    -fx-alignment: center;
+    -fx-background-color: black;
+    -fx-text-fill: blue;
+    -fx-border-color: transparent;
+}
+
+#scoreTable .table-row-cell{
+    -fx-text-fill: white;
+}
+
+#titleLabel {
+    -fx-font-size: 24px;
+}
+

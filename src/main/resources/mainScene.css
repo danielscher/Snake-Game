@@ -1,0 +1,9 @@
+.root {
+    -fx-background-color: #000000;
+}
+
+#scoreLabel {
+    -fx-font-size: 18px;
+    -fx-text-fill: #3aff00;
+    -fx-font: "Courier New";
+}
