@@ -1,19 +1,25 @@
 package gui;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import model.Pixel;
+import model.Utils;
 
 public class EntityDrawer {
 
 
-    private Set<Rectangle> snakeBody = new HashSet<>();
+    private List<Circle> snakeBody = new ArrayList<>();
     private Set<Circle> currFruits = new HashSet<>();
     private final int cellSize;
     private final Color headColor;
@@ -27,36 +33,49 @@ public class EntityDrawer {
     }
 
 
-    public void drawSnakeBody(List<Pixel> snakeCoords, AnchorPane pane) {
+    synchronized public void drawSnakeBody(List<Pixel> snakeCoords, AnchorPane pane) {
+        List<Circle> newSnake = new ArrayList<>();
 
-        Set<Rectangle> newSnake = new HashSet<>();
-
-        // clear old body.
-        pane.getChildren().removeAll(snakeBody);
 
         //draw new head.
         final int radius = cellSize / 2;
-        Pixel head = snakeCoords.get(0);
-        assert head != null;
-        Rectangle headRect = new Rectangle(head.getX() - radius, head.getY() - radius, cellSize,
-                cellSize);
-        headRect.setStroke(Color.INDIANRED);
-        headRect.setFill(headColor);
-        newSnake.add(headRect);
+//        Pixel head = snakeCoords.get(0);
+//        assert head != null;
+//        Rectangle headRect = new Rectangle(head.getX() - radius, head.getY() - radius, cellSize,
+//                cellSize);
+//        headRect.setStroke(Color.INDIANRED);
+//        headRect.setFill(headColor);
+//        newSnake.add(headRect);
+
+        Timeline timeline = new Timeline();
 
         //draw new body.
-        for (int i = 1; i < snakeCoords.size(); i++) {
-            int xPos = snakeCoords.get(i).getX();
-            int yPos = snakeCoords.get(i).getY();
-            Rectangle rect = new Rectangle(xPos - radius, yPos - radius, cellSize, cellSize);
-            rect.setFill(bodyColor);
-            rect.setStroke(Color.GREENYELLOW);
+        for (int i = 0; i < snakeCoords.size(); i++) {
+            final int index = i;
+            Pixel segment = snakeCoords.get(i);
+            Circle rect = createRectangle(segment);
             newSnake.add(rect);
+
+            if (i >= snakeBody.size()) {continue;}
+            // Define a KeyFrame to update the position of this segment over time
+            KeyFrame keyFrame = new KeyFrame(
+                    Duration.millis(500),
+                    new KeyValue(snakeBody.get(index).centerXProperty(), segment.getX()),
+                    new KeyValue(snakeBody.get(index).centerYProperty(), segment.getY())
+            );
+            timeline.getKeyFrames().add(keyFrame);
         }
 
-        // replace current body with new one and add it to root.
-        pane.getChildren().addAll(newSnake);
-        snakeBody = newSnake;
+        if (snakeBody.isEmpty()) {
+            snakeBody = newSnake;
+            pane.getChildren().addAll(snakeBody);}
+
+        else if (snakeBody.size() < newSnake.size()) {
+            Circle circ = newSnake.get(newSnake.size()-1);
+            snakeBody.add(circ);
+            pane.getChildren().add(circ);
+        }
+        timeline.play();
     }
 
     /**
@@ -81,6 +100,14 @@ public class EntityDrawer {
 
         pane.getChildren().addAll(newFruits);
         currFruits = newFruits;
+    }
+
+    private Circle createRectangle(Pixel pixel) {
+        final int radius = cellSize / 2;
+        Circle rect = new Circle(pixel.getX(), pixel.getY(), radius);
+        rect.setFill(Color.GREEN);
+        rect.setStroke(Color.GREENYELLOW);
+        return rect;
     }
 
 }

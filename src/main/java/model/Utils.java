@@ -1,7 +1,7 @@
 package model;
 
 public class Utils {
-
+    private Utils(){}
     public static Coords translatePixelToCoords(Pixel pixel, final int tileSize){
         int col = (pixel.getX() - tileSize / 2) / tileSize;
         int row = (pixel.getY() - tileSize / 2) / tileSize;
@@ -13,4 +13,5 @@ public class Utils {
         int yPos = coords.getY() * tileSize + tileSize/2;
         return new Pixel(xPos,yPos);
     }
+
 }

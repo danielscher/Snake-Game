@@ -77,10 +77,8 @@ public class Snake {
         return snakeCoords;
     }
 
-
     public int getSize(){
         return snakeCoords.size();
     }
-
 
 }

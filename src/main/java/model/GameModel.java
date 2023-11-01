@@ -140,7 +140,6 @@ public class GameModel {
         return cellSize;
     }
 
-
     public int getScore() {
         return score;
     }

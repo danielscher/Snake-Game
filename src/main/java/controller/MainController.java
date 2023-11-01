@@ -3,6 +3,8 @@ package controller;
 import dataaccess.HighScoreDAO;
 import gui.EntityDrawer;
 import gui.PausableAnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +17,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.Direction;
 import model.GameModel;
 import model.Pixel;
@@ -23,12 +26,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainController implements Initializable {
 
     @FXML
     StackPane mainRoot;
-
 
     @FXML
     AnchorPane pane;
@@ -36,41 +39,48 @@ public class MainController implements Initializable {
     @FXML
     Label scoreLabel;
 
-    private final SimpleStringProperty scoreTxt = new SimpleStringProperty("000");
+    private final int SEED = 1;
+    private final int CELL_SIZE = 32;
+    private final int BOARD_SIZE = 512;
+
 
     private GameModel game;
-
-    private PausableAnimationTimer timer;
-
-    private final EntityDrawer drawer = new EntityDrawer(32);
-
+    private final EntityDrawer drawer = new EntityDrawer(CELL_SIZE);
     private long eatenSince = 0;
     private Direction lastInput = Direction.RIGHT;
     private Boolean paused = false;
     private Boolean gameOverFlag = false;
     private Boolean newHighScoreFlag = false;
+    private final Timeline timeline = new Timeline();
+    private final SimpleStringProperty scoreTxt = new SimpleStringProperty("000");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        game = new GameModel(2, 512, 32);
+        game = new GameModel(SEED, BOARD_SIZE, CELL_SIZE);
         scoreLabel.textProperty().bind(scoreTxt);
-        Font font = Font.loadFont(getClass().getResourceAsStream("/fonts/RobotoMono-VariableFont_wght.ttf"), 30);
+        Font font = Font.loadFont(getClass()
+                .getResourceAsStream("/fonts/RobotoMono-VariableFont_wght.ttf"), 30);
         scoreLabel.setFont(font);
     }
 
     public void initData(Stage stage) {
         stage.getScene().setOnKeyPressed(this::handleKeyPress);
+        updateGui();
         startGame();
     }
 
     @FXML
-    void handleKeyPress(KeyEvent event) {
+    public void handleKeyPress(KeyEvent event) {
         KeyCode key = event.getCode();
         switch (key) {
-            case W, UP -> {lastInput = Direction.UP;}
-            case S, DOWN -> {lastInput = Direction.DOWN;}
-            case A, LEFT -> {lastInput = Direction.LEFT;}
-            case D, RIGHT -> {lastInput = Direction.RIGHT;}
+            case W, UP -> lastInput = Direction.UP;
+
+            case S, DOWN -> lastInput = Direction.DOWN;
+
+            case A, LEFT -> lastInput = Direction.LEFT;
+
+            case D, RIGHT -> lastInput = Direction.RIGHT;
+
             case ESCAPE -> {
                 paused = !paused;
                 togglePauseScene();
@@ -78,54 +88,52 @@ public class MainController implements Initializable {
         }
     }
 
-    public void handleTick(Direction dir, long currTick) {
+    private void startGame() {
+        AtomicInteger tick = new AtomicInteger();
+        Timeline timeline = new Timeline();
+        timeline.setCycleCount(Timeline.INDEFINITE);
+
+        timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(500),
+                        event -> {
+                            if (!paused && !gameOverFlag) {
+                                handleTick(lastInput, tick);
+                                tick.getAndIncrement();
+                            }
+                        }));
+        //updateGui();
+        timeline.play();
+    }
+
+    private void handleTick(Direction dir, AtomicInteger currTick) {
 
         // make move and check if game is over.
         if (game.makeMove(dir)) {
             gameOverFlag = true;
             if (HighScoreDAO.isInTopTen(game.getScore())) {
                 newHighScoreFlag = true;
+                timeline.stop();
+            }
+            try {
+                switchToGameEndScene();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
 
         //respawn fruit if not eaten.
-        if (currTick - eatenSince > 32) {
+        if (currTick.get() - eatenSince > 32) {
             if (!game.getEaten()) {
                 game.respawnConsumable();
             }
             game.resetEaten();
-            eatenSince = currTick;
+            eatenSince = currTick.get();
         }
         // refresh gui.
         updateGui();
     }
 
-    private void startGame() {
-        timer = new PausableAnimationTimer() {
-            @Override
-            public void tick(long now) {
-
-                if (timer.isActive()) {
-                    handleTick(lastInput, now);
-                }
-
-                if (gameOverFlag) {
-                    System.out.println("Game Over");
-                    timer.pause();
-                    try {
-                        switchToGameEndScene();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    gameOverFlag = false;
-                }
-            }
-        };
-
-        timer.start();
-    }
-
-    public void switchToGameEndScene() throws IOException {
+    private void switchToGameEndScene() throws IOException {
         URL url = getClass().getResource("/endGame.fxml");
         FXMLLoader loader = new FXMLLoader(url);
         VBox root = loader.load();
@@ -134,34 +142,35 @@ public class MainController implements Initializable {
         mainRoot.getChildren().setAll(root);
     }
 
-    public void updateGui() {
+    private void updateGui() {
         updateScore(game.getScore());
         updateSnakeBody(game.getSnakePixelPos());
         updateFruits(game.getFruits());
-        timer.setSpeed(game.getGp().getSpeed());
+        //timer.setSpeed(game.getGp().getSpeed());
     }
 
-    public void updateScore(final int score) {
+    private void updateScore(final int score) {
         String formattedScore = String.format("%03d", score);
         scoreTxt.set(formattedScore);
     }
 
-    public void updateSnakeBody(List<Pixel> snakePixelPos) {
+    private void updateSnakeBody(List<Pixel> snakePixelPos) {
         drawer.drawSnakeBody(snakePixelPos, pane);
     }
 
-    public void updateFruits(List<Pixel> fruits) {
+    private void updateFruits(List<Pixel> fruits) {
         drawer.drawConsumable(fruits, pane);
     }
 
     private void togglePauseScene() {
-        timer.pause();
         if (paused) {
             Label label = new Label("Paused");
             label.setFont(new Font(30));
             mainRoot.getChildren().add(label);
+            timeline.pause();
         } else {
             mainRoot.getChildren().remove(1);
+            timeline.play();
         }
     }
 

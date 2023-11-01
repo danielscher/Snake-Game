@@ -7,7 +7,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 
 public abstract class PausableAnimationTimer extends AnimationTimer {
 
-    double gameSpeed =1;
+    double gameSpeed = 1;
 
     long timeSinceLastTick;
     int tick = 0;
@@ -95,7 +95,7 @@ public abstract class PausableAnimationTimer extends AnimationTimer {
         if (!isPaused) {
             long animDuration = now - animationStart;
             animationDuration.set(animDuration / 1e9);
-            if (animDuration - timeSinceLastTick > 1000000000L/gameSpeed){
+            if (animDuration - timeSinceLastTick > 33333333L/gameSpeed){
                 timeSinceLastTick = animDuration;
                 tick++;
                 tick(tick);
