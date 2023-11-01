@@ -1,5 +1,6 @@
-package controller;
+package dataaccess;
 
+import dataaccess.JDBCUtil;
 import model.Player;
 
 import java.sql.Connection;

@@ -1,5 +1,6 @@
 package controller;
 
+import dataaccess.HighScoreDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -7,10 +8,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import model.Player;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class LeaderboardController implements Initializable {
@@ -28,9 +29,10 @@ public class LeaderboardController implements Initializable {
     private TableColumn<Player, Integer> scoreColumn;
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        URL stylesheetUrl = getClass().getResource("/leaderboard.css");
+        URL stylesheetUrl = getClass().getResource("/css/leaderboard.css");
         leaderboardRoot.getStylesheets().add(stylesheetUrl.toExternalForm());
         scoreTable.setPlaceholder(new Label("No scores yet!"));
         nameColumn.setReorderable(false);
@@ -51,5 +53,11 @@ public class LeaderboardController implements Initializable {
         Player[] players = HighScoreDAO.getTopScores();
 
         scoreTable.getItems().setAll(players);
+    }
+
+    @FXML
+    public void backToMenu() {
+        Stage stage = (Stage) leaderboardRoot.getScene().getWindow();
+        stage.close();
     }
 }

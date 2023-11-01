@@ -1,5 +1,6 @@
 package controller;
 
+import dataaccess.HighScoreDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import model.Player;
 
@@ -30,11 +32,15 @@ public class EndGameController implements Initializable {
     private Button submitButton;
     private Integer score;
 
+    private AudioClip clickSound;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        URL stylesheetUrl = getClass().getResource("/endGameScene.css");
+        URL stylesheetUrl = getClass().getResource("/css/endGameScene.css");
+        URL clickSoundUrl = getClass().getResource("/assets/click.mp3");
         gameEndRoot.getStylesheets().add(stylesheetUrl.toExternalForm());
-
+        clickSound = new AudioClip(clickSoundUrl.toExternalForm());
+        clickSound.setVolume(0.5);
     }
 
     public void initData(Boolean newHighScoreFlag, Integer score) {
@@ -87,5 +93,10 @@ public class EndGameController implements Initializable {
     @FXML
     public void exitGame() {
         System.exit(0);
+    }
+
+    @FXML
+    public void playClickSound() {
+        clickSound.play();
     }
 }

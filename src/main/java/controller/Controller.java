@@ -1,6 +1,7 @@
 package controller;
 
 
+import dataaccess.HighScoreDAO;
 import gui.GUI;
 import model.Direction;
 import model.GameModel;

@@ -15,7 +15,7 @@ public class EntityDrawer {
 
     private Set<Rectangle> snakeBody = new HashSet<>();
     private Set<Circle> currFruits = new HashSet<>();
-    private int cellSize;
+    private final int cellSize;
     private final Color headColor;
     private final Color bodyColor;
 
@@ -26,7 +26,6 @@ public class EntityDrawer {
         bodyColor = Color.GREEN;
     }
 
-    //TODO: add more initialization properties to constructor.
 
     public void drawSnakeBody(List<Pixel> snakeCoords, AnchorPane pane) {
 

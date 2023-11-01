@@ -11,9 +11,9 @@
       <Label fx:id="endScoreLabel" text="0" />
       <TextField fx:id="nameInput" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="110.0" />
       <Label fx:id="textFieldInfoLabel" text="Enter name above to save score" />
-      <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitScore" text="Submit" />
-      <Button fx:id="leaderboardButton" mnemonicParsing="false" onAction="#switchToLeaderboard" text="Leaderboard" />
-      <Button fx:id="resetButton" mnemonicParsing="false" onAction="#restartGame" text="Reset" />
-      <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitGame" text="Exit" />
+      <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitScore" onMouseEntered="#playClickSound" text="Submit" />
+      <Button fx:id="leaderboardButton" mnemonicParsing="false" onAction="#switchToLeaderboard" onMouseEntered="#playClickSound" text="Leaderboard" />
+      <Button fx:id="resetButton" mnemonicParsing="false" onAction="#restartGame" onMouseEntered="#playClickSound" text="Reset" />
+      <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitGame" onMouseEntered="#playClickSound" text="Exit" />
    </children>
 </VBox>

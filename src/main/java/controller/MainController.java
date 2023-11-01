@@ -1,5 +1,6 @@
 package controller;
 
+import dataaccess.HighScoreDAO;
 import gui.EntityDrawer;
 import gui.PausableAnimationTimer;
 import javafx.beans.property.SimpleStringProperty;

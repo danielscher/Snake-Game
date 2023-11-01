@@ -4,16 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="finally able to add font.">
+    <list default="true" id="0d0ab17c-46a7-4975-938f-39e0308f17f9" name="Changes" comment="added leaderboard banner.">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/EndGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/EndGameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/LeaderboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LeaderboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/endGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/endGame.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/endGameScene.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/endGameScene.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/leaderboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/leaderboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/endGameScene.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/endGameScene.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/leaderboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/leaderboard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/leaderboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/leaderboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mainScene.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/mainScene.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/score_data.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/score_data.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,7 +81,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "jdk.selected.JAVA_MODULE": "corretto-17",
     "last_directory_selection": "E:/Projects/Snake Game/SnakeGame/src/test/java/tests",
-    "last_opened_file_path": "D:/Projects/Snake Game/SnakeGame/src/main/resources/fonts",
+    "last_opened_file_path": "D:/Projects/Snake Game/SnakeGame/src/main/resources/assets",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -106,18 +105,18 @@
       <recent name="consumables" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projects\Snake Game\SnakeGame\src\main\resources\assets" />
       <recent name="D:\Projects\Snake Game\SnakeGame\src\main\resources\fonts" />
       <recent name="D:\Projects\Snake Game\SnakeGame\src\main\resources" />
       <recent name="D:\Projects\Snake Game\SnakeGame\src\main\resources\ccs" />
       <recent name="D:\Projects\Snake Game\SnakeGame\src\main\java\gui" />
-      <recent name="E:\Projects\Snake Game\SnakeGame" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\Snake Game\SnakeGame\src\main\resources\css" />
       <recent name="D:\Projects\Snake Game\SnakeGame\src\main\resources\ccs" />
       <recent name="D:\Projects\Snake Game\SnakeGame\src\main\resources\fonts" />
       <recent name="D:\Projects\Snake Game\SnakeGame\src\main\resources" />
       <recent name="E:\Projects\Snake Game\SnakeGame\src\test\java\tests" />
-      <recent name="E:\Projects\Snake Game\SnakeGame\src\main\java" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -131,7 +130,7 @@
     <configuration name="GUI" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="gui.Main" />
       <module name="SnakeGame.main" />
-      <option name="VM_PARAMETERS" value="--module-path D:\Projects\javafx-sdk-17.0.7\lib --add-modules=javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path D:\Projects\javafx-sdk-17.0.7\lib --add-modules=javafx.controls,javafx.fxml,javafx.media" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -216,7 +215,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="SnakeGame [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="SnakeGame [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -227,7 +226,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="build" />
+            <option value="jar" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -265,7 +264,7 @@
     <list>
       <item itemvalue="Application.GUI" />
       <item itemvalue="Application.gui2" />
-      <item itemvalue="Gradle.SnakeGame [build]" />
+      <item itemvalue="Gradle.SnakeGame [jar]" />
       <item itemvalue="Gradle.BoardTest" />
       <item itemvalue="Gradle.BoardTest.getGridTileByPosition" />
       <item itemvalue="Gradle.BoardTest.getGridTileByPosition (1)" />
@@ -273,11 +272,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.SnakeGame [jar]" />
         <item itemvalue="Gradle.SnakeTest" />
         <item itemvalue="Gradle.BoardTest.getGridTileByPosition (1)" />
         <item itemvalue="Gradle.BoardTest.getGridTileByPosition" />
         <item itemvalue="Gradle.BoardTest" />
-        <item itemvalue="Gradle.SnakeGame [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -328,6 +327,11 @@
       <workItem from="1697618553724" duration="3103000" />
       <workItem from="1697795358609" duration="1088000" />
       <workItem from="1697824810634" duration="147000" />
+      <workItem from="1697973061389" duration="1216000" />
+      <workItem from="1697983096717" duration="1896000" />
+      <workItem from="1698044762170" duration="2018000" />
+      <workItem from="1698322817422" duration="264000" />
+      <workItem from="1698685512049" duration="5854000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1672673027192</created>
@@ -632,7 +636,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697876869653</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="added leaderboard banner.">
+      <option name="closed" value="true" />
+      <created>1697883101865</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1697883101865</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -650,7 +662,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="board now operates only on grid position(not pixels), this fixed food spawn position bug." />
     <MESSAGE value="fixed bug where food wouldn't de-spawn after consumption" />
     <MESSAGE value="added score to GUI" />
     <MESSAGE value="snake starts mvmt in rnd dir.&#10;fixed growing of snake when eating." />
@@ -675,7 +686,8 @@
     <MESSAGE value="fixed: submit and text field now removed after submitting." />
     <MESSAGE value="changed style of score" />
     <MESSAGE value="finally able to add font." />
-    <option name="LAST_COMMIT_MESSAGE" value="finally able to add font." />
+    <MESSAGE value="added leaderboard banner." />
+    <option name="LAST_COMMIT_MESSAGE" value="added leaderboard banner." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -730,20 +742,20 @@
           <line>66</line>
           <option name="timeStamp" value="67" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/controller/EndGameController.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="75" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/controller/MainController.java</url>
           <line>131</line>
           <option name="timeStamp" value="76" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/EndGameController.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/model/Direction.java</url>
           <line>19</line>
-          <properties class="model.Direction">
+          <properties class="model.Direction" method="getClockwise">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
