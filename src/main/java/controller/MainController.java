@@ -2,7 +2,6 @@ package controller;
 
 import dataaccess.HighScoreDAO;
 import gui.EntityDrawer;
-import gui.PausableAnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
@@ -54,6 +53,7 @@ public class MainController implements Initializable {
     private final Timeline timeline = new Timeline();
     private final SimpleStringProperty scoreTxt = new SimpleStringProperty("000");
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         game = new GameModel(SEED, BOARD_SIZE, CELL_SIZE);
@@ -73,13 +73,13 @@ public class MainController implements Initializable {
     public void handleKeyPress(KeyEvent event) {
         KeyCode key = event.getCode();
         switch (key) {
-            case W, UP -> lastInput = Direction.UP;
+            case W, UP -> lastInput = paused? lastInput : Direction.UP;
 
-            case S, DOWN -> lastInput = Direction.DOWN;
+            case S, DOWN -> lastInput = paused? lastInput : Direction.DOWN;
 
-            case A, LEFT -> lastInput = Direction.LEFT;
+            case A, LEFT -> lastInput = paused? lastInput : Direction.LEFT;
 
-            case D, RIGHT -> lastInput = Direction.RIGHT;
+            case D, RIGHT -> lastInput = paused? lastInput : Direction.RIGHT;
 
             case ESCAPE -> {
                 paused = !paused;
@@ -166,7 +166,7 @@ public class MainController implements Initializable {
         if (paused) {
             Label label = new Label("Paused");
             label.setFont(new Font(30));
-            mainRoot.getChildren().add(label);
+            mainRoot.getChildren().addAll(label);
             timeline.pause();
         } else {
             mainRoot.getChildren().remove(1);
